@@ -13,7 +13,7 @@ function Login(){
 
 
     return(
-        <div className='Login template d-flex justify-content-center align-items-center vh-100 bg-primary'>
+        <div className='Login template d-flex justify-content-center align-items-center vh-100 bg-white'>
             <div className='form_container p-5 rounded bg-white'>
                 <form onSubmit={LoginUsuario}>
                     <h3 className='text-center'>Faça o Login</h3>
@@ -26,7 +26,7 @@ function Login(){
                         <input type='password' placeholder='digite sua senha' className='form-control' id="senha" onChange={(e) => setSenha(e.target.value)}></input>
                     </div>
                     <div className='d-grid'>
-                        <button className='btn btn-primary'>Fazer Login</button>
+                        <Link to={'/Home'} className='btn btn-primary'>Fazer Login</Link>
                     </div>
 
                     <div className="d-flex flex-column align-items-center mt-4">

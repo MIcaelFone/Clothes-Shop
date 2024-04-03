@@ -15,7 +15,7 @@ function Cadastro(){
 
 
     return(
-        <div className='Cadastro template d-flex justify-content-center align-items-center vh-100 bg-primary'>
+        <div className='Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white'>
             <div className='form_container p-5 rounded bg-white'>
                 <form onSubmit={CadastraUsuario}>
                     <h3 className='text-center'>Cadastro</h3>
@@ -32,12 +32,12 @@ function Cadastro(){
                         <input type='password' placeholder='Digite sua senha' className='form-control' id="senha" onChange={(e) => setSenha(e.target.value)}></input>
                     </div>
                     <div className='d-grid mt-3'>
-                        <button className='btn btn-primary'>Cadastrar</button>
+                        <Link to={'/Home'} className='btn btn-primary'>Criar conta</Link>
                     </div>
 
                     <div className="d-flex flex-column align-items-center mt-4">
                     <p className="text-right">
-                         <Link to="/" className="ms-2">Ja possui conta?</Link>
+                         <Link to="/Login" className="ms-2">Ja possui conta?</Link>
                     </p>
                     </div>
                 </form>
