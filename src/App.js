@@ -5,14 +5,16 @@ import Header from './Layouts/header';
 import Footer from './Layouts/Footer';
 import Perfil from './Perfil_Usuario/Perfil';
 import 'bootstrap/dist/css/bootstrap.min.css';
-function App() {
+import Home from './pages/home'
+function App() { 
 
   return (    
     <>
       <BrowserRouter>
         <Header/> 
         <Routes>
-        <Route path='/Perfil' element={<Perfil />}></Route>
+          <Route path='/Home' element={<Home />}></Route>
+          <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
           <Route path='/Cadastro' element={<Cadastro />}></Route>
        </Routes>
