@@ -1,3 +1,7 @@
+.Cadastro, .Login{
+    background-image: url(./Imagens/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp);
+}
+
 .form_container{
     width: 30%;
 }

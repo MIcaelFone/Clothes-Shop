@@ -25,7 +25,7 @@ const Header = () => {
         },
 
         {
-            path: '/',
+            path: '/Home',
             name: "Home"
         },
         {
