@@ -14,7 +14,7 @@ function Footer(){
                                     <h4>Informações da Empresa</h4>
                                     <ul class="list-unstyled">
                                         <li>
-                                            <p>Empresa blablabla</p>
+                                            <p>Clothes Shop: moda online fácil e elegante. Encontre seu estilo em um clique.</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -43,7 +43,7 @@ function Footer(){
                                 </div>
                             </div>
                             <div class="footer-bottom">
-                                <p class="text-xs-center col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
+                                <p class="text-xs-center col-md-4 col-sm-4 d-flex align-items-center">
                                     ©2021-2024 Todos os direitos reservados CLOTHES
                                 </p>
                             </div>
