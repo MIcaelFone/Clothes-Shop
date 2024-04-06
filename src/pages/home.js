@@ -44,7 +44,7 @@ function Home() {
             </Col>
           </Container>
       </section>
-
+      <br></br>
       <br></br>
      <h1 style={{textAlign: 'center'}}>AS MELHORES MARCAS</h1>
       <div>
@@ -58,7 +58,10 @@ function Home() {
             </Row>
           </Container>
       </div>
+      <br></br>
+      <br></br>
     </div>
+   
   );  
 }
 
