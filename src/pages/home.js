@@ -4,6 +4,9 @@ import '../ui/styles/home.css';
 import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 function Home() {
   return (
     
@@ -46,6 +49,7 @@ function Home() {
       </section>
       <br></br>
       <br></br>
+
      <h1 style={{textAlign: 'center'}}>AS MELHORES MARCAS</h1>
       <div>
           <Container>
@@ -58,8 +62,28 @@ function Home() {
             </Row>
           </Container>
       </div>
+
       <br></br>
       <br></br>
+
+      <div className='email_conpum'>
+        <div style={{marginTop:'0.5rem', display:'flex',justifyContent:'center'}}>
+          <h3 style={{marginRight:'2rem'}}>Ganhe um copum de 15% desconto</h3>
+          <InputGroup className="mb-3" style={{width:'25vw'}}>
+            <Form.Control
+              placeholder="Insira seu email"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <Button variant="primary" id="button-addon2">
+              Cadastrar
+            </Button>
+          </InputGroup>
+        </div>  
+      </div>
+
+      <br></br>      
+
     </div>
    
   );  
