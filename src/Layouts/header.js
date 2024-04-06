@@ -32,10 +32,7 @@ const Header = () => {
             path: '/Perfil',
             name: "Perfil"
         },
-        {
-            path: '/sobre',
-            name: "Sobre"
-        }
+    
     ]
 
 
@@ -54,7 +51,7 @@ const Header = () => {
     return(
         <Navbar expand="lg" className="navbar">
         <Container>
-          <Navbar.Brand href="/home" className="Brand">Clothes Shopp</Navbar.Brand>
+          <Navbar.Brand href="/home"  style={{marginLeft:'-7.5rem'}} className="Brand">Clothes Shop</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
 
