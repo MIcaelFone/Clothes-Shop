@@ -51,6 +51,7 @@ function Home() {
       <br></br>
 
      <h1 style={{textAlign: 'center'}}>AS MELHORES MARCAS</h1>
+     <br></br>
       <div>
           <Container>
             <Row>
@@ -68,14 +69,14 @@ function Home() {
 
       <div className='email_conpum'>
         <div style={{marginTop:'0.5rem', display:'flex',justifyContent:'center'}}>
-          <h3 style={{marginRight:'2rem'}}>Ganhe um copum de 15% desconto</h3>
-          <InputGroup className="mb-3" style={{width:'25vw'}}>
+          <h3 style={{marginRight:'2rem', marginTop:'1rem'}}>Ganhe um copum de 15% desconto</h3>
+          <InputGroup className="mb-3" style={{width:'25vw', marginTop:'1rem'}}>
             <Form.Control
               placeholder="Insira seu email"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
+              aria-label="email"
+              aria-describedby="email_copum"
             />
-            <Button variant="primary" id="button-addon2">
+            <Button variant="primary" id="cadastro_email">
               Cadastrar
             </Button>
           </InputGroup>
