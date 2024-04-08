@@ -1,17 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cadastro from './Components_Cadastro_Login/Cadastro'
 import Login from './Components_Cadastro_Login/Login';
-import Header from './Layouts/header';
-import Footer from './Layouts/Footer';
+import Header from './partials/header';
+import Footer from './partials/Footer';
 import Perfil from './Perfil_Usuario/Perfil';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/home'
+import NavLink from './partials/NavLinkks';
 function App() { 
 
   return (    
     <>
       <BrowserRouter>
         <Header/> 
+  
+        <NavLink/>
         <Routes>
 
           <Route path='' element={<Home />}></Route>

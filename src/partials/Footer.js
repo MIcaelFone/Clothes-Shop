@@ -5,10 +5,17 @@ import './Footer.module.css'
 function Footer(){
     return(
         <>
+          
            <FooterContainer className="main-footer">
                 <div class="footer-middle row justify-content-center">
                     <div class="container">
                         <div class="row">
+                            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <h3>Atendimento ao cliente</h3>
+                                        <p>clotheshop@gmail.com</p>
+                                    </div>
+                            </div>
                             <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h4>Informações da Empresa</h4>
@@ -19,38 +26,28 @@ function Footer(){
                                     </ul>
                                 </div>
                             </div>
+                             
                             <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
                                 <div>
-                                    <h4>Onde nos encontrar</h4>
+                                    <h3>Ajuda e suporte</h3>
                                     <ul class="list-unstyled">
-                                        <li>
-                                            <p className="Links"><a href="https://www.instagram.com">Instagram</a></p>
-                                        </li>
-                                        <li>
-                                            <p className="Links"><a href="https://pt-br.facebook.com/login/device-based/regular/login/">Facebook</a></p>
-                                        </li>
+                                        <li>Pagamento</li>
+                                        <li>Garantia, trocas e devoluções</li>
+                                        <li>Como comprar seu clothes shop</li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
-                                <div>
-                                    <h4>Ajuda e suporte</h4>
-                                    <ul class="list-unstyled">
-                                        <li>Politica de Frete</li>
-                                        <li>Devolução</li>
-                                        <li>Contate-nos</li>
-                                    </ul>
-                                </div>
-                            </div>
+    
                             <div class="footer-bottom">
                                 <p class="text-xs-center col-md-4 col-sm-4 d-flex align-items-center">
-                                    ©2021-2024 Todos os direitos reservados CLOTHES
+                                    ©2024 Todos os direitos reservados CLOTHES SHOP
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </FooterContainer>
+            
         </>
     )
 }
@@ -59,14 +56,15 @@ export default Footer
 
 const FooterContainer  = styled.footer`
     .footer-middle{
-        background: var(--mainDark);
-        padding-top: 3rem;
-        color: #fff
+        background: rgb(248 249 250) ;
+        padding-top: 1rem;
+        color: black;
     }
 
     .footer-bottom{
-        padding-top: 3rem;
-        padding-bottom: 2rem;
+        padding-top: 1.5rem;
+        margin-left: 5.5rem;
+       
     }
 
     .Links{
