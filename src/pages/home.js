@@ -57,7 +57,7 @@ function Home() {
             <Row>
               <Col style={{ display: 'flex', justifyContent: 'center', gap:'4rem' }}>
                 <Image src="https://cdn-icons-png.flaticon.com/512/731/731962.png" style={{ height: '25vh',border:'2px solid black'  }} rounded/>
-                <Image src="https://provinciamarcas.com.br/wp-content/uploads/2017/03/Nike-logo-wordmark.png" style={{ height: '25vh', border:'2px solid black' }} rounded/>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/3/36/Logo_nike_principal.jpg" style={{ height: '25vh', border:'2px solid black' }} rounded/>
                 <Image src="https://i.pinimg.com/originals/6c/41/c0/6c41c0cef416f3796a9f02632f4a2dfa.jpg" style={{ height: '25vh', border:'2px solid black' }} rounded/>
               </Col>
             </Row>
