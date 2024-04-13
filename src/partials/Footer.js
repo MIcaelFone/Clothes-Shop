@@ -2,7 +2,6 @@ import React from "react"
 import styled from 'styled-components'
 import './Footer.module.css'
 import { Link } from "react-router-dom";
-import { PiSelectionBackground } from "react-icons/pi";
 function Footer(){
     return(
                 
