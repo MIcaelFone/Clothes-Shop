@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 import styled from 'styled-components'
 import './Footer.module.css'
-
+import { Link } from "react-router-dom";
 function Footer(){
     return(
         <>
@@ -31,9 +31,9 @@ function Footer(){
                                 <div>
                                     <h3>Ajuda e suporte</h3>
                                     <ul class="list-unstyled">
-                                        <li>Pagamento</li>
-                                        <li>Garantia, trocas e devoluções</li>
-                                        <li>Como comprar seu clothes shop</li>
+                                        <li><Link to="/info_pagamento">Pagamento</Link></li>
+                                        <li><Link to="/prazos_envios">Prazo e envios</Link></li>
+                                        <li><Link to="/como_comprar">Como comprar seu clothes shop </Link></li>
                                     </ul>
                                 </div>
                             </div>
