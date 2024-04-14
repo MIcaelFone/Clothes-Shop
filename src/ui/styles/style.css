@@ -1,5 +1,5 @@
 .Cadastro, .Login{
-    background-image: url(./Imagens/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp);
+    background-image: url(/src/assests/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp);
 }
 
 .form_container{

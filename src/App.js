@@ -1,15 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cadastro from './Components_Cadastro_Login/Cadastro'
-import Login from './Components_Cadastro_Login/Login';
-import Header from './partials/header';
-import Footer from './partials/Footer';
-import Perfil from './Perfil_Usuario/Perfil';
+import Cadastro from './pages/Cadastro'
+import Login from './pages/Login';
+import Header from './UI/partials/header';
+import Footer from './UI/partials/Footer';
+import Perfil from './pages/Perfil';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/home'
 import Info_pagamento  from './pages/info_pagamento';
 import Como_comprar from './pages/como_comprar';
 import Prazos_envios from './pages/prazos_envios';
-import NavLink from './partials/NavLinkks';
+import NavLink from './UI/partials/NavLinkks';
 import "core-js";
 import "regenerator-runtime/runtime";
 import "@babel/polyfill";
