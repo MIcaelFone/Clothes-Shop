@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #343a40;
+    background-color: #555b61;
 }
 
 .Brand, .list_item{
@@ -15,8 +15,6 @@
 .list_item:hover{
     color: tomato !important;
     transform: scale(1.2);
-
-
 }
 
 .ms-auto{

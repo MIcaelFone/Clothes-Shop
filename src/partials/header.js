@@ -43,9 +43,9 @@ const Header = () => {
     const [query, setQuery] = useState('')
 
     return (
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="">
           <Container fluid>
-              <Navbar.Brand href="/home">Clothes Shop</Navbar.Brand>
+              <Navbar.Brand href="/home" style={{color: 'white'}}>Clothes Shop</Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
   
@@ -58,20 +58,21 @@ const Header = () => {
                       />
                       <Button variant="outline-success">Search</Button>
                   </Form>
-                  <Nav
+                  <Nav 
                       className="me-auto my-2 my-lg-0"
-                      style={{ maxHeight: '100px', marginLeft:'30rem' }}
+                      style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }}
                       navbarScroll
+                      
                   >  
-                      <NavDropdown title="Entrar" id="basic-nav-dropdown">
+                      <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
                           {Header_Info.map((item) => {
                               return (
                                   <NavDropdown.Item href={item.path}>{item.name}</NavDropdown.Item>
                               );
                           })}
                       </NavDropdown>
-                      <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem' }} />
-                      <MdFavorite size={26} style={{ marginLeft: '10px' ,marginTop:'0.5rem',gap:'4rem'}} />
+                      <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
+                      <MdFavorite size={26} style={{ marginLeft: '10px' ,marginTop:'0.5rem',gap:'4rem', color: 'white'}} />
                   </Nav>
               </Navbar.Collapse>
           </Container>

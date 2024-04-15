@@ -5,12 +5,15 @@ import Header from './partials/header';
 import Footer from './partials/Footer';
 import Perfil from './Perfil_Usuario/Perfil';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-toastify/dist/ReactToastify.css";
 import Home from './pages/home'
 import NavLink from './partials/NavLinkks';
+import { ToastContainer } from 'react-toastify';
 function App() { 
 
   return (    
     <>
+      <ToastContainer theme='colored'></ToastContainer>
       <BrowserRouter>
         <Header/> 
   

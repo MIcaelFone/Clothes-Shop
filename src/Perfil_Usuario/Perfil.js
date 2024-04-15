@@ -24,6 +24,7 @@ function Perfil(){
                             <label htmlFor="inputImagem" className="Imagem">
                                 <img src={imgPerfil} alt="" ref={imageRef}/>
                                 <input type="file" id="inputImagem" className="Colocar_Imagem" onChange={handleImageChange} style={{ display: 'none' }} />
+                                
                             </label>
                             </div>
                         

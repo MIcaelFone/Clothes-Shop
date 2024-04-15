@@ -15,6 +15,10 @@ function NavLink() {
                 path: '/Moda_Feminina',
                 name: "Moda Feminina"
             },
+            {
+              path: '/Moda_Infantil',
+              name: 'Moda Infantil'
+            }
         
     ]
     return(
