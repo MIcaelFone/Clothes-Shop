@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cadastro from './Components_Cadastro_Login/Cadastro'
-import Login from './Components_Cadastro_Login/Login';
-import Header from './partials/header';
-import Footer from './partials/Footer';
-import Perfil from './Perfil_Usuario/Perfil';
+import Cadastro from './pages/Cadastro'
+import Login from './pages/Login';
+import Header from './UI/partials/header';
+import Footer from './UI/partials/Footer';
+import Perfil from './pages/Perfil';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import Home from './pages/home'
@@ -18,6 +18,7 @@ function App() {
         <Header/> 
   
         <NavLink/>
+       
         <Routes>
 
           <Route path='' element={<Home />}></Route>
@@ -25,6 +26,9 @@ function App() {
           <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
           <Route path='/Cadastro' element={<Cadastro />}></Route>
+          <Route path='/info_pagamento' element={<Info_pagamento />}></Route>
+          <Route path='/prazos_envios' element={<Prazos_envios />}></Route>
+          <Route path='/como_comprar' element={<Como_comprar/>}></Route>
        </Routes>
        <Footer/>
       </BrowserRouter>

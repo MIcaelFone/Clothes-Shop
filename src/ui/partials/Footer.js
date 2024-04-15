@@ -1,13 +1,12 @@
-import React from "react";
+import React from "react"
 import styled from 'styled-components'
-import './Footer.module.css'
-
+import '../styles/Footer.module.css'
+import { Link } from "react-router-dom";
 function Footer(){
     return(
-        <>
-          
-           <FooterContainer className="main-footer">
-                <div class="footer-middle row justify-content-center">
+                
+           <FooterContainer className="main-footer" style={{backgroundColor:'beige'}} >
+                <div class="justify-content-center">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
@@ -16,7 +15,7 @@ function Footer(){
                                         <p>clotheshop@gmail.com</p>
                                     </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
+                            <div class="col-md-4 col-sm-4 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h4>Informações da Empresa</h4>
                                     <ul class="list-unstyled">
@@ -31,24 +30,17 @@ function Footer(){
                                 <div>
                                     <h3>Ajuda e suporte</h3>
                                     <ul class="list-unstyled">
-                                        <li>Pagamento</li>
-                                        <li>Garantia, trocas e devoluções</li>
-                                        <li>Como comprar seu clothes shop</li>
+                                        <li><Link to="/info_pagamento">Pagamento</Link></li>
+                                        <li><Link to="/prazos_envios">Prazo e envios</Link></li>
+                                        <li><Link to="/como_comprar">Como comprar seu clothes shop </Link></li>
                                     </ul>
                                 </div>
                             </div>
     
-                            <div class="footer-bottom">
-                                <p class="text-xs-center col-md-4 col-sm-4 d-flex align-items-center">
-                                    ©2024 Todos os direitos reservados CLOTHES SHOP
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </FooterContainer>
-            
-        </>
     )
 }
 
