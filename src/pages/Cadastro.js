@@ -1,5 +1,5 @@
 import React from "react";
-import '../UI/styles/style.css'
+import '../ui/styles/Login.component.css'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -53,8 +53,6 @@ function Cadastro() {
             return; // Se o formulário não for válido, não faz nada
         }
         let console = { nome, email, senha, number };
-        console.log(`Usuario ${nome} foi cadastrado com email ${email} e senha ${senha}`);
-        console.log(console);
 
         fetch("http://localhost:5000/usuario", {
             method: "POST",

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import '../UI/styles/Perfil_component.css';
+import '../ui/styles/Perfil.component.css';
 import imgPerfil from '../assests/pngwing.com.png';
 
 

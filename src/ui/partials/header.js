@@ -1,21 +1,20 @@
 import React from "react";
-import '../styles/Header.css'
+import '../styles/Header.component.css'
 import {Navbar, Nav, Container} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 
-    {/* const getFilteredItens = {query, itens} =>
+    /*{ const getFilteredItens = {query, itens} =>
         {
             if(!query){
                 return itens;
             }
             return itens.filter(modas => modas.name.includes(query))
-        } */
-    }
+        } 
+    }*/
 
 const Header = () => {
 
@@ -33,14 +32,13 @@ const Header = () => {
         
     ]
 
-    {/* 
+    /*{ 
        const {modas} = modas;
        const {itens} = itens;
 
       const filteredItens = getFilteredItens(query, itens)
-    */}
+    }*/
 
-    const [query, setQuery] = useState('')
 
     return (
       <Navbar expand="lg" className="">
