@@ -4,7 +4,7 @@ function NavLink() {
 
     const Header_Info = [
            {
-            path: '/home',
+            path: '/Home',
             name: "Home"
             },
             {
@@ -22,11 +22,11 @@ function NavLink() {
         
     ]
     return(
-        <Nav variant="tabs" defaultActiveKey="/home" style={{backgroundColor:'rgb(248 249 250)'}}>
+        <Nav variant="tabs" defaultActiveKey="/Home" style={{backgroundColor:'rgb(248 249 250)'}}>
            {Header_Info.map((item) => {
             return (
             <Nav.Item>
-              <Nav.Link style={{color:'black'}}  eventKey="link-1" href={item.path}>{item.name}</Nav.Link>
+              <Nav.Link style={{color:'black'}}  eventKey="link-1" key={item.path} href={item.path}>{item.name}</Nav.Link>
             </Nav.Item>
            );
           })}

@@ -65,7 +65,7 @@ const Header = () => {
                       <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
                           {Header_Info.map((item) => {
                               return (
-                                  <NavDropdown.Item href={item.path}>{item.name}</NavDropdown.Item>
+                                  <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
                               );
                           })}
                       </NavDropdown>

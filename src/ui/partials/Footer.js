@@ -6,19 +6,19 @@ function Footer(){
     return(
                 
            <FooterContainer className="main-footer" style={{backgroundColor:'beige'}} >
-                <div class="justify-content-center">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
+                <div className="justify-content-center">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
                                     <div>
                                         <h3>Atendimento ao cliente</h3>
                                         <p>clotheshop@gmail.com</p>
                                     </div>
                             </div>
-                            <div class="col-md-4 col-sm-4 d-flex align-items-center justify-content-center">
+                            <div className="col-md-4 col-sm-4 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h4>Informações da Empresa</h4>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li>
                                             <p>Clothes Shop: moda online fácil e elegante. Encontre seu estilo em um clique.</p>
                                         </li>
@@ -26,10 +26,10 @@ function Footer(){
                                 </div>
                             </div>
                              
-                            <div class="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
+                            <div className="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
                                 <div>
                                     <h3>Ajuda e suporte</h3>
-                                    <ul class="list-unstyled">
+                                    <ul className="list-unstyled">
                                         <li><Link to="/info_pagamento">Pagamento</Link></li>
                                         <li><Link to="/prazos_envios">Prazo e envios</Link></li>
                                         <li><Link to="/como_comprar">Como comprar seu clothes shop </Link></li>
