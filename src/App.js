@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Header from './ui/partials/header';
 import Footer from './ui/partials/Footer';
 import Perfil from './pages/Perfil';
-import InfoPagamento from './pages/Info_pagamento'
+import InfoPagamento from './pages/info_pagamento.js'
 import PrazosEnvios from './pages/prazos_envios'
 import ComoComprar from './pages/como_comprar'
 import 'bootstrap/dist/css/bootstrap.min.css';
