@@ -1,7 +1,6 @@
-import { height } from "@fortawesome/free-regular-svg-icons/faAddressBook";
 import React from "react";
 
-function info_pagamento(){
+function Info_pagamento(){
     return(
        
         <div>
@@ -14,11 +13,11 @@ function info_pagamento(){
             </center>    
             
             <ul>
-                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaovisa.png?6af724b98f224680c58c3a461abc2b6c"></img></li>
-                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaomastercard.png?6af724b98f224680c58c3a461abc2b6c"></img></li>      
-                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaoamex.png?6af724b98f224680c58c3a461abc2b6c"></img></li>
-                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaoelo.png?6af724b98f224680c58c3a461abc2b6c"></img></li>  
-                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqboletoonline.png?6af724b98f224680c58c3a461abc2b6c"></img></li>       
+                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaovisa.png?6af724b98f224680c58c3a461abc2b6c" alt="img1"></img></li>
+                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaomastercard.png?6af724b98f224680c58c3a461abc2b6c" alt="img2"></img></li>      
+                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaoamex.png?6af724b98f224680c58c3a461abc2b6c" alt="img3"></img></li>
+                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqcartaoelo.png?6af724b98f224680c58c3a461abc2b6c" alt="img4"></img></li>  
+                <li><img src="https://images.tcdn.com.br/assets/store/img/icons/formas_pagamento/pag_peqboletoonline.png?6af724b98f224680c58c3a461abc2b6c" alt="img5"></img></li>       
             </ul>
 
         </div> 
@@ -27,4 +26,4 @@ function info_pagamento(){
     )
 
 }
-export default info_pagamento;
+export default Info_pagamento;

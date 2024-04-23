@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import '../UI/styles/Perfil_component.css';
+import '../ui/styles/Perfil.component.css';
 import imgPerfil from '../assests/pngwing.com.png';
 
 
@@ -24,6 +24,7 @@ function Perfil(){
                             <label htmlFor="inputImagem" className="Imagem">
                                 <img src={imgPerfil} alt="" ref={imageRef}/>
                                 <input type="file" id="inputImagem" className="Colocar_Imagem" onChange={handleImageChange} style={{ display: 'none' }} />
+                                
                             </label>
                             </div>
                         
