@@ -7,16 +7,18 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { Link, useNavigate } from "react-router-dom";  
+import { Link, useNavigate } from "react-router-dom";
+
+
 function Home() {
 
   const userNavegacao = useNavigate();
   useEffect(() =>{
-    let Nome=sessionStorage.getItem("Nome");
-    if(Nome === '' || Nome === null){
+    let Email=sessionStorage.getItem("Email");
+    if(Email === '' || Email === null){
       userNavegacao('/login')
     }
-  })
+  }, [])
 
 
 
@@ -41,7 +43,7 @@ function Home() {
           </Container>
       </div>
     <br></br>
-      <section class="banner-sections">
+      <section className="banner-sections">
           <Container>
             <Col style={{ display: 'flex', justifyContent: 'center' ,gap:'3rem' }}>
                 <div style={{ marginRight: '10px' }}>

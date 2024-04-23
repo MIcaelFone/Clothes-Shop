@@ -1,21 +1,60 @@
 import React, { useState } from "react";
 import '../ui/styles/Login.component.css'
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login(){
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
-        function LoginUsuario(e){
-            e.preventDefault()
-            console.log(`Usuario do email ${email} logou com a senha ${senha}`)
+    const usenavigate = useNavigate()
+
+    const ProceedLogin = (e) => {
+        e.preventDefault(); // Evita o comportamento padrão de envio de formulário
+        if (validate()) {
+            fetch("http://localhost:5000/usuario")
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("Erro ao obter dados do servidor");
+                }
+                return res.json();
+            })
+            .then((usuarios) => {
+                const usuarioEncontrado = usuarios.find(user => user.email === email && user.senha === senha);
+                if (usuarioEncontrado) {
+                    sessionStorage.setItem("Email", email); // Definindo o email na sessão
+                    toast.success("Login feito com sucesso!");
+                    usenavigate('/Home');
+                } else {
+                    toast.error("Credenciais inválidas");
+                }
+            })
+            .catch((err) => {
+                toast.error("Falha ao fazer login: " + err.message);
+            });
         }
-        const[email, setEmail] = useState()
-        const[senha, setSenha] = useState()
-
+    };
+    
+    
+        
+    const validate = () => {
+        let resultado = true;
+        if(email === '' || email === null){
+            resultado = false;
+            toast.warning("Por favor, adicione um email válido");
+        }
+        if(senha === '' || senha === null){
+            resultado = false;
+            toast.warning("Por favor, adicione uma senha válida");
+        }
+        return resultado;
+    }
 
     return(
         <div className='Login template d-flex justify-content-center align-items-center vh-100 bg-white'>
             <div className='form_container p-5 rounded bg-white'>
-                <form onSubmit={LoginUsuario}>
+                <form onSubmit={ProceedLogin}>
                     <h3 className='text-center'>Faça o Login</h3>
                     <div className='mb-2'>
                         <label htmlFor='email'>Email</label>
@@ -26,7 +65,7 @@ function Login(){
                         <input type='password' placeholder='digite sua senha' className='form-control' id="senha" onChange={(e) => setSenha(e.target.value)}></input>
                     </div>
                     <div className='d-grid'>
-                        <Link to={'/Home'} className='btn btn-primary'>Fazer Login</Link>
+                        <button type="submit" className='btn btn-primary'>Fazer Login</button> {/* Correção: substituído Link por button e adicionado type="submit" */}
                     </div>
 
                     <div className="d-flex flex-column align-items-center mt-4">
@@ -41,4 +80,4 @@ function Login(){
     )
 }
 
-export default Login
+export default Login;

@@ -11,8 +11,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import Home from './pages/home'
 import NavLink from './ui/partials/NavLinkks.js';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';  
 function App() { 
+
+//alem de iniciar o projeto, tem que dar run no backend usando o "npm run backend" se não não irá salvar o cadastro no back
 
   return (    
     <>
@@ -24,7 +26,6 @@ function App() {
        
         <Routes>
 
-          <Route path='' element={<Home />}></Route>
           <Route path='/Home' element={<Home />}></Route>
           <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
