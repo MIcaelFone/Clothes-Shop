@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from "react";
 import '../styles/Header.component.css'
 import {Navbar, Nav, Container} from 'react-bootstrap'
@@ -82,4 +80,3 @@ const Header = () => {
   
 export default Header;
   
->>>>>>> 200909ca0674ccbe5934bcf8ea635f86dca86c1c
