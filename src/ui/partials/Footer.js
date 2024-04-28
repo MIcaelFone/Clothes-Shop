@@ -4,8 +4,7 @@ import '../styles/Footer.component.css'
 import { Link } from "react-router-dom";
 function Footer(){
     return(
-                
-           <FooterContainer className="main-footer" style={{backgroundColor:'beige'}} >
+           <FooterContainer className="main-footer">
                 <div className="justify-content-center">
                     <div className="container">
                         <div className="row">

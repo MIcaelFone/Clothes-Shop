@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import Home from './pages/home'
 import NavLink from './ui/partials/NavLinkks.js';
+import Cadastroproduto from './ui/Components/moda/cadastroproduto.js'
 import { ToastContainer } from 'react-toastify';  
 function App() { 
 
@@ -25,7 +26,7 @@ function App() {
         <NavLink/>
        
         <Routes>
-
+          <Route path='/' element={<Home />}></Route>
           <Route path='/Home' element={<Home />}></Route>
           <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
@@ -33,6 +34,7 @@ function App() {
           <Route path='/Info_pagamento' element={<InfoPagamento />}></Route>
           <Route path='/prazos_envios' element={<PrazosEnvios />}></Route>
           <Route path='/como_comprar' element={<ComoComprar/>}></Route>
+          <Route path='/cadastroproduto' element={<Cadastroproduto/>}></Route>
        </Routes>
        <Footer/>
       </BrowserRouter>
