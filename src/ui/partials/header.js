@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
-
     /*{ const getFilteredItens = {query, itens} =>
         {
             if(!query){
@@ -29,6 +28,10 @@ const Header = () => {
             path: '/Perfil',
             name: "Perfil"
         },
+        {
+            path: '/cadastroproduto',
+            name: "Cadastro produto"
+        }
         
     ]
 
@@ -38,8 +41,6 @@ const Header = () => {
 
       const filteredItens = getFilteredItens(query, itens)
     }*/
-
-
     return (
       <Navbar expand="lg" className="">
           <Container fluid>
