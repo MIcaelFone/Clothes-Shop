@@ -71,7 +71,6 @@ function Tela_cadastro_produto() {
         }
     };
     const eventsubmit=(event)=>{
-        event.preventDefault();
         
         const data={nome,descricao,marca,imagem,preco,moda}
         const cadastro = JSON.stringify(data)
