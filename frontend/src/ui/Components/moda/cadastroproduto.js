@@ -4,6 +4,8 @@ import { InputGroup } from 'react-bootstrap';
 import "../../styles/Tela_cadastro_produto.css"
 import imagemRoupas from '../../../assests/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp';
 import { toast } from "react-toastify";
+import axios from 'axios';
+import { response } from 'express';
 
 const isNomeValid=(nome)=>{
     const pattern= new RegExp("[A-Za-z]+");
@@ -25,7 +27,7 @@ const isprecoValid=(preco)=>{
     return pattern.test(preco);
 };
 function Tela_cadastro_produto() {
-
+    
     const [nome,setNome]=useState('')
     const [descricao,setDescricao]=useState('')
     const [marca,setMarca]=useState('')
@@ -70,12 +72,26 @@ function Tela_cadastro_produto() {
             toast.warning("O preço não é válido. Inclua um número válido ex:123.60");
         }
     };
-    const eventsubmit=(event)=>{
-        
-        const data={nome,descricao,marca,imagem,preco,moda}
-        const cadastro = JSON.stringify(data)
-        console.log(cadastro)
+    const eventsubmit = async (event) => {    
+        event.preventDefault()
+        try{
+            await axios.post("http://localhost:8080/cadastrarproduto",{
+                nome,
+                marca,
+                descricao,
+                imagem,
+                preco,
+                moda, 
+            
+            })
+            .then((response) => {
+                console.log(response.data)
+            })
 
+            
+        } catch (error) {
+            console.error(error);
+        }
     };
     return (
         <>
@@ -94,7 +110,7 @@ function Tela_cadastro_produto() {
                                     <Form.Control aria-label="Amount (to the nearest dollar)" name='preco' placeholder='123.50' value={preco} onChange={handleChangepreco} required />                          
                                 </InputGroup>
                                                                        
-                                <label htmlFor='tipo_moda'>Tipo de moda</label>
+                                <label htmlFor='moda'>Tipo de moda</label>
                                 <Form.Select value={moda} onChange={(e)=>setModa(e.target.value)}>
                                     <option value={"moda_masculina"}>Moda masculina</option>
                                     <option value={"moda_feminina"} >Moda feminina</option>
