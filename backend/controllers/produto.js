@@ -36,7 +36,7 @@ const addProduto = (req, res) => {
 };
 
 const deleteProduto = (req, res) => {
-    const deletando = "DELETE FROM Produto WHERE `id` =?";
+    const deletando = "DELETE FROM produto WHERE id =?";
     db.query(deletando, [req.params.id], (err) => {
         if(err) {
             console.error(err);
@@ -47,17 +47,17 @@ const deleteProduto = (req, res) => {
 };
 
 const updateProduto = (req, res) => {
-    const atualizando = "UPDATE Produto SET `nome` =?, `marca` =?, `descricao`=?, `preco` =?, `imagem` =?, `moda`=? WHERE `id` =?";
-    const values = [
-        req.body.nome,
-        req.body.marca,
-        req.body.descricao,
-        req.body.preco,
-        req.body.imagem,
-        req.body.moda,
-        req.params.id
-    ];
-    db.query(atualizando, values, (err) => {
+    const { nome, marca, descricao, preco, imagem, moda } = req.body;
+    
+    // Verifique se todos os campos necessários estão presentes
+    if (!nome || !marca || !descricao || !preco || !imagem || !moda) {
+        return res.status(400).json("Todos os campos são necessários");
+    }
+    const values= { nome, marca, descricao, preco, imagem, moda }
+
+    "UPDATE produto SET nome=?,marca=?,descricao=?, preco=?,imagem=?,moda=? WHERE id =?"
+    
+    db.query(atualizando, [...values,[req.params.id]], (err) => {
         if(err) {
             console.error(err);
             return res.status(500).json(err);
@@ -66,14 +66,14 @@ const updateProduto = (req, res) => {
     });
 };
 const getProdutofeminino=(req,res)=>{
-    const busca="Select * from  produto where moda='moda_feminina';  "
+    const busca="SELECT * FROM produto where moda='moda_feminina'";
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos femininos")
     })   
 )};
 const getProdutomasculino=(req,res)=>{
-    const busca="Select * from  produto where moda='moda_masculino';  "
+    const busca="SELECT * FROM produto where moda='moda_masculino'";
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos masculinos")
