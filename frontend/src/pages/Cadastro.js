@@ -47,31 +47,12 @@ function Cadastro() {
         return Continuar;
     };
 
-    function CadastraUsuario(e) {
-        e.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        if (!IsValido()) {
-            return; // Se o formulário não for válido, não faz nada
-        }
-        let console = { nome, email, senha, number };
-
-        fetch("http://localhost:5000/usuario", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(console),
-        })
-            .then((res) => {
-                toast.success("Registrado!");
-                navigate("/Login");
-            })  
-            .catch((err) => {
-                toast.error("Falhou : " + err.message);
-            });
-    }
+    
 
     return (
         <div className="Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white">
             <div className="form_container p-5 rounded bg-white">
-                <form onSubmit={CadastraUsuario}>
+                <form>
                     <h3 className="text-center">Cadastro</h3>
                     <div className="mb-2">
                         <label htmlFor="text">Nome</label>

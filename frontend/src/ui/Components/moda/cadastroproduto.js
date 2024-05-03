@@ -75,12 +75,12 @@ function Tela_cadastro_produto() {
     const eventsubmit = async (event) => {    
         event.preventDefault()
         try{
-            await axios.post("http://localhost:8080/cadastrarproduto",{
+            await axios.post("http://localhost:8080/produto/cadastrarproduto",{
                 nome,
                 marca,
                 descricao,
-                imagem,
                 preco,
+                imagem,
                 moda, 
             
             })
