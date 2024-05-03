@@ -66,14 +66,19 @@ const updateProduto = (req, res) => {
     });
 };
 const getProdutofeminino=(req,res)=>{
+
     const busca="SELECT * FROM produto where moda='moda_feminina'";
+
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos femininos")
     })   
 )};
 const getProdutomasculino=(req,res)=>{
+
     const busca="SELECT * FROM produto where moda='moda_masculino'";
+
+
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos masculinos")

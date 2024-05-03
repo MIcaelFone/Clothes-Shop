@@ -1,13 +1,16 @@
 const db=require('../database/db')
 
 const getUsuario=(req,res)=>{
+
     const busca="SELECT * FROM usuario";
+
     db.query(busca,(err,data) =>{
          if (err) throw res.status(500).json(data);
          res.status(200).json(data);
     })
   
 }
+
 const addUsuario = (req, res) => {
     const busca = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
     const { nome, email, senha, number } = req.body;
@@ -63,3 +66,5 @@ const deleteUsuario=(req,res)=>{
 };
     
 module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario }
+
+
