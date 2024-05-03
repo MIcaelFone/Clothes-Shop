@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom"
-
+import axios from "axios";
 
 function Cadastro() {
     const [nome, setNome] = useState("");   
@@ -47,12 +47,23 @@ function Cadastro() {
         return Continuar;
     };
 
-    
+    const CadastraUsuario = async(event)=>{
+        event.preventDefault(); // Evita o comportamento padrão de envio de formulário
+        try{
+            await axios.post("http://localhost:8080/usuario/cadastrarusuario",{nome,email,senha,number})
+            .then((response)=>{
+                console.log(response.data)
+            })
+
+        }catch(error){
+          console.log(error)
+        }
+    }
 
     return (
         <div className="Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white">
             <div className="form_container p-5 rounded bg-white">
-                <form>
+                <form onSubmit={CadastraUsuario}>
                     <h3 className="text-center">Cadastro</h3>
                     <div className="mb-2">
                         <label htmlFor="text">Nome</label>
