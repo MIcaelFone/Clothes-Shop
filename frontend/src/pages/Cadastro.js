@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom"
-
+import axios from "axios";
 
 function Cadastro() {
     const [nome, setNome] = useState("");   
@@ -47,25 +47,17 @@ function Cadastro() {
         return Continuar;
     };
 
-    function CadastraUsuario(e) {
-        e.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        if (!IsValido()) {
-            return; // Se o formulário não for válido, não faz nada
-        }
-        let console = { nome, email, senha, number };
+    const CadastraUsuario = async(event)=>{
+        event.preventDefault(); // Evita o comportamento padrão de envio de formulário
+        try{
+            await axios.post("http://localhost:8080/usuario/cadastrarusuario",{nome,email,senha,number})
+            .then((response)=>{
+                console.log(response.data)
+            })
 
-        fetch("http://localhost:5000/usuario", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(console),
-        })
-            .then((res) => {
-                toast.success("Registrado!");
-                navigate("/Login");
-            })  
-            .catch((err) => {
-                toast.error("Falhou : " + err.message);
-            });
+        }catch(error){
+          console.log(error)
+        }
     }
 
     return (
