@@ -2,9 +2,9 @@ const {getUsuario,addUsuario,updateUsuario,deleteUsuario} =require("../controlle
 const express = require('express');
 const router= express.Router();  
 
-router.get("/listarUsuarios",getUsuario);
-router.post("/cadastroUsuario",addUsuario)
-router.delete("/deletandoUsuario/:id",deleteUsuario)
-router.put("/atualizandousuario/:id",updateUsuario)
+router.get("/listarusuarios",getUsuario);
+router.post("/cadastrarusuario",addUsuario)
+router.delete("/deletarusuario/:id",deleteUsuario)
+router.put("/atualizarusuario/:id",updateUsuario)
 
 module.exports=router;
