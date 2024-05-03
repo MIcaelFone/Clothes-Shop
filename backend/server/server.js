@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require('cors');
 
 const app =express();
-const produtoRoutes =require("../backend/routes/produto")
+const produtoRoutes =require("../routes/produto")
 
 app.use(cors())
 app.use(express.json())

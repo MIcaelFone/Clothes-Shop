@@ -1,16 +1,5 @@
-const mysql = require('mysql');
-const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"Mica@1234",
-    database:"banco"
-})
-db.connect((err) => {
-    if (err) throw err;
-    console.log("Connected to MySQL database");
-});
-    
-  
+ const db=require('../database/db');
+
 const test = (req, res) => {
     return res.sendStatus(200);
 }
@@ -76,5 +65,19 @@ const updateProduto = (req, res) => {
         return res.status(200).json("Produto atualizado");
     });
 };
+const getProdutofeminino=(req,res)=>{
+    const busca="Select * from  produto where moda='moda_feminina';  "
+    db.query(busca,(data,err =>{
+        if (err) throw res.Status(500).json(data);
+        res.Status(200).json("Busca de produtos femininos")
+    })   
+)};
+const getProdutomasculino=(req,res)=>{
+    const busca="Select * from  produto where moda='moda_masculino';  "
+    db.query(busca,(data,err =>{
+        if (err) throw res.Status(500).json(data);
+        res.Status(200).json("Busca de produtos masculinos")
+    }) 
+)};
 
-module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test };
+module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test ,getProdutofeminino,getProdutomasculino };
