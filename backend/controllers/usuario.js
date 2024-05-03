@@ -1,7 +1,7 @@
 const db=require('../database/db')
 
 const getUsuario=(req,res)=>{
-    const busca="Select * from usuario;"
+    const busca="SELECT *FROM usuario;"
     db.query(busca,(err,data) =>{
          if (err) throw res.status(500).json(data);
          res.status(200).json(data);
@@ -19,5 +19,5 @@ const addUsuario=(req,res)=>{
         if (err) throw res.status(500).json(data)
         res.status(200).json("Produto inserido")
     });
-    });
+    
 };
