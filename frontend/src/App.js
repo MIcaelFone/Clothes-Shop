@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cadastro from './pages/Cadastro'
-import Login from './pages/Login';
-import Header from './ui/partials/header';
-import Footer from './ui/partials/Footer';
-import Perfil from './pages/Perfil';
-import InfoPagamento from './pages/info_pagamento.js'
-import PrazosEnvios from './pages/prazos_envios'
-import ComoComprar from './pages/como_comprar'
+import Cadastro from '../src/ui/Components/Usuario/pages/Cadastro.js'
+import Login from '../src/ui/Components/Usuario/pages/Login.js';
+import Header from '../src/ui/partials/pages/header.js';
+import Footer from '../src/ui/partials/pages/Footer.js';
+import Perfil from '../src/ui/Components/Usuario/pages/Perfil.js';
+import InfoPagamento from '../src/ui/Components/ajudausuario/pages/info_pagamento.js'
+import PrazosEnvios from '../src/ui/Components/ajudausuario/pages/prazos_envios.js'
+import ComoComprar from '../src/ui/Components/ajudausuario/pages/como_comprar.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
-import Home from './pages/home'
-import NavLink from './ui/partials/NavLinkks.js';
-import Cadastroproduto from './ui/Components/moda/cadastroproduto.js'
+import Home from '../src/ui/Components/Home/pages/home.js'
+import NavLink from '../src/ui/partials/pages/NavLinkks.js';
+import Cadastroproduto from '../src/ui/Components/Roupas/pages/cadastroproduto.js'
 import { ToastContainer } from 'react-toastify';  
 function App() { 
 

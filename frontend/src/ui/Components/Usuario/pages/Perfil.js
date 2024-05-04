@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import '../ui/styles/Perfil.component.css';
-import imgPerfil from '../assests/pngwing.com.png';
-
+import '../styles/Perfil.component.css';
+import imgPerfil from '../../../../assests/pngwing.com.png';
 
 //Tela
 function Perfil(){

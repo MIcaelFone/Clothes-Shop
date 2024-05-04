@@ -23,7 +23,7 @@ const addUsuario = (req, res) => {
 
     db.query(busca, values, (err, data) => {
         if (err) {
-            console.error(err);
+            console.log(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
         return res.status(200).json("Usuário inserido com sucesso");
