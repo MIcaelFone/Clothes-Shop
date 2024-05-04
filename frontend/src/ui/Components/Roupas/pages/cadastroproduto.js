@@ -1,30 +1,47 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { InputGroup } from 'react-bootstrap';
-import "../../styles/Tela_cadastro_produto.css"
-import imagemRoupas from '../../../assests/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp';
+import "../styles/cadastro_produto.css"
+import imagemRoupas from '../../../../assests/roupas-masculinas-estilosas-com-jeans-e-camiseta.webp';
 import { toast } from "react-toastify";
 import axios from 'axios';
 
 
 const isNomeValid=(nome)=>{
-    const pattern= new RegExp("[A-Za-z]+");
-    return pattern.test(nome);
+    const pattern = new RegExp("^[A-Za-z]");
+    if (!pattern.test(nome) && nome!==""){
+        toast.warning("Nome inválido")
+    }if(nome==="") {
+        toast.error("Nome não pode ficar vazio")
+    }
 }
 
 const isdescricaoValid=(descricao)=>{
     const pattern= new RegExp("[A-Za-z]+");
-    return pattern.test(descricao);
+    if (!pattern.test(descricao) && descricao!==""){
+        toast.warning("descrição inválida")
+    }if(descricao==="") {
+        toast.error("Descrição não pode ficar vazia")
+    }
+   
 }
 
 const ismarcaValid=(marca)=>{
     const pattern= new RegExp("[A-Za-z]+");
-    return pattern.test(marca);
+    if (!pattern.test(marca) && marca!==""){
+        toast.warning("Marca inválida")
+    }if(marca==="") {
+        toast.error("Marca não pode ficar vazio")
+    }
 }
 
 const isprecoValid=(preco)=>{
     const pattern= new RegExp('^[0-9]*\.?[0-9]*$');
-    return pattern.test(preco);
+    if (!pattern.test(preco) && preco!==""){
+        toast.warning("Preco inválido")
+    }if(preco==="") {
+        toast.error("Preco não pode ficar vazio")
+    }
 };
 function Tela_cadastro_produto() {
     
@@ -33,56 +50,47 @@ function Tela_cadastro_produto() {
     const [marca,setMarca]=useState('')
     const [imagem,setImagem]=useState('')
     const [preco,setPreco]=useState('')
-    const [moda,setModa]=useState('')
+    const [moda,setModa]=useState('moda_masculina')
     const handleChangeverificationname=(e)=>{
         const value= e.target.value
         setNome(value)
-       if(!isNomeValid(value)){
-            toast.warning("Nome náo é válido.Insira um nome válido.Ex:camisa")
-        }
-
+        isNomeValid(value)
     };
     const handleChangeverificationdescricao=(e)=>{
         const value= e.target.value
         setDescricao(value)
-        if(!isdescricaoValid(value)){
-            toast.warning("A descrição não é válida.Insira uma descrição válida.Ex:camisa é masculina")
-        }
-
+        isdescricaoValid(value)
+        
     };
     const handleChangeverificationmarca=(e)=>{
         const value= e.target.value
         setMarca(value)
-        if(!ismarcaValid(value)){
-            toast.warning("A marca náo é válida.Insira uma marca válida.Ex:Nike")
-        }
+        ismarcaValid(value)
 
     };
-    const handleChangeimagem=(e)=>{
-        const value= e.target.value
-        setImagem(value)
-        if(value===" "){
-            toast.warning("Não pode ficar vazio a imagem ")
-        }
-    };
+    
     const handleChangepreco=(e)=>{
         const value=  e.target.value;
         setPreco(value);
-        if(!isprecoValid(value)){
-            toast.warning("O preço não é válido. Inclua um número válido ex:123.60");
-        }
+        isprecoValid(value)
+
     };
-    const eventsubmit = async (event) => {    
+    const handleImages = (event) => {
+        const files = Array.from(event.target.files);
+        setImagem(files);
+    };
+    
+    const Cadastroproduto = async (event) => {    
         event.preventDefault()
         try{
             await axios.post("http://localhost:8080/produto/cadastrarproduto",{nome,marca,descricao,preco,imagem,moda})
-            .then((response) => {
+            
+            .then((response)=>{
                 console.log(response.data)
             })
 
-            
-        } catch (error) {
-            console.error(error);
+        }catch(error){
+          console.log(error)
         }
     };
     return (
@@ -95,7 +103,7 @@ function Tela_cadastro_produto() {
                             
                             <center><h2>Cadastro de produto</h2> </center>
                             
-                            <form onSubmit={eventsubmit}>
+                            <form onSubmit={Cadastroproduto}>
                                 
                                 <label htmlFor='nome_produto'>Nome do produto</label>
                                 
@@ -118,11 +126,13 @@ function Tela_cadastro_produto() {
                                     <option value={"moda_masculina"}>Moda masculina</option>
                                     <option value={"moda_feminina"} >Moda feminina</option>
                                 </Form.Select>
-
                                 <Form.Group controlId="formFileMultiple" className="mb-2">
                                     <Form.Label>Insira multiplas imagem do produto</Form.Label>
-                                    <Form.Control type="file" value={imagem} onChange={handleChangeimagem} required />
+                                    <Form.Control type="file"  multiple onChange={handleImages} required/>
                                 </Form.Group>
+
+                               
+                                 
 
                                 <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1" >
                                     <Form.Label>Descrição do produto</Form.Label>

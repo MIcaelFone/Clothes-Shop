@@ -1,64 +1,89 @@
 import React from "react";
-import '../ui/styles/Login.component.css'
+import '../styles/Login.component.css'
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom"
 import axios from "axios";
-
 function Cadastro() {
     const [nome, setNome] = useState("");   
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [number, setNumber] = useState("");
+   
+    const IsValidonome = (nome) => {
 
-    const navigate = useNavigate();
-
-    const IsValido = () => {
-        let Continuar = true; 
-        let errormessage = "Coloque um";
+        const pattern = new RegExp("^[A-Za-z]");
+        if (!pattern.test(nome) && nome!==""){
+            toast.warning("Nome inválido!Nome contém apenas letras.Ex:Micael")
+        }   
         if (nome === null || nome === '') {
-            Continuar = false;
-            errormessage += " nome valido!";
+            toast.error("Nome não pode ficar vazio")
+        }  
+
+    } 
+    const IsValidoemail = (email) =>{
+        const pattern=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
+        if(!pattern.test(email) && email!==""){
+           toast.warning("Email inválido")
         }
+        
         if (email === null || email === '') {
-            Continuar = false;
-            errormessage += " email valido!";
+            toast.error("Email não pode ficar vazio")
+        }
+    } 
+    const IsValidosenha = (senha)=>{
+        const senhaPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        if(!senhaPattern.test(senha) && senha!==""){
+            toast.warning("Senha inválida! A senha precisa ter no mínimo 8 dígitos com uma letra minúscula e um caracter especial.")
         }
         if (senha === null || senha === '') {
-            Continuar = false;
-            errormessage += " senha valido!";
-        }
-        if (number === null || number === '') {
-            Continuar = false;
-            errormessage += " numero valido!";
-        }
-        if (!Continuar) {
-            toast.warning(errormessage);
-        }else{
-            if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)){
-
-            }else{
-                Continuar = false;
-                toast.warning("Por favor, adicione um email valido!")
-            }
-        }
-        return Continuar;
-    };
-
-    const CadastraUsuario = async(event)=>{
-        event.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        try{
-            await axios.post("http://localhost:8080/usuario/cadastrarusuario",{nome,email,senha,number})
-            .then((response)=>{
-                console.log(response.data)
-            })
-
-        }catch(error){
-          console.log(error)
+            toast.error("Senha não pode ficar vazia")
         }
     }
+    const Isnumbervalido = (number)=>{  
+        const telefonePattern = new RegExp("^\\(?\\d{2}\\)?\\s?\\d{4,5}\\-?\\d{4}$");
+        if(!telefonePattern.test(number) && number!==""){
+            toast.warning("Telefone inválido")
+        }
+        if(number==="" || number === null ){
+           toast.error("Telefone não pode ficar vazio")
+        }
+
+    };
+
+    const Handlename=(event)=>{
+        const value=event.target.value
+        setNome(value)
+        IsValidonome(value)
+
+    }
+    const Handleemail=(event)=>{
+        const value=event.target.value
+        setEmail(value)
+        IsValidoemail(value)
+    }
+    const Handlesenha=(event)=>{
+        const value=event.target.value
+        setSenha(value)
+        IsValidosenha(value)
+    }
+    const Handletelefone=(event)=>{
+        const value=event.target.value
+        setNumber(value)
+        Isnumbervalido(value)
+    }
+    const CadastraUsuario = async(event) => {
+        event.preventDefault(); // Evita o comportamento padrão de envio de formulário
+        try {
+            await axios.post("http://localhost:8080/usuario/cadastrarusuario", {nome, email, senha, number})
+            .then((response) => {
+                console.log(response.data);
+            });
+        } catch(error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div className="Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white">
@@ -73,7 +98,7 @@ function Cadastro() {
                             placeholder="Digite seu nome"
                             className="form-control"
                             id="nome"
-                            onChange={(e) => setNome(e.target.value)}
+                            onChange={Handlename}
                         ></input>
                     </div>
                     <div className="mb-2">
@@ -84,7 +109,7 @@ function Cadastro() {
                             placeholder="exemplo@gmail.com"
                             className="form-control"
                             id="email"
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={Handleemail}
                         ></input>
                     </div>
                     <div className="mb-2">
@@ -94,7 +119,7 @@ function Cadastro() {
                             placeholder="Digite sua senha"
                             className="form-control"
                             id="senha"
-                            onChange={(e) => setSenha(e.target.value)}
+                            onChange={Handlesenha}
                         ></input>
                     </div>
                     <div className="mb-2">
@@ -105,7 +130,7 @@ function Cadastro() {
                             placeholder="(xx) xxxxx-xxxx"
                             className="form-control"
                             id="numero"
-                            onChange={(e) => setNumber(e.target.value)}
+                            onChange={Handletelefone}
                         ></input>
                     </div>
                     <div className="d-grid mt-3">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../ui/styles/Login.component.css'
+import '../styles/Login.component.css'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";

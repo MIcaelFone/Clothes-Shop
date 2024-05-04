@@ -8,7 +8,7 @@ const getProduto = (_, res) => {
     const busca = "SELECT * FROM produto";
     db.query(busca, (err, data) => {
         if(err) {
-            console.error(err);
+            console.log(err);
             return res.status(500).json({ error: 'An error occurred' });
         }
         return res.status(200).json(data);
@@ -19,7 +19,7 @@ const addProduto = (req, res) => {
     const { nome, marca, descricao, preco, imagem, moda } = req.body;
 
     // Verifique se todos os campos necessários estão presentes
-    if (!nome || !marca || !descricao || !preco || !imagem || !moda) {
+    if (!nome || !marca || !descricao || !preco || !imagem) {
         return res.status(400).json("Todos os campos são necessários");
     }
 
@@ -28,8 +28,8 @@ const addProduto = (req, res) => {
 
     db.query(insercao, values, (err) => {
         if(err) {
-            console.error(err);
-            return res.status(500).json(err);
+            console.log(err);
+            return res.status(500).json({ error: 'An error occurred' });
         }
         return res.status(200).json("Produto inserido");
     });
@@ -39,7 +39,7 @@ const deleteProduto = (req, res) => {
     const deletando = "DELETE FROM produto WHERE id =?";
     db.query(deletando, [req.params.id], (err) => {
         if(err) {
-            console.error(err);
+            console.log(err);
             return res.status(500).json(err);
         }
         return res.status(200).json("Produto deletado");
@@ -59,7 +59,7 @@ const updateProduto = (req, res) => {
     
     db.query(atualizando, [...values,[req.params.id]], (err) => {
         if(err) {
-            console.error(err);
+            console.log(err);
             return res.status(500).json(err);
         }
         return res.status(200).json("Produto atualizado");

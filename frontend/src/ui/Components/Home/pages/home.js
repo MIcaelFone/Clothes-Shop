@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'; 
 import Col from 'react-bootstrap/Col';
-import '../ui/styles/home.component.css'; 
+import '../styles/home.component.css'; 
 import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
