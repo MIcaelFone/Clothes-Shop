@@ -3,41 +3,37 @@ import '../styles/Login.component.css'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState('');
+
     const [senha, setSenha] = useState('');
 
     const usenavigate = useNavigate()
 
-    const ProceedLogin = (e) => {
-        e.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        if (validate()) {
-            fetch("http://localhost:5000/usuario")
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error("Erro ao obter dados do servidor");
-                }
-                return res.json();
-            })
-            .then((usuarios) => {
-                const usuarioEncontrado = usuarios.find(user => user.email === email && user.senha === senha);
-                if (usuarioEncontrado) {
-                    sessionStorage.setItem("Email", email); // Definindo o email na sessão
+    const ProceedLogin = async(e) => {
+        e.preventDefault(); 
+        try {
+            await axios.post("http://localhost:8080/usuario/Login", {email, senha})
+            .then(res=>{
+                console.log("erro: ", res)
+                if(res.data.Login){ 
                     toast.success("Login feito com sucesso!");
-                    usenavigate('/Home');
+                    localStorage.setItem("token",res.data.token)
+                    usenavigate ("/Home")
                 } else {
-                    toast.error("Credenciais inválidas");
+                    toast.error("Email ou senha inválidos");
                 }
-            })
-            .catch((err) => {
-                toast.error("Falha ao fazer login: " + err.message);
-            });
+            }
+            )}
+        catch(err) {
+            console.log(err);
+            toast.error("Ocorreu um erro durante o login. Por favor, tente novamente.");
         }
-    };
+    }
     
     
-        
+            
     const validate = () => {
         let resultado = true;
         if(email === '' || email === null){
@@ -58,11 +54,11 @@ const Login = () => {
                     <h3 className='text-center'>Faça o Login</h3>
                     <div className='mb-2'>
                         <label htmlFor='email'>Email</label>
-                        <input type='email' placeholder='exemplo@gmail.com' className='form-control' id="email" onChange={(e) => setEmail(e.target.value)}></input>
+                        <input type='email' placeholder='exemplo@gmail.com' value={email} className='form-control' id="email" onChange={(e) => setEmail(e.target.value)}></input>
                     </div>
                     <div className='mb-2'>
                         <label htmlFor='password'>Senha</label>
-                        <input type='password' placeholder='digite sua senha' className='form-control' id="senha" onChange={(e) => setSenha(e.target.value)}></input>
+                        <input type='password' placeholder='digite sua senha' value={senha} className='form-control' id="senha" onChange={(e) => setSenha(e.target.value)}></input>
                     </div>
                     <div className='d-grid'>
                         <button type="submit" className='btn btn-primary'>Fazer Login</button> {/* Correção: substituído Link por button e adicionado type="submit" */}
@@ -79,5 +75,6 @@ const Login = () => {
         </div>
     )
 }
+
 
 export default Login;

@@ -8,19 +8,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { Link, useNavigate } from "react-router-dom";
-
-
+import Moda_Masculina from "../../../../assests/moda-masculina-destaque-usa-se-quiser.webp";
+import Moda_Feminina from "../../../../assests/short_saia_2037_1_06f0bb5affc8f4d67b2ca7573f4bdd4a.webp";
+import Adidas from "../../../../assests/adidas.png";
+import Nike from "../../../../assests/Nike.webp";
+import Lacoste from "../../../../assests/Lacoste.jpg";
 function Home() {
-
-  const userNavegacao = useNavigate();
-  useEffect(() =>{
-    let Email=sessionStorage.getItem("Email");
-    if(Email === '' || Email === null){
-      userNavegacao('/login')
-    }
-  }, [])
-
-
 
   return (
     
@@ -47,17 +40,14 @@ function Home() {
           <Container>
             <Col style={{ display: 'flex', justifyContent: 'center' ,gap:'3rem' }}>
                 <div style={{ marginRight: '10px' }}>
-                  <Link to={'/Moda_Masculina'}><Image src="https://i0.wp.com/www.canalmasculino.com.br/wp-content/uploads/2019/05/moda-masculina-destaque-usa-se-quiser.jpg?resize=564%2C705" style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
+                  <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
                  <center> <h4>Moda Masculina</h4></center>
                 </div>
-                <div style={{ marginRight: '10px' }}>
-                  <Link to={'/Moda_Feminina'}><Image src="https://images.tcdn.com.br/img/img_prod/919154/short_saia_2037_1_06f0bb5affc8f4d67b2ca7573f4bdd4a.jpg" style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
+                <div style={{ marginRight: '40px' }}>
+                  <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
                   <center><h4>Moda Feminina</h4></center>
                 </div>
-                <div>
-                  <Link to={'/Moda_Infantil'}><Image src="https://img.elo7.com.br/product/main/3DE8EE4/vestido-longo-tricoline-bolinha-poa-azul-moda-infantil-2021.jpg" style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
-                  <center> <h4>Moda Infantil</h4> </center>
-                </div>
+  
             </Col>
           </Container>
       </section>
@@ -70,10 +60,9 @@ function Home() {
           <Container>
             <Row>
               <Col style={{ display: 'flex', justifyContent: 'center', gap:'4rem' }}>
-                <Image src="https://cdn-icons-png.flaticon.com/512/731/731962.png" style={{ height: '25vh',border:'2px solid black'  }} rounded/>
-                
-                <Image src="https://provinciamarcas.com.br/wp-content/uploads/2017/03/Nike-logo-wordmark.png" style={{ height: '25vh', border:'2px solid black' }} rounded/>
-                <Image src="https://i.pinimg.com/originals/6c/41/c0/6c41c0cef416f3796a9f02632f4a2dfa.jpg" style={{ height: '25vh', border:'2px solid black' }} rounded/>
+                <Image src={Adidas} style={{ height: '25vh',border:'2px solid black'  }} rounded/>
+                <Image src={Nike} style={{ height: '25vh', border:'2px solid black' }} rounded/>
+                <Image src={Lacoste} style={{ height: '25vh', border:'2px solid black' }} rounded/>
               </Col>
             </Row>
           </Container>

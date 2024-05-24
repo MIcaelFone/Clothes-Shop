@@ -1,4 +1,6 @@
-const db=require('../database/db')
+const db = require('../database/db');
+const jwt = require("jsonwebtoken");
+
 
 const getUsuario=(req,res)=>{
 
@@ -12,27 +14,31 @@ const getUsuario=(req,res)=>{
 }
 
 const addUsuario = (req, res) => {
-    const busca = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
-    const { nome, email, senha, number } = req.body;
+    const cadastrado = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
+    
+    const { nome, email, senha,confirmsenha, number } = req.body;
 
     if (!nome || !email || !senha || !number) {
         return res.status(400).json("Todos os campos são necessários");
     }
-
+    
     const values = [nome, email, senha, number];
+  
 
-    db.query(busca, values, (err, data) => {
+    db.query(cadastrado, values, (err, data) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
         return res.status(200).json("Usuário inserido com sucesso");
     });
+
 };
 const updateUsuario=(req,res)=>{
     const alterando ="UPDATE usuario SET nome =?, email=?,senha=?,number=? WHERE id=?"
-    const { nome, email, senha, number } = req.body;
 
+    const { nome, email, senha, number } = req.body;
+    
     if (!nome || !email || !senha || !number) {
         return res.status(400).json("Todos os campos são necessários");
     }
@@ -55,7 +61,7 @@ const deleteUsuario=(req,res)=>{
         if (!nome || !email || !senha || !number) {
             return res.status(400).json("Todos os campos são necessários");
         }
-    
+       
         db.query(alterando, [req.params.id], (err) => {
             if (err) {
                 console.error(err);
@@ -64,7 +70,26 @@ const deleteUsuario=(req,res)=>{
             return res.status(200).json("Usuário deletado com sucesso");
         });
 };
+
+
+const logandoUsuario=(req,res)=>{
+    const busca = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
+    const {email,senha} =req.body
+    const values = [email,senha]
+    db.query(busca,values,(err,data)=>{
+        console.log("Entrou na busca")
+        if (err){
+            res.status(500).json({ message: "Erro na realização da busca"})
+        }
+
+        else if(data==null || data.length===0){
+            res.status(404).json({ message: "Email ou Senha inválidos" });
+        }
+     
+    }
+   
+)}
     
-module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario }
+module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario}
 
 

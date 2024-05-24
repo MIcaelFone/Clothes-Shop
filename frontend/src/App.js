@@ -13,11 +13,13 @@ import Home from '../src/ui/Components/Home/pages/home.js'
 import NavLink from '../src/ui/partials/pages/NavLinkks.js';
 import Cadastroproduto from '../src/ui/Components/Roupas/pages/cadastroproduto.js'
 import { ToastContainer } from 'react-toastify';  
+
+
 function App() { 
 
-//alem de iniciar o projeto, tem que dar run no backend usando o "npm run backend" se não não irá salvar o cadastro no back
-
-  return (    
+  
+  return (
+     
     <>
       <ToastContainer theme='colored'></ToastContainer>
       <BrowserRouter>
@@ -26,7 +28,8 @@ function App() {
         <NavLink/>
        
         <Routes>
-          <Route path='/' element={<Home />}></Route>
+        {}
+          <Route path='/' element={<Login />}></Route>
           <Route path='/Home' element={<Home />}></Route>
           <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
@@ -35,7 +38,9 @@ function App() {
           <Route path='/prazos_envios' element={<PrazosEnvios />}></Route>
           <Route path='/como_comprar' element={<ComoComprar/>}></Route>
           <Route path='/cadastroproduto' element={<Cadastroproduto/>}></Route>
-       </Routes>
+       
+        </Routes>
+
        <Footer/>
       </BrowserRouter>
     </>

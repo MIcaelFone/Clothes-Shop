@@ -6,23 +6,18 @@ import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
-    /*{ const getFilteredItens = {query, itens} =>
-        {
-            if(!query){
-                return itens;
-            }
-            return itens.filter(modas => modas.name.includes(query))
-        } 
-    }*/
+
 
 const Header = () => {
+    
+    const auth=true
+    //navigator=useNavigate()
+    //if(expirationDate<currenttime){
+      //    navigator('/Home')
+        //  setauth(false)
+    //}
 
     const Header_Info = [
-        {
-            path: '/Cadastro',
-            name: "Cadastrar"
-        },
-
         
         {
             path: '/Perfil',
@@ -57,22 +52,30 @@ const Header = () => {
                       />
                       <Button variant="outline-success">Search</Button>
                   </Form>
-                  <Nav 
-                      className="me-auto my-2 my-lg-0"
-                      style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }}
-                      navbarScroll
-                      
-                  >  
-                      <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
-                          {Header_Info.map((item) => {
-                              return (
-                                  <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
-                              );
-                          })}
-                      </NavDropdown>
+                  
+                  {auth ? (
+                            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
+                                <NavDropdown title="Entrars" id="basic-nav-dropdown" className="Entrar">
+                                    {Header_Info.map((item) => {
+                                        return (
+                                            <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
+                                        );
+                                    })}
+                                </NavDropdown>
+                            </Nav>
+                        ) : <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
+                        <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
+                            {Header_Info.map((item) => {
+                                return (
+                                    <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
+                                );
+                            })}
+                        </NavDropdown>
+                    </Nav>
+                    }
+
                       <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
                       <MdFavorite size={26} style={{ marginLeft: '10px' ,marginTop:'0.5rem',gap:'4rem', color: 'white'}} />
-                  </Nav>
               </Navbar.Collapse>
           </Container>
       </Navbar>
