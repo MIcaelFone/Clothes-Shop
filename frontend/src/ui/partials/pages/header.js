@@ -26,6 +26,10 @@ const Header = () => {
         {
             path: '/cadastroproduto',
             name: "Cadastro produto"
+        },
+        {
+            path: '/Pagamento',
+            name: "Pagamento"
         }
         
     ]

@@ -13,8 +13,7 @@ import Home from '../src/ui/Components/Home/pages/home.js'
 import NavLink from '../src/ui/partials/pages/NavLinkks.js';
 import Cadastroproduto from '../src/ui/Components/Roupas/pages/cadastroproduto.js'
 import { ToastContainer } from 'react-toastify';  
-
-
+import Pagamento from './ui/Components/Usuario/pages/Pagamento.js';
 function App() { 
 
   
@@ -38,9 +37,8 @@ function App() {
           <Route path='/prazos_envios' element={<PrazosEnvios />}></Route>
           <Route path='/como_comprar' element={<ComoComprar/>}></Route>
           <Route path='/cadastroproduto' element={<Cadastroproduto/>}></Route>
-       
-        </Routes>
-
+          <Route path='/Pagamento' element={<Pagamento/>}></Route>
+       </Routes>
        <Footer/>
       </BrowserRouter>
     </>
