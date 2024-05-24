@@ -110,8 +110,8 @@ function Cadastro() {
                 console.log(error);
             }
         }
-        else {
-            toast.error("Dados inválidos")
+    } else {
+        toast.error("Dados inválidos");
         }
     };
     
