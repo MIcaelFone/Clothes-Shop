@@ -9,46 +9,65 @@ function Cadastro() {
     const [nome, setNome] = useState("");   
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [confirmaSenha,setConfirmaSenha]=useState("")
     const [number, setNumber] = useState("");
+
    
     const IsValidonome = (nome) => {
 
         const pattern = new RegExp("^[A-Za-z]");
         if (!pattern.test(nome) && nome!==""){
             toast.warning("Nome inválido!Nome contém apenas letras.Ex:Micael")
+            return false;
         }   
         if (nome === null || nome === '') {
             toast.error("Nome não pode ficar vazio")
+            return false
         }  
+        return true
 
     } 
     const IsValidoemail = (email) =>{
         const pattern=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
         if(!pattern.test(email) && email!==""){
            toast.warning("Email inválido")
+           return false
         }
         
         if (email === null || email === '') {
             toast.error("Email não pode ficar vazio")
+            return false
         }
+        return true
     } 
     const IsValidosenha = (senha)=>{
         const senhaPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
         if(!senhaPattern.test(senha) && senha!==""){
             toast.warning("Senha inválida! A senha precisa ter no mínimo 8 dígitos com uma letra minúscula e um caracter especial.")
+            return false
         }
         if (senha === null || senha === '') {
             toast.error("Senha não pode ficar vazia")
+            return false
         }
+        if(senha!==confirmaSenha && confirmaSenha!==""){
+            toast.warning("As duas senhas são diferentes")
+            return false
+        }
+        return true
+
     }
     const Isnumbervalido = (number)=>{  
         const telefonePattern = new RegExp("^\\(?\\d{2}\\)?\\s?\\d{4,5}\\-?\\d{4}$");
         if(!telefonePattern.test(number) && number!==""){
             toast.warning("Telefone inválido")
+            return false
         }
         if(number==="" || number === null ){
            toast.error("Telefone não pode ficar vazio")
+           return false
         }
+        return true
 
     };
 
@@ -68,26 +87,39 @@ function Cadastro() {
         setSenha(value)
         IsValidosenha(value)
     }
-    const Handletelefone=(event)=>{
+    
+    const handleConfirmaSenha=(event)=>{
+        const value=event.target.value;
+        setConfirmaSenha(value)
+    }
+    const Handletelefone =(event)=>{
         const value=event.target.value
         setNumber(value)
         Isnumbervalido(value)
     }
     const CadastraUsuario = async(event) => {
         event.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        try {
-            await axios.post("http://localhost:8080/usuario/cadastrarusuario", {nome, email, senha, number})
-            .then((response) => {
-                console.log(response.data);
-            });
-        } catch(error) {
-            console.log(error);
+    
+        if(IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isnumbervalido(number)){
+            try {
+                await axios.post("http://localhost:8080/usuario/cadastrarusuario", {nome, email, senha, number})
+                .then((response) => {
+                    console.log(response.data);
+                });
+            } catch(error) {
+                console.log(error);
+            }
+        }
+    } else {
+        toast.error("Dados inválidos");
         }
     };
+    
 
     return (
         <div className="Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white">
             <div className="form_container p-5 rounded bg-white">
+                
                 <form onSubmit={CadastraUsuario}>
                     <h3 className="text-center">Cadastro</h3>
                     <div className="mb-2">
@@ -120,6 +152,17 @@ function Cadastro() {
                             className="form-control"
                             id="senha"
                             onChange={Handlesenha}
+                        ></input>
+                    </div>
+                    <div className="mb-2">
+                        <label htmlFor="password">Confirma Senha</label>
+                        <input
+                            type="password"
+                            value={confirmaSenha}
+                            placeholder="Digite sua senha"
+                            className="form-control"
+                            id="senha"
+                            onChange={handleConfirmaSenha}
                         ></input>
                     </div>
                     <div className="mb-2">

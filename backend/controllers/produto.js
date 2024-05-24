@@ -86,3 +86,4 @@ const getProdutomasculino=(req,res)=>{
 )};
 
 module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test ,getProdutofeminino,getProdutomasculino };
+   

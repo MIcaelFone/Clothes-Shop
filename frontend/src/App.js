@@ -17,9 +17,9 @@ import Pagamento from './ui/Components/Usuario/pages/Pagamento.js';
 import ProductPage from './ui/Components/Roupas/pages/ProductPage.js';
 function App() { 
 
-//alem de iniciar o projeto, tem que dar run no backend usando o "npm run backend" se não não irá salvar o cadastro no back
-
-  return (    
+  
+  return (
+     
     <>
       <ToastContainer theme='colored'></ToastContainer>
       <BrowserRouter>
@@ -28,7 +28,8 @@ function App() {
         <NavLink/>
        
         <Routes>
-          <Route path='/' element={<Home />}></Route>
+        {}
+          <Route path='/' element={<Login />}></Route>
           <Route path='/Home' element={<Home />}></Route>
           <Route path='/Perfil' element={<Perfil />}></Route>
           <Route path='/Login' element={<Login />}></Route>
