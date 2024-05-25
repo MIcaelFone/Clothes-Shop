@@ -130,10 +130,6 @@ function Tela_cadastro_produto() {
                                     <Form.Label>Insira multiplas imagem do produto</Form.Label>
                                     <Form.Control type="file"  multiple onChange={handleImages} required/>
                                 </Form.Group>
-
-                               
-                                 
-
                                 <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1" >
                                     <Form.Label>Descrição do produto</Form.Label>
                                     <Form.Control as="textarea" rows={3} required  value={descricao} onChange={handleChangeverificationdescricao} />
