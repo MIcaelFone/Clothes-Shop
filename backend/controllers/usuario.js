@@ -71,7 +71,6 @@ const deleteUsuario=(req,res)=>{
         });
 };
 
-
 const logandoUsuario=(req,res)=>{
     const busca = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
     const {email,senha} =req.body
@@ -89,7 +88,27 @@ const logandoUsuario=(req,res)=>{
     }
    
 )}
+
+const verificandoCadastro=(req,res)=>{
+    const busca= "SELECT nome,email From usuario WHERE nome=? AND email=?"
+    const { email, nome } = req.body;
+    const values = [nome, email]; 
+    db.query(busca,values,(err,data)=>{
+        console.log("Entrou")
+        console.log(nome)
+        if(err){
+            console.log("Erro")
+            res.status(500).json({message:"Erro na realização de busca"})
+        }
+        else if(data.length>0){
+            console.log("Entrou na verifcacao")
+            res.status(422).json({message:"Cadastro já existente!"})
+        }
+
+    })
+}
     
-module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario}
+    
+module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario,verificandoCadastro}
 
 
