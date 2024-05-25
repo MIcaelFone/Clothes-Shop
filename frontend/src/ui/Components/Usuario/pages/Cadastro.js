@@ -6,31 +6,35 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 function Cadastro() {
-    const [nome, setNome] = useState("");   
+    const [nome, setNome] = useState("");  
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [erronome,seterronome]=useState("");
+    const [erroemail,seterroemail]=useState("");
     const [confirmaSenha,setConfirmaSenha]=useState("")
+    const [errosenha, setErrosenha] = useState("");
+    const [erroconfirmaSenha, setErroconfirmaSenha] = useState("");
+    const [errotelefone,seterrotelefone]=useState("")
     const [number, setNumber] = useState("");
-
+ 
    
-    const IsValidonome = (nome) => {
-
-        const pattern = new RegExp("^[A-Za-z]");
-        if (!pattern.test(nome) && nome!==""){
-            toast.warning("Nome inválido!Nome contém apenas letras.Ex:Micael")
+    const IsValidonome= (nome) => {
+        const pattern =  /^[A-Za-z\s]+$/;
+        if (nome !== "" && !pattern.test(nome)) {
+            seterronome("Nome deve conter apenas letras. Ex: Micael");
             return false;
-        }   
-        if (nome === null || nome === '') {
-            toast.error("Nome não pode ficar vazio")
-            return false
-        }  
-        return true
-
-    } 
+        }
+        if (nome === "") {
+            toast.error("Nome não pode ficar vazio");
+            return false;
+        }
+        seterronome("");
+        return true;
+    };
     const IsValidoemail = (email) =>{
         const pattern=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
         if(!pattern.test(email) && email!==""){
-           toast.warning("Email inválido")
+            seterroemail("Email inválido")
            return false
         }
         
@@ -38,35 +42,42 @@ function Cadastro() {
             toast.error("Email não pode ficar vazio")
             return false
         }
+        seterroemail("") 
         return true
     } 
-    const IsValidosenha = (senha)=>{
+    const IsValidosenha = (senha) => {
         const senhaPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
-        if(!senhaPattern.test(senha) && senha!==""){
-            toast.warning("Senha inválida! A senha precisa ter no mínimo 8 dígitos com uma letra minúscula e um caracter especial.")
-            return false
+        if (!senhaPattern.test(senha) && senha !== "") {
+            setErrosenha("Senha inválida! A senha precisa ter no mínimo 8 dígitos com uma letra minúscula e um caracter especial.");
+            return false;
         }
-        if (senha === null || senha === '') {
-            toast.error("Senha não pode ficar vazia")
-            return false
+        if (senha === "") {
+            toast.error("Senha não pode ficar vazia");
+            return false;
         }
-        if(senha!==confirmaSenha && confirmaSenha!==""){
-            toast.warning("As duas senhas são diferentes")
-            return false
-        }
-        return true
+        setErrosenha("");
+        return true;
+    };
 
-    }
+    const Isconfirmsenha = (senha, confirmaSenha) => {
+        if (senha !== confirmaSenha && confirmaSenha !== "" && senha !== "") {
+            setErroconfirmaSenha("As duas senhas são diferentes");
+            return false;
+        }
+        setErroconfirmaSenha("");  
+        return true;
+    };
     const Isnumbervalido = (number)=>{  
         const telefonePattern = new RegExp("^\\(?\\d{2}\\)?\\s?\\d{4,5}\\-?\\d{4}$");
         if(!telefonePattern.test(number) && number!==""){
-            toast.warning("Telefone inválido")
+        seterrotelefone("Telefone inválido")
             return false
         }
         if(number==="" || number === null ){
-           toast.error("Telefone não pode ficar vazio")
+            toast.error("Telefone não pode ficar vazio")
            return false
         }
+        seterrotelefone("") 
         return true
 
     };
@@ -86,11 +97,13 @@ function Cadastro() {
         const value=event.target.value
         setSenha(value)
         IsValidosenha(value)
+        Isconfirmsenha(value,confirmaSenha)
     }
     
     const handleConfirmaSenha=(event)=>{
         const value=event.target.value;
         setConfirmaSenha(value)
+        Isconfirmsenha(senha,value)
     }
     const Handletelefone =(event)=>{
         const value=event.target.value
@@ -99,22 +112,33 @@ function Cadastro() {
     }
     const CadastraUsuario = async(event) => {
         event.preventDefault(); // Evita o comportamento padrão de envio de formulário
-    
+
         if(IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isnumbervalido(number)){
-            try {
-                await axios.post("http://localhost:8080/usuario/cadastrarusuario", {nome, email, senha, number})
-                .then((response) => {
-                    console.log(response.data);
-                });
-            } catch(error) {
-                console.log(error);
+        try {
+            // Verificar se o usuário já existe
+            const response = await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email });
+            
+            if (response.status === 422) {
+                toast.error("Usuário já cadastrado");
+                return; // Sai da função se o usuário já estiver cadastrado
             }
+            
+            // Se o usuário não estiver cadastrado, prosseguir com o cadastro
+            const cadastro = await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, number });
+            if (cadastro.status === 200) {
+                toast.success("Usuário cadastrado com sucesso!");
+            } else {
+                toast.error("Erro ao cadastrar usuário");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Erro ao verificar ou cadastrar usuário");
         }
     } else {
         toast.error("Dados inválidos");
-        }
-    };
-    
+    }
+};
+
 
     return (
         <div className="Cadastro template d-flex justify-content-center align-items-center vh-100 bg-white">
@@ -122,7 +146,7 @@ function Cadastro() {
                 
                 <form onSubmit={CadastraUsuario}>
                     <h3 className="text-center">Cadastro</h3>
-                    <div className="mb-2">
+                    <div className="mt-4">
                         <label htmlFor="text">Nome</label>
                         <input
                             type="text"
@@ -132,8 +156,10 @@ function Cadastro() {
                             id="nome"
                             onChange={Handlename}
                         ></input>
+                    {erronome && <span className="text-danger">{erronome}</span>}                  
                     </div>
-                    <div className="mb-2">
+
+                    <div className="mt-4">
                         <label htmlFor="email">Email</label>
                         <input
                             type="email"
@@ -143,8 +169,9 @@ function Cadastro() {
                             id="email"
                             onChange={Handleemail}
                         ></input>
+                    {erroemail && <span className="text-danger">{erroemail}</span>}    
                     </div>
-                    <div className="mb-2">
+                    <div className="mt-4 " >
                         <label htmlFor="password">Senha</label>
                         <input
                             type="password"
@@ -153,19 +180,21 @@ function Cadastro() {
                             id="senha"
                             onChange={Handlesenha}
                         ></input>
+                    {errosenha && <span className="text-danger">{errosenha}</span>}    
                     </div>
-                    <div className="mb-2">
+                    <div className="mt-4">
                         <label htmlFor="password">Confirma Senha</label>
                         <input
                             type="password"
                             value={confirmaSenha}
                             placeholder="Digite sua senha"
                             className="form-control"
-                            id="senha"
+                            id="confirmasenha"
                             onChange={handleConfirmaSenha}
                         ></input>
+                    {erroconfirmaSenha && <span className="text-danger">{erroconfirmaSenha}</span>}    
                     </div>
-                    <div className="mb-2">
+                    <div className="mt-4">
                         <label htmlFor="password">Numero de telefone</label>
                         <input
                             type="text"
@@ -175,7 +204,9 @@ function Cadastro() {
                             id="numero"
                             onChange={Handletelefone}
                         ></input>
+                        {errotelefone && <span className="text-danger">{errotelefone}</span>}
                     </div>
+                    <br></br>
                     <div className="d-grid mt-3">
                         <button className="btn btn-primary">Criar conta</button>
                     </div>
