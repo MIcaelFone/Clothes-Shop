@@ -30,7 +30,7 @@ const addUsuario = (req, res) => {
             console.log(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
-        return res.status(200).json("Usuário inserido com sucesso");
+        return res.status(201).json("Usuário inserido com sucesso");
     });
 
 };
@@ -90,11 +90,10 @@ const logandoUsuario=(req,res)=>{
 )}
 
 const verificandoCadastro=(req,res)=>{
-    const busca= "SELECT nome,email From usuario WHERE nome=? AND email=?"
+    const busca= "SELECT nome,email From usuario WHERE nome=? OR email=?"
     const { email, nome } = req.body;
     const values = [nome, email]; 
     db.query(busca,values,(err,data)=>{
-        console.log("Entrou")
         console.log(nome)
         if(err){
             console.log("Erro")
@@ -102,7 +101,11 @@ const verificandoCadastro=(req,res)=>{
         }
         else if(data.length>0){
             console.log("Entrou na verifcacao")
-            res.status(422).json({message:"Cadastro já existente!"})
+            console.log("Usuário já cadastrado")
+            res.status(400).json({ message: "Cadastro inválido" });
+        }
+        else if(data.length===0){
+            res.status(204).json({ message: "Cadastro válido" });
         }
 
     })
