@@ -11,8 +11,6 @@ function Cadastro() {
     const [senha, setSenha] = useState("");
     const [confirmaSenha,setConfirmaSenha]=useState("")
     const [number, setNumber] = useState("");
-
-   
     const IsValidonome = (nome) => {
 
         const pattern = new RegExp("^[A-Za-z]");
@@ -109,9 +107,8 @@ function Cadastro() {
             } catch(error) {
                 console.log(error);
             }
-        }
-    } else {
-        toast.error("Dados inválidos");
+        }else {
+            toast.error("Dados inválidos");
         }
     };
     

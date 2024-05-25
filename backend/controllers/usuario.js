@@ -1,6 +1,9 @@
 const db = require('../database/db');
 const jwt = require("jsonwebtoken");
 
+const db = require('../database/db');
+const jwt = require("jsonwebtoken");
+
 
 const getUsuario=(req,res)=>{
 
@@ -30,7 +33,7 @@ const addUsuario = (req, res) => {
             console.log(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
-        return res.status(200).json("Usuário inserido com sucesso");
+        return res.status(201).json("Usuário inserido com sucesso");
     });
 
 };
@@ -71,7 +74,6 @@ const deleteUsuario=(req,res)=>{
         });
 };
 
-
 const logandoUsuario=(req,res)=>{
     const busca = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
     const {email,senha} =req.body
@@ -89,7 +91,30 @@ const logandoUsuario=(req,res)=>{
     }
    
 )}
+
+const verificandoCadastro=(req,res)=>{
+    const busca= "SELECT nome,email From usuario WHERE nome=? OR email=?"
+    const { email, nome } = req.body;
+    const values = [nome, email]; 
+    db.query(busca,values,(err,data)=>{
+        console.log(nome)
+        if(err){
+            console.log("Erro")
+            res.status(500).json({message:"Erro na realização de busca"})
+        }
+        else if(data.length>0){
+            console.log("Entrou na verifcacao")
+            console.log("Usuário já cadastrado")
+            res.status(400).json({ message: "Cadastro inválido" });
+        }
+        else if(data.length===0){
+            res.status(204).json({ message: "Cadastro válido" });
+        }
+
+    })
+}
     
-module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario}
+    
+module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario,verificandoCadastro}
 
 

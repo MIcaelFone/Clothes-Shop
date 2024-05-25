@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Cadastro from '../src/ui/Components/Usuario/pages/Cadastro.js'
+import Cadastro from '../src/ui/Components/Cadastrousuario/pages/Cadastro.js'
 import Login from '../src/ui/Components/Usuario/pages/Login.js';
 import Header from '../src/ui/partials/pages/header.js';
 import Footer from '../src/ui/partials/pages/Footer.js';
