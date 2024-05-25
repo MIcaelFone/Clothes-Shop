@@ -1,6 +1,9 @@
 const db = require('../database/db');
 const jwt = require("jsonwebtoken");
 
+const db = require('../database/db');
+const jwt = require("jsonwebtoken");
+
 
 const getUsuario=(req,res)=>{
 

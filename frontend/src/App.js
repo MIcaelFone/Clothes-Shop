@@ -14,6 +14,7 @@ import NavLink from '../src/ui/partials/pages/NavLinkks.js';
 import Cadastroproduto from '../src/ui/Components/Roupas/pages/cadastroproduto.js'
 import { ToastContainer } from 'react-toastify';  
 import Pagamento from './ui/Components/Usuario/pages/Pagamento.js';
+import ProductPage from './ui/Components/Roupas/pages/ProductPage.js';
 function App() { 
 
   
@@ -38,6 +39,7 @@ function App() {
           <Route path='/como_comprar' element={<ComoComprar/>}></Route>
           <Route path='/cadastroproduto' element={<Cadastroproduto/>}></Route>
           <Route path='/Pagamento' element={<Pagamento/>}></Route>
+          <Route path='/ProductPage' element={<ProductPage/>}></Route>
        </Routes>
        <Footer/>
       </BrowserRouter>
