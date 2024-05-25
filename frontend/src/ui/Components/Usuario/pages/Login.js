@@ -6,11 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState('');
-
     const [senha, setSenha] = useState('');
-
     const usenavigate = useNavigate()
-
     const ProceedLogin = async(e) => {
         e.preventDefault(); 
         try {
@@ -75,6 +72,4 @@ const Login = () => {
         </div>
     )
 }
-
-
 export default Login;
