@@ -1,6 +1,7 @@
 const db = require('../database/db');
 const jwt = require("jsonwebtoken");
 
+
 const getUsuario=(req,res)=>{
     const busca="SELECT * FROM usuario";
     db.query(busca,(err,data) =>{
@@ -20,6 +21,7 @@ const addUsuario = (req, res) => {
             console.log(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
+        return res.status(201).json("Usuário inserido com sucesso");
         return res.status(201).json("Usuário inserido com sucesso");
     });
 };
