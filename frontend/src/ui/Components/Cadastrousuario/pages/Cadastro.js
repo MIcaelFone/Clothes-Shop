@@ -121,7 +121,7 @@ function Cadastro() {
                 })
                 if(iscadastroValid){
                     await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, number }) .then(function (resposta) {
-                        if (resposta.status===200){
+                        if (resposta.status===201){
                             toast.success("Cadastro realizado com sucesso")
                             usenavigate ("/Login")
                             return;
@@ -133,7 +133,6 @@ function Cadastro() {
                 console.error(error);
                 toast.error("Dados já cadastrados no Banco de dados");
             }
-           
         } else {
             toast.error("Dados inválidos");
         }

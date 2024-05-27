@@ -6,6 +6,6 @@ router.get("/listarusuarios",middlaware_authentication,getUsuario);
 router.post("/cadastrarusuario",addUsuario)
 router.delete("/deletarusuario/:id",middlaware_authentication,deleteUsuario)
 router.put("/atualizarusuario/:id",middlaware_authentication,updateUsuario)
-router.post("/Login",logandoUsuario)
-router.post("/verficandoCadastro",verificandoCadastro)
+router.post("/Login",logandoUsuario);
+router.post("/verficandoCadastro",verificandoCadastro);
 module.exports=router;
