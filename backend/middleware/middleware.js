@@ -1,8 +1,8 @@
 const jwtService = require("jsonwebtoken");
-const chaveprivada="jwtSecretKey"
 const middlaware_authentication=(req,res,next)=>{
     const jwt = req.headers["authorization"];
-    jwtService.verify(jwt,chaveprivada,(err,infouser)=>{
+    const senha = req.body.senha
+    jwtService.verify(jwt,senha,(err,infouser)=>{
         console.log('erro: ', err)
         if(err){
             res.sendStatus(403).end();

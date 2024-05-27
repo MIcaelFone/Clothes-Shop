@@ -18,14 +18,13 @@ const getProduto = (_, res) => {
 const addProduto = (req, res) => {
     const { nome, marca, descricao, preco, imagem, moda } = req.body;
 
-    // Verifique se todos os campos necessários estão presentes
     if (!nome || !marca || !descricao || !preco || !imagem) {
         return res.status(400).json("Todos os campos são necessários");
     }
-
     const insercao = "INSERT INTO produto(nome,marca,descricao,preco,imagem,moda) VALUES (?,?,?,?,?,?)";
-    const values = [nome, marca, descricao, preco, imagem, moda];
 
+    const values = [nome, marca, descricao, preco, imagem, moda];
+    
     db.query(insercao, values, (err) => {
         if(err) {
             console.log(err);
@@ -48,15 +47,12 @@ const deleteProduto = (req, res) => {
 
 const updateProduto = (req, res) => {
     const { nome, marca, descricao, preco, imagem, moda } = req.body;
-    
     // Verifique se todos os campos necessários estão presentes
     if (!nome || !marca || !descricao || !preco || !imagem || !moda) {
         return res.status(400).json("Todos os campos são necessários");
     }
     const values= { nome, marca, descricao, preco, imagem, moda }
-
-    "UPDATE produto SET nome=?,marca=?,descricao=?, preco=?,imagem=?,moda=? WHERE id =?"
-    
+    const atualizando="UPDATE produto SET nome=?,marca=?,descricao=?, preco=?,imagem=?,moda=? WHERE id =?"
     db.query(atualizando, [...values,[req.params.id]], (err) => {
         if(err) {
             console.log(err);
@@ -66,19 +62,14 @@ const updateProduto = (req, res) => {
     });
 };
 const getProdutofeminino=(req,res)=>{
-
     const busca="SELECT * FROM produto where moda='moda_feminina'";
-
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos femininos")
     })   
 )};
 const getProdutomasculino=(req,res)=>{
-
     const busca="SELECT * FROM produto where moda='moda_masculino'";
-
-
     db.query(busca,(data,err =>{
         if (err) throw res.Status(500).json(data);
         res.Status(200).json("Busca de produtos masculinos")
