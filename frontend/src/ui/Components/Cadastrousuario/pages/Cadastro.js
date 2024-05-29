@@ -111,13 +111,14 @@ function Cadastro() {
         if(IsValidonome(nome) && IsValidoemail(email) && Isconfirmsenha(senha,confirmaSenha) && Isnumbervalido(number)){
             try {
                 var iscadastroValid=false
-                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email }).then((resposta) =>{
+                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email,number }).then((resposta) =>{
                     if (resposta.status===204){
                         console.log("Entrou na verificaçaoo")
                         iscadastroValid=true
                         console.log(iscadastroValid)
                         return;
                     }
+                    
                 })
                 if(iscadastroValid){
                     await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, number }) .then(function (resposta) {
@@ -131,7 +132,7 @@ function Cadastro() {
                 } 
             }catch (error) {
                 console.error(error);
-                toast.error("Dados já cadastrados no Banco de dados");
+                toast.error("Cadastro já existente");
             }
         } else {
             toast.error("Dados inválidos");

@@ -14,8 +14,7 @@ function NavLink() {
             {
                 path: '/Moda_Feminina',
                 name: "Moda Feminina"
-            },
-           
+            },           
     ]
     return(
         <Nav variant="tabs" defaultActiveKey="/Home" style={{backgroundColor:'rgb(248 249 250)'}}>

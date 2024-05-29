@@ -2,7 +2,7 @@ import React from "react";
 import { X } from 'lucide-react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
-import useForm_carrd from "../../Card_configuracao/useForm_carrd";
+import useForm_carrd from "./useForm_carrd";
 
 function Modal({ onClose }) {
     const { handleChanges, handleFocus, handleSubmit, CadastraCartao, values, errors, allValid} = useForm_carrd();
