@@ -8,6 +8,7 @@ const getUsuario=(req,res)=>{
          if (err) throw res.status(500).json(data);
          res.status(200).json(data);
     }) 
+    }) 
 }
 const addUsuario = (req, res) => {
     const cadastrado = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
@@ -62,9 +63,11 @@ const logandoUsuario=(req,res)=>{
         console.log("Entrou na busca")
         if (err){
             console.log("Erro na busca")
+            console.log("Erro na busca")
             res.status(500).json({ message: "Erro na realização da busca"})
         }
         else if(data==null || data.length===0){
+            console.log("Esse usuário não existe")
             console.log("Esse usuário não existe")
             res.status(404).json({ message: "Email ou Senha inválidos" });
         }
