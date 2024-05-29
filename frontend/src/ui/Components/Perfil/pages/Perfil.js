@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import '../styles/Perfil.component.css';
+import '../styles/Perfil_component.css';
 import imgPerfil from '../../../../assests/pngwing.com.png';
 
 //Tela

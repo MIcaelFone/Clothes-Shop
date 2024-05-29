@@ -7,24 +7,23 @@ import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const usenavigate = useNavigate()
+    const navigate = useNavigate();
     const ProceedLogin = async(e) => {
         e.preventDefault(); 
         
         try {
-            
-            await axios.post("http://localhost:8080/usuario/Login",{email,senha}).then((res) => 
-            {   
-                if(res.data.auth){ 
-                    toast.success("Login feito com sucesso!");
-                    localStorage.setItem("token",res.data.token)
-                    usenavigate ("/Home")
-                } 
-                else {
-                    toast.error("Email ou senha inválidos");
-                }
-            })
-        }
+            const response = await axios.post("http://localhost:8080/usuario/Login", { email, senha });
+
+            if (response.status === 200) {
+                const { token } = response.data;
+                console.log("Token"+token)
+                localStorage.setItem("token", token);
+                toast.success("Login feito com sucesso!");
+                window.location.href = "Home";
+            } else {
+                toast.error("Email ou senha inválidos");
+            }
+        } 
         catch(err) {
             console.log(err);
             toast.error("Ocorreu um erro durante o login. Por favor, tente novamente.");
