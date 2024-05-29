@@ -11,7 +11,7 @@ const getUsuario=(req,res)=>{
 }
 const addUsuario = (req, res) => {
     const cadastrado = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
-    const { nome, email, senha,confirmsenha, number } = req.body;
+    const { nome, email, senha, number } = req.body;
     if (!nome || !email || !senha || !number) {
         return res.status(400).json("Todos os campos são necessários");
     }
@@ -22,7 +22,7 @@ const addUsuario = (req, res) => {
             return res.status(500).json({ error: 'Ocorreu um erro ao inserir o usuário' });
         }
         return res.status(201).json("Usuário inserido com sucesso");
-        return res.status(201).json("Usuário inserido com sucesso");
+        
     });
 };
 const updateUsuario=(req,res)=>{
@@ -70,17 +70,17 @@ const logandoUsuario=(req,res)=>{
         }
         else if(data.length>0){
             console.log("Login realizado com sucesso")
-            var token=jwt.sign({email},senha,{ expiresIn: 60 })
+            const token = jwt.sign({ nome: data[0].nome }, senha, { expiresIn: '1d' });
             console.log("Token gerado:", token);
-            return res.status(200).json({ auth: true, token: token })
+            return res.status(200).json({ auth: true, token }); 
         }
     })
 }
 
 const verificandoCadastro=(req,res)=>{
-    const busca= "SELECT nome,email From usuario WHERE nome=? OR email=?"
-    const { email, nome } = req.body;
-    const values = [nome, email]; 
+    const busca= "SELECT nome,email,number From usuario WHERE nome=? OR email=?"
+    const { email,number, nome } = req.body;
+    const values = [nome, number, email]; 
     db.query(busca,values,(err,data)=>{
         console.log(nome)
         if(err){
@@ -96,4 +96,5 @@ const verificandoCadastro=(req,res)=>{
         }
     })
 }
+
 module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario,verificandoCadastro}
