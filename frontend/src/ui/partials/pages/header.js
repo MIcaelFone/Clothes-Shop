@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import '../styles/Header.component.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
@@ -59,46 +58,47 @@ const Header = () => {
     }, []);
    
     return (
-      <Navbar expand="lg" className="">
-          <Container fluid>
-              <Navbar.Brand href="/home" style={{color: 'black'}}>Clothes Shop</Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" />
-              <Navbar.Collapse id="navbarScroll">
-                  <Form className="d-flex" style={{marginLeft:'22rem'}}>
-                      <Form.Control
-                          type="search"
-                          placeholder="Search"
-                          className="me-2"
-                          aria-label="Search"
-                      />
-                      <Button variant="outline-success">Search</Button>
-                  </Form>
-                  
-                  {auth() ? (
-                            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
-                               <NavDropdown title={`Olá ${nome}`} id="basic-nav-dropdown" className="Entrar">
-                                    {header_autenticado.map((item, index) => (
-                                        <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
-                                            {item.name}
-                                        </NavDropdown.Item>
-                                    ))}
+        <Navbar expand="lg" className="navbar navigation">
+            <Container fluid>
+                <Navbar.Brand href="/home" className="Brand">Clothes Shop</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Form className="d-flex mx-auto search-form Searchbar">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
+
+                    {auth() ? (
+                        <Nav className="nav-menu ms-auto">
+                            <NavDropdown title={`Olá ${nome}`} id="basic-nav-dropdown" className="list_item">
+                                {header_autenticado.map((item, index) => (
+                                    <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
+                                        {item.name}
+                                    </NavDropdown.Item>
+                                ))}
                             </NavDropdown>
-                            </Nav>
-                        ) : <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
-                        <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
-                            {Header_naoautenticado.map((item) => {
-                                return (
-                                    <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
-                                );
-                            })}
-                        </NavDropdown>
-                    </Nav>
-                    }
-                      <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
-                      <MdFavorite size={26} style={{ marginLeft: '10px' ,marginTop:'0.5rem',gap:'4rem', color: 'white'}} />
-              </Navbar.Collapse>
-          </Container>
-      </Navbar>
+                        </Nav>
+                    ) : (
+                        <Nav className="nav-menu ms-auto">
+                            <NavDropdown title="Entrar" id="basic-nav-dropdown" className="list_item">
+                                {Header_naoautenticado.map((item) => (
+                                    <NavDropdown.Item key={item.path} href={item.path}>
+                                        {item.name}
+                                    </NavDropdown.Item>
+                                ))}
+                            </NavDropdown>
+                        </Nav>
+                    )}
+                    <FaShoppingCart size={26} className="icon list_item" />
+                    <MdFavorite size={26} className="icon list_item" />
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }
 

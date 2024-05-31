@@ -1,37 +1,58 @@
-.navbar{
+.navbar {
     background-color: #555b61;
 }
 
-.Brand, .list_item{
+.Brand, .list_item {
     color: #fff !important;
     transition: transform .2s;
 }
 
-.Searchbar{
-    color: #fff !important;
+.Searchbar .form-control {
+    color: black !important;
 }
 
 
-.list_item:hover{
-    color: tomato !important;
-    transform: scale(1.2);
-}
-
-.ms-auto{
+.ms-auto {
     gap: 36px;
 }
 
-.botao_cadastro{
+.botao_cadastro {
     background-color: tomato !important;
     border: none;
     border-radius: 20px;
 }
 
-
-button.navbar-toggler.collapsed{
+button.navbar-toggler.collapsed {
     background-color: #fff !important;
 }
 
-button.navbar-toggler{
+button.navbar-toggler {
     background-color: #fff !important;
 }
+
+@media (max-width: 991px) {
+    .navigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-form {
+        width: 80%;
+        margin: 0 auto; 
+        margin-bottom: 1rem;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .icon {
+        margin: 0.5rem 0;
+    }
+
+    .nav-menu .nav-link {
+        width: 100%;
+    }
+}
+
