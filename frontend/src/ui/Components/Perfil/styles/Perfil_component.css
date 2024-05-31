@@ -25,3 +25,11 @@
     opacity: 0;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .Imagem {
+        margin-left: auto; /* Alterado para auto para centralizar */
+        margin-right: auto; /* Alterado para auto para centralizar */
+    }
+}
+

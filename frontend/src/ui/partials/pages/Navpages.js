@@ -14,7 +14,19 @@ function NavLink() {
             {
                 path: '/Moda_Feminina',
                 name: "Moda Feminina"
-            },           
+            },
+            {
+              path: '/ProductPage',
+              name: 'Pagina Produto'
+            },
+            {
+              path: '/Pagamento',
+              name: 'Pagina Pagamento'
+            },
+            {
+              path: '/cadastroproduto',
+              name: 'produto'
+            }
     ]
     return(
         <Nav variant="tabs" defaultActiveKey="/Home" style={{backgroundColor:'rgb(248 249 250)'}}>

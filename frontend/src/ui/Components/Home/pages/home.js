@@ -19,51 +19,56 @@ function Home() {
     
     <div>
       <div style={{border:'1px solid black'}}>
-          <Container fluid>
-            <Row>
-              <Col style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                Frete Gratis para todos os produtos
-                <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Devolução gratis para todos os produtos
-                <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                10% de desconto em todos os produtos
-                <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Desconto de 30% para pagamento em dinheiro
-                <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Parcela em até 10X em vários tipos de cartão
-              </Col>
-            </Row>
-          </Container>
+        <Container fluid>
+          <Row>
+            <Col className="promo-text">
+              Frete Gratis para todos os produtos
+              <div className="divider"></div>
+              10% de desconto em todos os produtos
+              <div className="divider"></div>
+              Desconto de 30% para pagamento em dinheiro
+              <div className="divider"></div>
+              Parcela em até 10X em vários tipos de cartão
+            </Col>
+          </Row>
+        </Container>
       </div>
     <br></br>
       <section className="banner-sections">
           <Container>
-            <Col style={{ display: 'flex', justifyContent: 'center' ,gap:'3rem' }}>
-                <div style={{ marginRight: '10px' }}>
-                  <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
-                 <center> <h4>Moda Masculina</h4></center>
-                </div>
-                <div style={{ marginRight: '40px' }}>
-                  <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
-                  <center><h4>Moda Feminina</h4></center>
-                </div>
-  
-            </Col>
+            <Row className="justify-content-center">
+                <Col md={6} className="text-center">
+                    <div style={{ marginBottom: '20px' }}>
+                        <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} className="banner-image" roundedCircle /></Link>
+                        <h4>Moda Masculina</h4>
+                    </div>
+                </Col>
+                <Col md={6} className="text-center">
+                    <div>
+                        <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} className="banner-image" roundedCircle /></Link>
+                        <h4>Moda Feminina</h4>
+                    </div>
+                </Col>
+            </Row>
           </Container>
       </section>
       <br></br>
       <br></br>
 
-     <h1 style={{textAlign: 'center'}}>AS MELHORES MARCAS</h1>
+     <h1 className="text-center">AS MELHORES MARCAS</h1>
      <br></br>
       <div>
           <Container>
-            <Row>
-              <Col style={{ display: 'flex', justifyContent: 'center', gap:'4rem' }}>
-                <Image src={Adidas} style={{ height: '25vh',border:'2px solid black'  }} rounded/>
-                <Image src={Nike} style={{ height: '25vh', border:'2px solid black' }} rounded/>
-                <Image src={Lacoste} style={{ height: '25vh', border:'2px solid black' }} rounded/>
-              </Col>
+            <Row className="justify-content-center">
+                <Col md={4} className="text-center">
+                    <Image src={Adidas} className="brand-image" rounded/>
+                </Col>
+                <Col md={4} className="text-center">
+                    <Image src={Nike} className="brand-image" rounded/>
+                </Col>
+                <Col md={4} className="text-center">
+                    <Image src={Lacoste} className="brand-image" rounded/>
+                </Col>
             </Row>
           </Container>
       </div>
@@ -72,20 +77,24 @@ function Home() {
       <br></br>
 
       <div className='email_conpum'>
-        <div style={{marginTop:'0.5rem', display:'flex',justifyContent:'center'}}>
-          <h3 style={{marginRight:'2rem', marginTop:'1rem'}}>Ganhe um copum de 15% desconto</h3>
-          <InputGroup className="mb-3" style={{width:'25vw', marginTop:'1rem'}}>
-            <Form.Control
-              placeholder="Insira seu email"
-              aria-label="email"
-              aria-describedby="email_copum"
-            />
-            <Button variant="primary" id="cadastro_email">
-              Cadastrar
-            </Button>
-          </InputGroup>
-        </div>  
+          <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+              <h3 style={{ marginTop: '1rem' }}>Ganhe um cupom de 15% desconto</h3>
+              <div style={{ marginBottom: '1rem', width: '100%', maxWidth: '25rem' }}>
+                  <InputGroup className="mb-3">
+                      <Form.Control
+                          placeholder="Insira seu email"
+                          aria-label="email"
+                          aria-describedby="email_cupom"
+                          style={{ width: '100%' }}
+                      />
+                      <Button variant="primary" id="cadastro_email">
+                          Cadastrar
+                      </Button>
+                  </InputGroup>
+              </div>
+          </div>
       </div>
+
 
       <br></br>      
 
@@ -93,5 +102,7 @@ function Home() {
    
   );  
 }
+
+
 
 export default Home;
