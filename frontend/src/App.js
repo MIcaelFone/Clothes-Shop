@@ -1,6 +1,6 @@
 import React from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { BrowserRouter, Route, Routes,Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes,Route,Navigate } from 'react-router-dom'
 import Cadastro from '../src/ui/Components/Cadastrousuario/pages/Cadastro.js';
 import Login from './ui/Components/Login/pages/Login.js';
 import Header from '../src/ui/partials/pages/header.js';
@@ -22,6 +22,7 @@ function App() {
   const Authentication = () => {
     
     var token = localStorage.getItem("token")
+
     if(token===null) return false;
     if (token !==null){
       try {
@@ -29,8 +30,7 @@ function App() {
         if (exp * 1000 < Date.now()) {
           toast.error("Sessão inspirada")
           localStorage.removeItem("token")
-          window.location.href="Login"
-         
+          window.location.href="Login"  
           return false;
         }
         return true;
@@ -39,7 +39,7 @@ function App() {
       }
     };
   }
-  
+ 
   return (
     <>
       <ToastContainer theme='colored'></ToastContainer>
