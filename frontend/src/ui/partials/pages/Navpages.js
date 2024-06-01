@@ -1,5 +1,5 @@
 import Nav from 'react-bootstrap/Nav';
-
+import { FormattedMessage } from 'react-intl';
 function NavLink() {
 
     const Header_Info = [
@@ -9,11 +9,11 @@ function NavLink() {
             },
             {
                 path: '/Moda_Masculina',
-                name: "Moda Masculina"
+                name: <FormattedMessage id='home_moda_Masculina'></FormattedMessage>
             },
             {
                 path: '/Moda_Feminina',
-                name: "Moda Feminina"
+                name: <FormattedMessage id='home_moda_Feminina'></FormattedMessage>
             },           
     ]
     return(

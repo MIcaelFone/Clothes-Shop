@@ -6,11 +6,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from "react-icons/fa";
-import { MdFavorite } from "react-icons/md";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { jwtDecode } from "jwt-decode";
-
+import { FormattedMessage } from "react-intl";
 const Header = () => {
     const [nome, setNome] = useState("");
     const auth = () => {
@@ -22,25 +21,25 @@ const Header = () => {
         const token = localStorage.getItem('token');
         if (token !== null) {
             localStorage.removeItem('token');
-            toast.success("Sessão encerrada");
+            toast.success(<FormattedMessage id="session_ended"/>);
             window.location.href = "/Login";
         }
     };
-
     const header_autenticado = [
         {
             path: '/Perfil',
-            name: "Perfil"
+            name: <FormattedMessage id="profile"></FormattedMessage>
         },
         {
             onClick:logout,
             name: "Logout"
         }
     ]
+   
     const Header_naoautenticado = [
         {
             path: '/Cadastro',
-            name: "Cadastro"
+            name: <FormattedMessage id="signup"></FormattedMessage>
         }         
     ]
     useEffect(() => {
@@ -71,12 +70,12 @@ const Header = () => {
                           className="me-2"
                           aria-label="Search"
                       />
-                      <Button variant="outline-success">Search</Button>
+                      <Button variant="outline-success"><FormattedMessage id="search_placeholder"/></Button>
                   </Form>
                   
-                  {auth() ? (
+                    {auth() ? (
                             <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
-                               <NavDropdown title={`Olá ${nome}`} id="basic-nav-dropdown" className="Entrar">
+                              <NavDropdown title={<><FormattedMessage id="greeting_user" /> {nome}</>} id="basic-nav-dropdown" className="Entrar">
                                     {header_autenticado.map((item, index) => (
                                         <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
                                             {item.name}
@@ -84,19 +83,17 @@ const Header = () => {
                                     ))}
                             </NavDropdown>
                             </Nav>
-                        ) : <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
-                        <NavDropdown title="Entrar" id="basic-nav-dropdown" className="Entrar">
+                        ) : <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'black' }} navbarScroll > 
                             {Header_naoautenticado.map((item) => {
                                 return (
                                     <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
                                 );
                             })}
-                        </NavDropdown>
+                       
                     </Nav>
                     }
-                      <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
-                      <MdFavorite size={26} style={{ marginLeft: '10px' ,marginTop:'0.5rem',gap:'4rem', color: 'white'}} />
-              </Navbar.Collapse>
+                    <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
+                </Navbar.Collapse>
           </Container>
       </Navbar>
     );

@@ -13,6 +13,7 @@ import Moda_Feminina from "../../../../assests/short_saia_2037_1_06f0bb5affc8f4d
 import Adidas from "../../../../assests/adidas.png";
 import Nike from "../../../../assests/Nike.webp";
 import Lacoste from "../../../../assests/Lacoste.jpg";
+import { FormattedMessage } from 'react-intl';
 function Home() {
 
   return (
@@ -22,15 +23,15 @@ function Home() {
           <Container fluid>
             <Row>
               <Col style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                Frete Gratis para todos os produtos
+                <FormattedMessage id='home_frete_gratis' defaultMessage="Frete Gratis para todos os produtos"></FormattedMessage>
                 <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Devolução gratis para todos os produtos
+                <FormattedMessage id='home_devolução_gratis' defaultMessage="Devolução gratis para todos os produtos"></FormattedMessage>
                 <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                10% de desconto em todos os produtos
+                <FormattedMessage id='home_descoto_10_porcentos' defaultMessage=" 10% de desconto em todos os produtos"></FormattedMessage>
                 <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Desconto de 30% para pagamento em dinheiro
+                <FormattedMessage id='home_desconto_30_porcentos' defaultMessage="Desconto de 30% para pagamento em dinheiro"></FormattedMessage>
                 <div style={{width: '2px', height: '50px', backgroundColor: 'black'}}></div>
-                Parcela em até 10X em vários tipos de cartão
+                <FormattedMessage id='home_parcela' defaultMessage=" Parcela em até 10X em vários tipos de cartão"></FormattedMessage>
               </Col>
             </Row>
           </Container>
@@ -41,20 +42,20 @@ function Home() {
             <Col style={{ display: 'flex', justifyContent: 'center' ,gap:'3rem' }}>
                 <div style={{ marginRight: '10px' }}>
                   <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
-                 <center> <h4>Moda Masculina</h4></center>
+                 <center> <h4> <FormattedMessage id='home_moda_Masculina' defaultMessage="Moda Masculina"></FormattedMessage></h4></center>
                 </div>
                 <div style={{ marginRight: '40px' }}>
                   <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} style={{ height: '50vh', borderRadius: '50%' }} roundedCircle /></Link>
-                  <center><h4>Moda Feminina</h4></center>
+                  <center><h4> <FormattedMessage id='home_moda_Feminina' defaultMessage="Moda Feminina"></FormattedMessage></h4></center>
                 </div>
-  
             </Col>
           </Container>
       </section>
       <br></br>
       <br></br>
 
-     <h1 style={{textAlign: 'center'}}>AS MELHORES MARCAS</h1>
+     <h1 style={{textAlign: 'center'}}> <FormattedMessage id='home_melhores_marcas' defaultMessage="AS MELHORES MARCAS"></FormattedMessage></h1>
+    
      <br></br>
       <div>
           <Container>
@@ -71,21 +72,7 @@ function Home() {
       <br></br>
       <br></br>
 
-      <div className='email_conpum'>
-        <div style={{marginTop:'0.5rem', display:'flex',justifyContent:'center'}}>
-          <h3 style={{marginRight:'2rem', marginTop:'1rem'}}>Ganhe um copum de 15% desconto</h3>
-          <InputGroup className="mb-3" style={{width:'25vw', marginTop:'1rem'}}>
-            <Form.Control
-              placeholder="Insira seu email"
-              aria-label="email"
-              aria-describedby="email_copum"
-            />
-            <Button variant="primary" id="cadastro_email">
-              Cadastrar
-            </Button>
-          </InputGroup>
-        </div>  
-      </div>
+      
 
       <br></br>      
 
