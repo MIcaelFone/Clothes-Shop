@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import '../styles/Header.component.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
@@ -58,12 +57,12 @@ const Header = () => {
     }, []);
    
     return (
-      <Navbar expand="lg" className="">
-          <Container fluid>
-              <Navbar.Brand href="/home" style={{color: 'black'}}>Clothes Shop</Navbar.Brand>
-              <Navbar.Toggle aria-controls="navbarScroll" />
-              <Navbar.Collapse id="navbarScroll">
-                  <Form className="d-flex" style={{marginLeft:'22rem'}}>
+        <Navbar expand="lg" className="navbar navigation">
+        <Container fluid>
+            <Navbar.Brand href="/home" className="Brand">Clothes Shop</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+                <Form className="d-flex mx-auto search-form Searchbar">
                       <Form.Control
                           type="search"
                           placeholder="Search"
@@ -74,7 +73,7 @@ const Header = () => {
                   </Form>
                   
                     {auth() ? (
-                            <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'white' }} navbarScroll > 
+                            <Nav className="nav-menu ms-auto">
                               <NavDropdown title={<><FormattedMessage id="greeting_user" /> {nome}</>} id="basic-nav-dropdown" className="Entrar">
                                     {header_autenticado.map((item, index) => (
                                         <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
