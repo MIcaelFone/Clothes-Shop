@@ -13,6 +13,7 @@ import Moda_Feminina from "../../../../assests/short_saia_2037_1_06f0bb5affc8f4d
 import Adidas from "../../../../assests/adidas.png";
 import Nike from "../../../../assests/Nike.webp";
 import Lacoste from "../../../../assests/Lacoste.jpg";
+import { FormattedMessage } from 'react-intl';
 function Home() {
 
   return (
@@ -22,13 +23,13 @@ function Home() {
         <Container fluid>
           <Row>
             <Col className="promo-text">
-              Frete Gratis para todos os produtos
+            <FormattedMessage id='home_frete_gratis' defaultMessage="Frete Gratis para todos os produtos"></FormattedMessage>
               <div className="divider"></div>
-              10% de desconto em todos os produtos
+              <FormattedMessage id='home_descoto_10_porcentos' defaultMessage=" 10% de desconto em todos os produtos"></FormattedMessage>
               <div className="divider"></div>
-              Desconto de 30% para pagamento em dinheiro
+              <FormattedMessage id='home_desconto_30_porcentos' defaultMessage="Desconto de 30% para pagamento em dinheiro"></FormattedMessage>
               <div className="divider"></div>
-              Parcela em até 10X em vários tipos de cartão
+              <FormattedMessage id='home_parcela' defaultMessage=" Parcela em até 10X em vários tipos de cartão"></FormattedMessage>
             </Col>
           </Row>
         </Container>
@@ -40,13 +41,13 @@ function Home() {
                 <Col md={6} className="text-center">
                     <div style={{ marginBottom: '20px' }}>
                         <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} className="banner-image" roundedCircle /></Link>
-                        <h4>Moda Masculina</h4>
+                        <h4><center> <h4> <FormattedMessage id='home_moda_Masculina' defaultMessage="Moda Masculina"></FormattedMessage></h4></center></h4>
                     </div>
                 </Col>
                 <Col md={6} className="text-center">
                     <div>
                         <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} className="banner-image" roundedCircle /></Link>
-                        <h4>Moda Feminina</h4>
+                        <center><h4> <FormattedMessage id='home_moda_Feminina' defaultMessage="Moda Feminina"></FormattedMessage></h4></center>
                     </div>
                 </Col>
             </Row>
@@ -55,7 +56,7 @@ function Home() {
       <br></br>
       <br></br>
 
-     <h1 className="text-center">AS MELHORES MARCAS</h1>
+     <h1 className="text-center"><FormattedMessage id='home_melhores_marcas' defaultMessage="AS MELHORES MARCAS"></FormattedMessage></h1>
      <br></br>
       <div>
           <Container>
@@ -76,25 +77,7 @@ function Home() {
       <br></br>
       <br></br>
 
-      <div className='email_conpum'>
-          <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-              <h3 style={{ marginTop: '1rem' }}>Ganhe um cupom de 15% desconto</h3>
-              <div style={{ marginBottom: '1rem', width: '100%', maxWidth: '25rem' }}>
-                  <InputGroup className="mb-3">
-                      <Form.Control
-                          placeholder="Insira seu email"
-                          aria-label="email"
-                          aria-describedby="email_cupom"
-                          style={{ width: '100%' }}
-                      />
-                      <Button variant="primary" id="cadastro_email">
-                          Cadastrar
-                      </Button>
-                  </InputGroup>
-              </div>
-          </div>
-      </div>
-
+      
 
       <br></br>      
 

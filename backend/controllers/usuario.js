@@ -8,9 +8,8 @@ const getUsuario=(req,res)=>{
          if (err) throw res.status(500).json(data);
          res.status(200).json(data);
     }) 
-    };
+}
 
-    
 const addUsuario = (req, res) => {
     const cadastrado = "INSERT INTO usuario(nome, email, senha, number) VALUES (?, ?, ?, ?)";
     const { nome, email, senha, number } = req.body;
