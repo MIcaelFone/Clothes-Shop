@@ -5,12 +5,15 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from "react-icons/fa";
+import { MdFavorite } from "react-icons/md";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { jwtDecode } from "jwt-decode";
-import { FormattedMessage } from "react-intl";
+
 const Header = () => {
     const [nome, setNome] = useState("");
+    const navigate = useNavigate();
     const auth = () => {
         var token = localStorage.getItem("token");
         if(token === null) return false;
@@ -20,25 +23,25 @@ const Header = () => {
         const token = localStorage.getItem('token');
         if (token !== null) {
             localStorage.removeItem('token');
-            toast.success(<FormattedMessage id="session_ended"/>);
+            toast.success("Sessão encerrada");
             window.location.href = "/Login";
         }
     };
+
     const header_autenticado = [
         {
             path: '/Perfil',
-            name: <FormattedMessage id="profile"></FormattedMessage>
+            name: "Perfil"
         },
         {
             onClick:logout,
             name: "Logout"
         }
     ]
-   
     const Header_naoautenticado = [
         {
             path: '/Cadastro',
-            name: <FormattedMessage id="signup"></FormattedMessage>
+            name: "Cadastro"
         }         
     ]
     useEffect(() => {
@@ -58,40 +61,49 @@ const Header = () => {
    
     return (
         <Navbar expand="lg" className="navbar navigation">
-        <Container fluid>
-            <Navbar.Brand href="/home" className="Brand">Clothes Shop</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-                <Form className="d-flex mx-auto search-form Searchbar">
-                      <Form.Control
-                          type="search"
-                          placeholder="Search"
-                          className="me-2"
-                          aria-label="Search"
-                      />
-                      <Button variant="outline-success"><FormattedMessage id="search_placeholder"/></Button>
-                  </Form>
-                  
+            <Container fluid>
+                <Navbar.Brand href="/home" className="Brand">Clothes Shop</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Form className="d-flex mx-auto search-form Searchbar">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                        />
+                        <Button variant="outline-success">Search</Button>
+                    </Form>
+
                     {auth() ? (
-                            <Nav className="nav-menu ms-auto">
-                              <NavDropdown title={<><FormattedMessage id="greeting_user" /> {nome}</>} id="basic-nav-dropdown" className="Entrar">
-                                    {header_autenticado.map((item, index) => (
-                                        <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
-                                            {item.name}
-                                        </NavDropdown.Item>
-                                    ))}
+                        <Nav className="nav-menu ms-auto">
+                            <NavDropdown title={`Olá ${nome}`} id="basic-nav-dropdown" className="list_item">
+                                {header_autenticado.map((item, index) => (
+                                    <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
+                                        {item.name}
+                                    </NavDropdown.Item>
+                                ))}
                             </NavDropdown>
-                            </Nav>
-                        ) : <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px', marginLeft:'30rem', color: 'black' }} navbarScroll > 
-                            {Header_naoautenticado.map((item) => {
-                                return (
-                                    <NavDropdown.Item key={item.path} href={item.path}>{item.name}</NavDropdown.Item>
-                                );
-                            })}
-                       
-                    </Nav>
-                    }
-                    <FaShoppingCart size={26} style={{ marginLeft: '10px', marginTop:'0.5rem',gap:'4rem', color: 'white' }} />
+                        </Nav>
+                    ) : (
+                        <Nav className="nav-menu ms-auto">
+                            <NavDropdown title="Entrar" id="basic-nav-dropdown" className="list_item">
+                                {Header_naoautenticado.map((item) => (
+                                    <NavDropdown.Item key={item.path} href={item.path}>
+                                        {item.name}
+                                    </NavDropdown.Item>
+                                ))}
+                            </NavDropdown>
+                        </Nav>
+                    )}
+                     <FaShoppingCart
+                        size={26}
+                        className="icon list_item"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate("/Cart")}
+                    />
+                    <MdFavorite size={26} className="icon list_item" />
+
                 </Navbar.Collapse>
           </Container>
       </Navbar>
