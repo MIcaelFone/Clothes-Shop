@@ -40,13 +40,13 @@ function Home() {
             <Row className="justify-content-center">
                 <Col md={6} className="text-center">
                     <div style={{ marginBottom: '20px' }}>
-                        <Link to={'/Moda_Masculina'}><Image src={Moda_Masculina} className="banner-image" roundedCircle /></Link>
+                        <Link to={'/moda_masculina'}><Image src={Moda_Masculina} className="banner-image" roundedCircle /></Link>
                         <h4><center> <h4> <FormattedMessage id='home_moda_Masculina' defaultMessage="Moda Masculina"></FormattedMessage></h4></center></h4>
                     </div>
                 </Col>
                 <Col md={6} className="text-center">
                     <div>
-                        <Link to={'/Moda_Feminina'}><Image src={Moda_Feminina} className="banner-image" roundedCircle /></Link>
+                        <Link to={'/moda_feminina'}><Image src={Moda_Feminina} className="banner-image" roundedCircle /></Link>
                         <center><h4> <FormattedMessage id='home_moda_Feminina' defaultMessage="Moda Feminina"></FormattedMessage></h4></center>
                     </div>
                 </Col>
@@ -73,14 +73,9 @@ function Home() {
             </Row>
           </Container>
       </div>
-
       <br></br>
       <br></br>
-
-      
-
       <br></br>      
-
     </div>
    
   );  
