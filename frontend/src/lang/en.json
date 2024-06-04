@@ -94,5 +94,10 @@
     "help_and_support": "Help and Support",
     "payment": "Payment",
     "shipping_times": "Shipping Times",
-    "how_to_buy": "How to buy at Clothes Shop"
+    "how_to_buy": "How to buy at Clothes Shop",
+    "produtosfeminino_title": "Woman`s clothes",
+    "produtosmasculino_title": "Men`s clothes",
+    "about_produto":"About product",
+    "money":"$",
+    "messagem_cadastro_produto":"Product registered succeed"
 }
