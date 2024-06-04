@@ -1,14 +1,15 @@
 import React from "react";
-
+import { FormattedMessage } from "react-intl";
 function Info_pagamento(){
     return(
        
         <div>
             <br></br>
-            <center> <h3> Formas Pagamento</h3> </center>
+            <center> <h3>
+                <FormattedMessage id="payment_methods_title" defaultMessage="Métodos de Pagamento"></FormattedMessage>
+                 </h3> </center>
             <center>
-                <p> Trabalhamos com diversas formas de pagamento.
-                Assim que finalizar sua compra, você poderá escolher qual a forma que mais lhe agrada. 
+                <p> <FormattedMessage id="payment_methods_description" defaultMessage="Trabalhamos com diversos métodos de pagamento. Após concluir sua compra, você pode escolher o que melhor lhe convier."></FormattedMessage>
                 </p>
             </center>    
             

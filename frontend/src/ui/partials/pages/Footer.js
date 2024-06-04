@@ -2,6 +2,7 @@ import React from "react"
 import styled from 'styled-components'
 import '../styles/Footer.component.css'
 import { Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 function Footer(){
     return(
            <FooterContainer className="main-footer">
@@ -9,17 +10,17 @@ function Footer(){
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
-                                    <div>
-                                        <h3>Atendimento ao cliente</h3>
+                                    <div>   
+                                        <h3><FormattedMessage id="footer_customerService"></FormattedMessage></h3>
                                         <p>clotheshop@gmail.com</p>
                                     </div>
                             </div>
                             <div className="col-md-4 col-sm-4 d-flex align-items-center justify-content-center">
                                 <div>
-                                    <h4>Informações da Empresa</h4>
+                                    <h4><FormattedMessage id="footer_companyInfo"></FormattedMessage></h4>
                                     <ul className="list-unstyled">
                                         <li>
-                                            <p>Clothes Shop: moda online fácil e elegante. Encontre seu estilo em um clique.</p>
+                                            <p><FormattedMessage id="footer_companyDescription"></FormattedMessage></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -27,15 +28,15 @@ function Footer(){
                              
                             <div className="col-md-4 col-sm-6 d-flex align-items-center justify-content-center">
                                 <div>
-                                    <h3>Ajuda e suporte</h3>
+                                    <h3><FormattedMessage id="footer_helpSupport"></FormattedMessage></h3>
                                     <ul className="list-unstyled">
-                                        <li><Link to="/info_pagamento">Pagamento</Link></li>
-                                        <li><Link to="/prazos_envios">Prazo e envios</Link></li>
-                                        <li><Link to="/como_comprar">Como comprar seu clothes shop </Link></li>
+                                        <li><Link to="/info_pagamento"><FormattedMessage id="footer_payment"></FormattedMessage></Link></li>
+                                        <li><Link to="/prazos_envios"> <FormattedMessage id="footer_shipping"></FormattedMessage></Link></li>
+                                        <li><Link to="/como_comprar"><FormattedMessage id="footer_howToBuy"></FormattedMessage> </Link></li>
                                     </ul>
                                 </div>
                             </div>
-    
+
                         </div>
                     </div>
                 </div>

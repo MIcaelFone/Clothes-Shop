@@ -1,22 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
-function como_comprar(){
-    return(
+function ComoComprar() {
 
-        <div>
-            <br></br>
-            <center><h3>Como Comprar seu Clothes Shop</h3> </center>
-            
+          
+    return (
+      
+            <div>
+                <br />
+                <center>
+                    <h3>
+                        <FormattedMessage id="title" defaultMessage="Como Comprar na Clothes Shop" />
+                    </h3>
+                </center>
                 <ol>
-                    <li>Basta navegar entre as páginas de compra e clicar sobre o ícone Comprar. Ou clique em Ver Detalhes para maiores informações sobre o produto. Após isso o produto será inserido em seu carrinho de compras</li>
-                    <li>Continue navegando em nosso site até escolher todos os produtos que você deseja adquirir. Agora basta clicar no link a direita Finalizar que você estará concluindo sua compra;</li>
-                    <li>Agora entre com o seu email e senha. Caso não for cadastrado, cadastre-se rapidamente clicando no link de Cadastro</li>
-                    <li>Feito isso, escolha a forma de envio do produto. Trabalhamos com envio via Correio  </li>
-                    <li>Agora basta escolher a forma de pagamento;</li>
+                    <li>
+                        <FormattedMessage id="step1" defaultMessage="Basta navegar pelas páginas de compra e clicar no ícone Comprar. Ou clique em Ver Detalhes para mais informações sobre o produto. Depois disso, o produto será adicionado ao seu carrinho de compras." />
+                    </li>
+                    <li>
+                        <FormattedMessage id="step2" defaultMessage="Continue navegando em nosso site até escolher todos os produtos que deseja comprar. Agora, basta clicar no link Checkout à direita para concluir sua compra." />
+                    </li>
+                    <li>
+                        <FormattedMessage id="step3" defaultMessage="Agora, insira seu email e senha. Se você não estiver registrado, registre-se rapidamente clicando no link Registrar." />
+                    </li>
+                    <li>
+                        <FormattedMessage id="step4" defaultMessage="Feito isso, escolha o método de envio. Trabalhamos com envio via Correio." />
+                    </li>
+                    <li>
+                        <FormattedMessage id="step5" defaultMessage="Agora, basta escolher o método de pagamento." />
+                    </li>
                 </ol>
-            
-        </div>
-    )
+            </div>
+      
+    );
 
 }
-export default como_comprar;
+
+export default ComoComprar;
