@@ -1,57 +1,77 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 
-const ProductPage = () => {
+const ProductPage = ({ cart }) => {
+  const prod = {
+    id: 1,
+    name: "Tênis Feio",
+    description: "Lorem ipsum dolor sit amet. Non quia adipisci ut architecto sunt et enim perferendis.",
+    price: "9.99",
+    image: "https://imgnike-a.akamaihd.net/768x768/0136111E.jpg",
+    inStock: true,
+  };
 
-    const [images, setImages] = useState({
-        img1: "https://imgnike-a.akamaihd.net/768x768/0136111E.jpg",
-        img2: "https://imgnike-a.akamaihd.net/768x768/0136111EA1.jpg",
-        img3: "https://imgnike-a.akamaihd.net/768x768/0136111EA3.jpg",
-        img4: "https://imgnike-a.akamaihd.net/768x768/0136111EA6.jpg"
-    });
+  const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch();
 
-    const [activeImg, setActiveImg] = useState(images.img1);
+  const handleAddToCart = () => {
+    console.log("Adicionando ao carrinho:", prod);
+    dispatch({ type: "ADD_TO_CART", payload: { ...prod, qty: amount } });
+  };
 
-    const [amount, setAmount] = useState(1);
+  const handleRemoveFromCart = () => {
+    console.log("Removendo do carrinho:", prod);
+    dispatch({ type: "REMOVE_FROM_CART", payload: prod });
+  };
 
-    return (
-        <div className="d-flex flex-column flex-lg-row gap-4">
-            <div className="d-flex flex-column gap-3">
-                <img src={activeImg} alt="" className="w-100 h-auto rounded mb-3"/>
-                <div className="d-flex justify-content-between">
-                    <img src={images.img1} alt="" className="img-thumbnail cursor-pointer" style={{ width: "60px", height: "60px" }}
-                    onClick={() => setActiveImg(images.img1)}/>
-                    <img src={images.img2} alt="" className="img-thumbnail cursor-pointer" style={{ width: "60px", height: "60px" }}
-                    onClick={() => setActiveImg(images.img2)}/>
-                    <img src={images.img3} alt="" className="img-thumbnail cursor-pointer" style={{ width: "60px", height: "60px" }}
-                    onClick={() => setActiveImg(images.img3)}/>
-                    <img src={images.img4} alt="" className="img-thumbnail cursor-pointer" style={{ width: "60px", height: "60px" }}
-                    onClick={() => setActiveImg(images.img4)}/>
-                </div>
-            </div>
+  return (
+    <div className="d-flex flex-column flex-lg-row gap-4">
+      <div className="d-flex flex-column gap-3">
+        <img src={prod.image} alt="" className="w-100 h-auto rounded mb-3" />
+      </div>
 
-            {/* SOBRE O PRODUTO */}
-            <div className="d-flex flex-column">
-                <div>
-                    <span className="text-primary fw-semibold">Teste</span>
-                    <h1 className="fs-1 fw-bold">Tenis Feio</h1>
-                </div>
-                <p className="text-muted">
-                Lorem ipsum dolor sit amet. Non quia adipisci ut architecto sunt et enim perferendis. Ut dolores nemo et pariatur sunt vel nobis unde aut voluptas iusto sit enim quas. Qui exercitationem ducimus non deserunt nihil ea aspernatur nihil est quibusdam totam ut mollitia assumenda.
-                </p>
-                <div>
-                    <h6 className="fs-4 fw-semibold">R$ 9.99</h6>
-                </div>
-                <div className="d-flex flex-row align-items-center gap-3">
-                    <div className="d-flex flex-row align-items-center">
-                        <button className="bg-light px-3 rounded text-dark fs-1" onClick={() => setAmount((prev) => Math.max(prev - 1, 1))}>-</button>
-                        <span className="py-2 px-3 rounded">{amount}</span>
-                        <button className="bg-light px-3 rounded text-dark fs-1" onClick={() => setAmount((prev) => prev + 1)}>+</button>
-                    </div>
-                    <button className="bg-primary text-white fw-semibold py-2 px-3 rounded">Adicione ao carrinho</button>
-                </div>
-            </div>
+      <div className="d-flex flex-column">
+        <div>
+          <span className="text-primary fw-semibold">Produto</span>
+          <h1 className="fs-1 fw-bold">{prod.name}</h1>
         </div>
-    );
-}
+        <p className="text-muted">{prod.description}</p>
+        <div>
+          <h6 className="fs-4 fw-semibold">R$ {prod.price}</h6>
+        </div>
+        <div className="d-flex flex-row align-items-center gap-3">
+          <div className="d-flex flex-row align-items-center">
+            <button
+              className="bg-light px-3 rounded text-dark fs-1"
+              onClick={() => setAmount((prev) => Math.max(prev - 1, 1))}
+            >
+              -
+            </button>
+            <span className="py-2 px-3 rounded">{amount}</span>
+            <button
+              className="bg-light px-3 rounded text-dark fs-1"
+              onClick={() => setAmount((prev) => prev + 1)}
+            >
+              +
+            </button>
+          </div>
+          {cart && cart.some((p) => p.id === prod.id) ? (
+            <Button variant="danger" onClick={handleRemoveFromCart}>
+              Remove from Cart
+            </Button>
+          ) : (
+            <Button
+              onClick={handleAddToCart}
+              disabled={!prod.inStock}
+            >
+              {!prod.inStock ? "Out of Stock" : "Add to Cart"}
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default ProductPage;

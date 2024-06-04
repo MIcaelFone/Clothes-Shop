@@ -7,11 +7,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaShoppingCart } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import 'react-toastify/dist/ReactToastify.css';
 import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
     const [nome, setNome] = useState("");
+    const navigate = useNavigate(); // Initialize useNavigate
     const auth = () => {
         var token = localStorage.getItem("token");
         if(token === null) return false;
@@ -94,7 +96,12 @@ const Header = () => {
                             </NavDropdown>
                         </Nav>
                     )}
-                    <FaShoppingCart size={26} className="icon list_item" />
+                     <FaShoppingCart
+                        size={26}
+                        className="icon list_item"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => navigate("/Cart")}
+                    />
                     <MdFavorite size={26} className="icon list_item" />
                 </Navbar.Collapse>
             </Container>
