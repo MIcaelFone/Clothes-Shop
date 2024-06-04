@@ -19,6 +19,13 @@ import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
+import Cart from './ui/Components/Roupas/pages/cart.js';
+import { Provider } from 'react-redux';
+import { cartReducer } from './ui/Components/Roupas/pages/ConfigCarrinho/Reducer.js';
+import { createStore } from 'redux';
+
+const store = createStore(cartReducer);
+
 function App() { 
 
   const Authentication = () => {
@@ -46,31 +53,32 @@ function App() {
     <>
       <ToastContainer theme='colored'></ToastContainer>
       <BrowserRouter>
-        <Header/> 
-        <Navpages/>
-        <Routes>
-          <Route path='/' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
-          <Route path='/Login' element={<Login />} />
-          <Route path='/Home' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
-          <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />}></Route>
-          <Route path='/Cadastro' element={<Cadastro />} ></Route>
-          <Route path='/Info_pagamento' element={ Authentication() ? <InfoPagamento /> : <Navigate to="/Login" />}></Route>
-          <Route path='/prazos_envios' element={Authentication() ?  <PrazosEnvios /> : <Navigate to="/Login" />}></Route>
-          <Route path='/como_comprar' element={Authentication() ? <ComoComprar/> : <Navigate to="/Login" /> }></Route>
-          <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto/> : <Navigate to="/Login" />}></Route>
-          <Route path='/Pagamento' element={Authentication() ? <Pagamento/>: <Navigate to="/Login" />}></Route>
-          <Route path='/ProductPage' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
-          <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
-          <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
-          <Route path='/roupa/:id' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
-        </Routes>
-        <Footer/>
+        <Provider store={store}> {}
+          <Header />
+          <Navpages />
+          <Routes>
+            <Route path='/' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
+            <Route path='/Login' element={<Login />} />
+            <Route path='/Home' element={Authentication() ? <Home /> : <Navigate to="/Login" />} />
+            <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />} />
+            <Route path='/Cadastro' element={<Cadastro />} ></Route>
+            <Route path='/Info_pagamento' element={Authentication() ? <InfoPagamento /> : <Navigate to="/Login" />} />
+            <Route path='/prazos_envios' element={Authentication() ? <PrazosEnvios /> : <Navigate to="/Login" />} />
+            <Route path='/como_comprar' element={Authentication() ? <ComoComprar /> : <Navigate to="/Login" />} />
+            <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
+            <Route path='/Pagamento' element={Authentication() ? <Pagamento /> : <Navigate to="/Login" />} />
+            <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
+            <Route path='/Cart' element={Authentication() ? <Cart /> : <Navigate to="/Cart" />} />
+            <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
+            <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
+            <Route path='/roupa/:id' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
+          </Routes>
+          <Footer />
+        </Provider>
       </BrowserRouter>
     </>
   );
 }
 
 export default App;
-
-
 
