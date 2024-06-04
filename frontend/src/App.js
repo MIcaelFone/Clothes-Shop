@@ -12,11 +12,13 @@ import ComoComprar from '../src/ui/Components/ajudausuario/pages/como_comprar.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import Home from '../src/ui/Components/Home/pages/home.js';
-import Cadastroproduto from '../src/ui/Components/Roupas/pages/cadastroproduto.js';
+import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagamento from './ui/Components/Pagamentoviacartao/pages/Pagamento.js';
-import ProductPage from './ui/Components/Roupas/pages/ProductPage.js';
+import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
+import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
+import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
 function App() { 
 
   const Authentication = () => {
@@ -47,7 +49,7 @@ function App() {
         <Header/> 
         <Navpages/>
         <Routes>
-          <Route path='/' element={<Login />}/> 
+          <Route path='/' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
           <Route path='/Login' element={<Login />} />
           <Route path='/Home' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
           <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />}></Route>
@@ -58,6 +60,9 @@ function App() {
           <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto/> : <Navigate to="/Login" />}></Route>
           <Route path='/Pagamento' element={Authentication() ? <Pagamento/>: <Navigate to="/Login" />}></Route>
           <Route path='/ProductPage' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
+          <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
+          <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
+          <Route path='/roupa/:id' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>
