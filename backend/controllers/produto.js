@@ -23,13 +23,32 @@ const addProduto = (req, res) => {
     }
     const insercao = "INSERT INTO produto(nome,marca,descricao,preco,imagem,moda) VALUES (?,?,?,?,?,?)";
     const values = [nome, marca, descricao, preco, imagem, moda];
-    
+     
     db.query(insercao, values, (err) => {
         if(err) {
             console.log(err);
             return res.status(500).json({ error: 'An error occurred' });
         }
-        return res.status(200).json("Produto inserido");
+        return res.status(201).json({message:"Produto inserido"});
+    });
+};
+const buscandoprodutoespecifico = (req, res) => {
+    const busca = "SELECT * FROM produto WHERE nome = ?";
+    const { nome } = req.body;
+    const value = [nome]; 
+
+    db.query(busca, value, (err, data) => {
+        console.log("Entrou na query");
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ message: "Não foi possível realizar a busca" });
+        }
+
+        if (data.length > 0) {
+            return res.status(200).json({ message: "Busca realizada com sucesso", data: data });
+        } else {
+            return res.status(404).json({ message: "Não foi possível encontrar um produto" });
+        }
     });
 };
 
@@ -97,5 +116,5 @@ const getProdutomasculino = (req, res) => {
 };
 
 
-module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test ,getProdutofeminino,getProdutomasculino };
+module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test ,getProdutofeminino,getProdutomasculino,buscandoprodutoespecifico };
    
