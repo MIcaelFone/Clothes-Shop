@@ -19,9 +19,9 @@ import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
-import Cart from './ui/Components/Roupas/pages/cart.js';
+import Cart from './ui/Components/Roupa/pages/cart.js';
 import { Provider } from 'react-redux';
-import { cartReducer } from './ui/Components/Roupas/pages/ConfigCarrinho/Reducer.js';
+import { cartReducer } from './ui/Components/Roupa/pages/ConfigCarrinho/Reducer.js';
 import { createStore } from 'redux';
 
 const store = createStore(cartReducer);
