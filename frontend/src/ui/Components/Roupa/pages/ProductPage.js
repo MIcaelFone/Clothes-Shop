@@ -1,77 +1,93 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-
+import axios from "axios";
+import { toast } from 'react-toastify';
+import { FormattedMessage } from "react-intl";
+import { FaShoppingCart } from "react-icons/fa";
 const ProductPage = ({ cart }) => {
-  const prod = {
-    id: 1,
-    name: "Tênis Feio",
-    description: "Lorem ipsum dolor sit amet. Non quia adipisci ut architecto sunt et enim perferendis.",
-    price: "9.99",
-    image: "https://imgnike-a.akamaihd.net/768x768/0136111E.jpg",
-    inStock: true,
-  };
-
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [produto, setProduto] = useState(null);
   const [amount, setAmount] = useState(1);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const url = decodeURIComponent(window.location.href);
+    const tamanho = url.split("/");
+    const nomeProdutoFromUrl = tamanho[tamanho.length - 1];
+    console.log(nomeProdutoFromUrl);
+    setNomeProduto(nomeProdutoFromUrl);
+  }, []);
+
+  useEffect(() => {
+    if (nomeProduto) {
+      const fetchProduto = async () => {
+        try {
+          const response = await axios.post("http://localhost:8080/produto/buscandoprodutoespecifico", {nome: nomeProduto });
+          if (response.status === 200) {
+            setProduto(response.data.data[0]);  // Assuming the backend returns an array of products
+            console.log("Produto voltou para o frontend");
+            console.log(response.data.data);
+          }
+        } catch (error) {
+          toast.error("Não foi possível buscar o produto");
+        }
+      };
+      fetchProduto();
+    }
+  }, [nomeProduto]);
+
   const handleAddToCart = () => {
-    console.log("Adicionando ao carrinho:", prod);
-    dispatch({ type: "ADD_TO_CART", payload: { ...prod, qty: amount } });
+    if (produto) {
+      console.log("Adicionando ao carrinho:", produto);
+      dispatch({ type: "ADD_TO_CART", payload: { ...produto, qty: amount } });
+    }
   };
 
   const handleRemoveFromCart = () => {
-    console.log("Removendo do carrinho:", prod);
-    dispatch({ type: "REMOVE_FROM_CART", payload: prod });
+    if (produto) {
+      console.log("Removendo do carrinho:", produto);
+      dispatch({ type: "REMOVE_FROM_CART", payload: produto });
+    }
   };
 
   return (
-    <div className="d-flex flex-column flex-lg-row gap-4">
-      <div className="d-flex flex-column gap-3">
-        <img src={prod.image} alt="" className="w-100 h-auto rounded mb-3" />
-      </div>
-
-      <div className="d-flex flex-column">
-        <div>
-          <span className="text-primary fw-semibold">Produto</span>
-          <h1 className="fs-1 fw-bold">{prod.name}</h1>
-        </div>
-        <p className="text-muted">{prod.description}</p>
-        <div>
-          <h6 className="fs-4 fw-semibold">R$ {prod.price}</h6>
-        </div>
-        <div className="d-flex flex-row align-items-center gap-3">
-          <div className="d-flex flex-row align-items-center">
-            <button
-              className="bg-light px-3 rounded text-dark fs-1"
-              onClick={() => setAmount((prev) => Math.max(prev - 1, 1))}
-            >
-              -
-            </button>
-            <span className="py-2 px-3 rounded">{amount}</span>
-            <button
-              className="bg-light px-3 rounded text-dark fs-1"
-              onClick={() => setAmount((prev) => prev + 1)}
-            >
-              +
-            </button>
+    <div className="d-flex flex-column flex-lg-row gap-4 mt-2 " style={{marginLeft:"2rem"}}>
+      {produto ? (
+        <div className="d-flex flex-column">
+          <div>
+            <span className="text-primary fw-semibold">{produto.marca}</span>
+            <h1 className="fs-1 fw-bold">{produto.nome}</h1>
           </div>
-          {cart && cart.some((p) => p.id === prod.id) ? (
-            <Button variant="danger" onClick={handleRemoveFromCart}>
-              Remove from Cart
-            </Button>
-          ) : (
-            <Button
-              onClick={handleAddToCart}
-              disabled={!prod.inStock}
-            >
-              {!prod.inStock ? "Out of Stock" : "Add to Cart"}
-            </Button>
-          )}
+          <p className="text-muted">{produto.descricao}</p>
+          <div>
+            <h6 className="fs-4 fw-semibold"><FormattedMessage id="money">R$</FormattedMessage> {produto.preco}</h6>
+          </div>
+          <div className="d-flex flex-row align-items-center gap-3">
+            <div className="d-flex flex-row align-items-center ">
+              <button
+                className="bg-light px-4 text-dark fs-3"style={{height:"3rem", marginTop:"0.5rem"}} 
+                onClick={() => setAmount((prev) => Math.max(prev - 1, 1))}
+              >
+                -
+              </button>
+              <span className="py-2 px-3 rounded">{amount}</span>
+              <button
+                className="bg-light px-4 text-dark fs-3" style={{height:"3rem", marginTop:"0.5rem"}}
+                onClick={() => setAmount((prev) => prev + 1)}
+              >
+                +
+              </button>
+            </div>
+            <FaShoppingCart size={35} style={{ marginLeft: '10px', color: 'black' }} />
+          </div>
         </div>
-      </div>
+      ) : (
+        <p>Carregando produto...</p>
+      )}
     </div>
   );
 };
 
 export default ProductPage;
+
