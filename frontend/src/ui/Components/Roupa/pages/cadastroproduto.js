@@ -7,8 +7,6 @@ import imagemRoupas from '../../../../assests/roupas-masculinas-estilosas-com-je
 import { toast } from "react-toastify";
 import axios from 'axios';
 
-
-
 function TelaCadastroProduto() {
     const intl = useIntl();
     const [nome, setNome] = useState('');
@@ -84,16 +82,26 @@ function TelaCadastroProduto() {
     };
 
     const Cadastroproduto = async (event) => {
-        event.preventDefault();
+        event.preventDefault()
         try {
             await axios.post("http://localhost:8080/produto/cadastrarproduto", { nome, marca, descricao, preco, imagem, moda })
                 .then((response) => {
                     console.log(response.data);
-                    toast.success("Produto cadastrado com sucesso")
+                    if(response.status===200){
+                        <FormattedMessage id='messagem_cadastro_produto'></FormattedMessage>
+                        toast.success("Produto cadastrado com sucesso")
+                        if(moda==="moda_masculina"){
+                            window.location.href = "moda_masculina";
+                        }
+                        else if(moda==="moda_feminina"){
+                            window.location.href = "moda_feminina";
+                        }
+                    }
+                   
                 });
         } catch (error) {
             console.log(error);
-            toast.error("Erro para cadastrar produto")
+            toast.error("Cadastro inválido")
         }
     };
 

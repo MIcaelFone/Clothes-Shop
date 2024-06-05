@@ -8,13 +8,14 @@ function NavLink() {
             name: "Home"
             },
             {
-                path: '/Moda_Masculina',
+                path: '/moda_masculina',
                 name: <FormattedMessage id='home_moda_Masculina'></FormattedMessage>
             },
             {
-                path: '/Moda_Feminina',
+                path: '/moda_feminina',
                 name: <FormattedMessage id='home_moda_Feminina'></FormattedMessage>
-            },           
+            }, 
+                      
     ]
     return(
         <Nav variant="tabs" defaultActiveKey="/Home" style={{backgroundColor:'rgb(248 249 250)'}}>

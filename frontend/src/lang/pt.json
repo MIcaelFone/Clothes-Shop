@@ -94,5 +94,10 @@
     "help_and_support": "Ajuda e Suporte",
     "payment": "Pagamento",
     "shipping_times": "Prazos de Entrega",
-    "how_to_buy": "Como comprar na Clothes Shop"
+    "how_to_buy": "Como comprar na Clothes Shop",
+    "produtosfeminino_title": "Roupas feminina",
+    "produtosmasculino_title": "Roupas Masculina",
+    "about_produto":"Sobre produto",
+    "money":"R$",
+    "messagem_cadastro_produto":"Produto registrado com sucesso"
 }
