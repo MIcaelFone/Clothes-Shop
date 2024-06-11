@@ -50,8 +50,9 @@
     "login_input": "Digite sua senha",
     "login_buttom": "Entrar",
     "login_not_registered": "Não registrado?",
-    "profile_alterar_informacao": "Atualizar Informações",
-    "profile_savechanges": "Salvar Alterações",
+    "profile_title": "Usuário",
+    "profile_delete": "Deletar",
+    "profile_savechanges": "Atualizar usuário",
     "CadastroProduto_title": "Cadastro de Produto",
     "CadastroProduto_nomeLabel": "Nome do Produto",
     "CadastroProduto_nomePlaceholder": "Nome do Produto",
@@ -99,5 +100,13 @@
     "produtosmasculino_title": "Roupas Masculina",
     "about_produto":"Sobre produto",
     "money":"R$",
-    "messagem_cadastro_produto":"Produto registrado com sucesso"
+    "messagem_cadastro_produto":"Produto registrado com sucesso",
+    "adicao_produto":"adicionado no carrinho",
+    "removendo_produto":"removendo do carrinho!",
+    "fecharmodal":"Fechar",
+    "cart":"Carrinho",
+    "Carrinhovazio":"Seu carrinho está vazio",
+    "limparcarrinho":"Limpar carrinho",
+    "Confirmar_pedido":"Confirmar pedido",
+    "greeting_hi":"Olá"
 }
