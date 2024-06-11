@@ -12,7 +12,7 @@ import ComoComprar from '../src/ui/Components/ajudausuario/pages/como_comprar.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-toastify/dist/ReactToastify.css";
 import Home from '../src/ui/Components/Home/pages/home.js';
-import Cadastroproduto from './ui/Components/Roupa/pages/cadastroproduto.js';
+import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagamento from './ui/Components/Pagamentoviacartao/pages/Pagamento.js';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
