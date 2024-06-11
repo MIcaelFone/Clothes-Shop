@@ -1,61 +1,113 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FormattedMessage, useIntl } from "react-intl";
 import '../styles/Perfil_component.css';
-import imgPerfil from '../../../../assests/pngwing.com.png';
-
-// Tela
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import Button from 'react-bootstrap/Button';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Perfil() {
-    const imageRef = useRef(null);
     const intl = useIntl();
-    
-    var token = localStorage.getItem("token");
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    var json = JSON.parse(jsonPayload)
-    const exp_time = json.exp / 60000
-    console.log(exp_time)
+    const [nome,setNome]=useState('')
+    const [email,setEmail]=useState('')
+    const [senha,setSenha]=useState('')
+    const [telefone,setTelefone]=useState('')
+    const [usuario,setUsuario]=useState('')
+    const [idusuario,setId]=useState('')
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        const imageUrl = URL.createObjectURL(file);
-        imageRef.current.src = imageUrl;
+    const atualizarusuario=async()=>{
+        try {
+            const resposta_atualizando=await axios.put("http://localhost:8080/usuario/atualizarusuario",{nome,email,senha,telefone,idusuario});
+            if(resposta_atualizando.status===200){
+                toast.success("Usuário atualizado com sucesso!")
+                setTimeout(()=>{
+                  window.location.href="/Home"
+                },5100)
+            }
+            
+        } catch (error) {
+          toast.error("Erro para atualizar o cadastro!")
+        }
     }
-
+    const deletarusuario=async()=>{
+        try {
+            const resposta_delete=await axios.delete("http://localhost:8080/usuario/deletarusuario",{ data: { idusuario }});
+            if(resposta_delete.status===200){
+                toast.success("Usuário removido com sucesso!")
+                setTimeout(()=>{
+                  localStorage.removeItem("token")
+                  localStorage.removeItem("nome")
+                  window.location.href="Login"
+                },4500)
+            }
+            
+        } catch (error) {
+          toast.error("Erro para remover usuário!")
+        }
+    }
+    useEffect(()=>{
+        try {
+            const token = localStorage.getItem("token");
+            if (token) {
+                const decodedToken = jwtDecode(token);
+                const { idusuario } = decodedToken;
+                setId(idusuario)
+            }
+        }catch (error) {
+            console.log(error);
+        }
+    },[])
+    useEffect(()=>{
+      setNome(usuario.nome)  
+      setSenha(usuario.senha)
+      setTelefone(usuario.telefone)
+      setEmail(usuario.email)
+    },[usuario])
+    useEffect(()=>{
+        const Buscandonome=async()=>{
+            try {
+                console.log(nome)
+                await axios.post("http://localhost:8080/usuario/buscandousuario",{ idusuario })
+                .then((response)=>{
+                    if(response.status===200){
+                        setUsuario(response.data.data[0])
+                    }
+                })
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        Buscandonome()
+    }, [idusuario]);
+    
     return (
         <>
-            <div className='Perfil template d-flex justify-content-center align-items-center vh-100 bg-white'>
-                <div className='form_container p-50 rounded bg-white'>
+            <div className='Perfil template d-flex justify-content-center vh-97 bg-white' style={{marginTop:"3rem"}}>
+                <div className='form_container p-50 rounded bg-white'>    
                     <form>
-                        <div className="Profile">
-                            <label htmlFor="inputImagem" className="Imagem">
-                                <img src={imgPerfil} alt="" ref={imageRef} />
-                                <input type="file" id="inputImagem" className="Colocar_Imagem" onChange={handleImageChange} style={{ display: 'none' }} />
-                            </label>
-                        </div>
-                        <h3 className='text-center'><FormattedMessage id="profile_alterar_informacao" /></h3>
+                        <h1 className='text-center'><FormattedMessage id="profile_alterar_informacao" /></h1>
                         <div className='mb-2'>
                             <label htmlFor='text'><FormattedMessage id="formLabels_name" /></label>
-                            <input type='text' placeholder={intl.formatMessage({ id: 'formLabels_enterYourName' })} className='form-control' id="nome"></input>
+                            <input type='text' placeholder={intl.formatMessage({ id: 'formLabels_enterYourName' })} className='form-control' id="nome"required onChange={(e)=>setNome(e.target.value)} value={nome}></input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='email'><FormattedMessage id="FormLabels_email" /></label>
-                            <input type='email' placeholder={intl.formatMessage({ id: 'FormLabels_exampleEmail' })} className='form-control' id="email"></input>
+                            <input type='email' placeholder={intl.formatMessage({ id: 'FormLabels_exampleEmail' })} className='form-control' id="email" required onChange={(e)=>setEmail(e.target.value)} value={email}></input>
                         </div>
                         <div className='mb-2'>
                             <label htmlFor='password'><FormattedMessage id="FormLabels_password" /></label>
-                            <input type='password' placeholder={intl.formatMessage({ id: 'FormLabels_enterYourPassword' })} className='form-control' id="senha"></input>
+                            <input type='password' placeholder={intl.formatMessage({ id: 'FormLabels_enterYourPassword' })} className='form-control' id="senha" required onChange={(e)=>setSenha(e.target.value)} value={senha}></input>
                         </div>
                         <div className='mb-2'>
-                            <label htmlFor='numero'><FormattedMessage id="FormsLabels_phoneNumber" /></label>
-                            <input type='text' placeholder='(xx) xxxxx-xxxx' className='form-control' id="numero"></input>
+                            <label htmlFor='numero'><FormattedMessage id="FormsLabels_phoneNumber"/></label>
+                            <input type='text' placeholder='(xx) xxxxx-xxxx' className='form-control' id="numero" required onChange={(e)=>setTelefone(e.target.value)} value={telefone}></input>
                         </div>
-                        <div className='d-grid mt-3'>
-                            <Link to={'/Home'} className='btn btn-primary'><FormattedMessage id="profile_savechanges" /></Link>
+                        <div className='d-flex mt-3' style={{gap:"1rem"}}>
+                            <Button variant="primary" onClick={atualizarusuario}> <FormattedMessage id="profile_savechanges"/></Button>
+                            <Button variant="danger" onClick={deletarusuario}><FormattedMessage id="profile_delete"/></Button>
                         </div>
+                        <br></br>
                     </form>
                 </div>
             </div>
