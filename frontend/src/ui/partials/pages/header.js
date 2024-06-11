@@ -42,8 +42,8 @@ const Header = () => {
             name: "Perfil"
         },
         {
-            path: '/Pagamento',
-            name: "Adcionar Cartão"
+            path: '/cadastrocartao',
+            name: "Adicionar Cartão"
         },
         {
             onClick:logout,

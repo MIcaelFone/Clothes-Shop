@@ -53,6 +53,9 @@
     "profile_title": "Usuário",
     "profile_delete": "Deletar",
     "profile_savechanges": "Atualizar usuário",
+    "profile_title": "Usuário",
+    "profile_delete": "Deletar",
+    "profile_savechanges": "Atualizar usuário",
     "CadastroProduto_title": "Cadastro de Produto",
     "CadastroProduto_nomeLabel": "Nome do Produto",
     "CadastroProduto_nomePlaceholder": "Nome do Produto",
@@ -108,5 +111,16 @@
     "Carrinhovazio":"Seu carrinho está vazio",
     "limparcarrinho":"Limpar carrinho",
     "Confirmar_pedido":"Confirmar pedido",
-    "greeting_hi":"Olá"
+    "greeting_hi":"Olá",
+     "responsavel_cartao":"Responsavel cartão(Nome)",
+     "number":"Numero",
+     "edit":"Edita",
+     "adiciona_cartao":"Adicione seu cartao aqui",
+     "erro_desconhecido": "Um erro erro desconhecido aconteceu.Por favor tente novamente",
+      "numbercard_invalid":"Numero cartão é inválido",
+      "cartaotitle":"Meus cartões",
+      "edit_card":"Editar cartão",
+      "numero_cartao":"Número cartão",
+      "expiry_date":"Data expiração",
+      "update_card":"Atualizar cartão"
 }

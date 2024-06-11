@@ -14,11 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from '../src/ui/Components/Home/pages/home.js';
 import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js';
 import { ToastContainer, toast } from 'react-toastify';
-import Pagamento from './ui/Components/Pagamentoviacartao/pages/Pagamento.js';
+import Pagamento from './ui/Components/Pagamentoviacartao/pages/Cartaocadastrados.js';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
+import Edita_cartao from "./ui/Components/Pagamentoviacartao/pages/editacartao.js"
 
 function App() { 
 
@@ -59,12 +60,12 @@ function App() {
             <Route path='/prazos_envios' element={Authentication() ? <PrazosEnvios /> : <Navigate to="/Login" />} />
             <Route path='/como_comprar' element={Authentication() ? <ComoComprar /> : <Navigate to="/Login" />} />
             <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
-            <Route path='/Pagamento' element={Authentication() ? <Pagamento /> : <Navigate to="/Login" />} />
+            <Route path='/cadastrocartao' element={Authentication() ? <Pagamento /> : <Navigate to="/Login" />} />
             <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
             <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
             <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
             <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
-          
+            <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao/>: <Navigate to="/Login" />}></Route>
           </Routes>
           <Footer />
       </BrowserRouter>

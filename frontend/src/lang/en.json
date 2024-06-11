@@ -53,6 +53,9 @@
     "profile_alterar_informacao": "User",
     "profile_savechanges": "Update profile",
     "profile_delete": "Delete",
+    "profile_alterar_informacao": "User",
+    "profile_savechanges": "Update profile",
+    "profile_delete": "Delete",
     "CadastroProduto_title": "Product Registration",
     "CadastroProduto_nomeLabel": "Product Name",
     "CadastroProduto_nomePlaceholder": "Product Name",
@@ -108,6 +111,18 @@
     "Carrinhovazio":"Your cart is empty",
     "limparcarrinho":"Clear cart",
     "Confirmar_pedido":"Confirm order",
-    "greeting_hi":"Hi"
+    "greeting_hi":"Hello",
+    "responsavel_cartao":"Card responsible(name)",
+    "number":"Number",
+    "edit":"Edit",
+    "adiciona_cartao":"Add your card here",
+    "erro_desconhecido": "An unknown error happened.Please try again",
+    "numbercard_invalid":"Card number is invalid",
+    "cartaotitle":"My cards",
+    "edit_card":"Edit card",
+    "numero_cartao":"Card number",
+    "expiry_date":"Expiry date",
+    "update_card":"Update card"
+
 
 }
