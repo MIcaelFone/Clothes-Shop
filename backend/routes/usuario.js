@@ -2,7 +2,7 @@ const {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario,verifica
 const express = require('express');
 const router= express.Router();  
 const middlaware_authentication =require("../middleware/middleware")
-router.get("/listarusuarios",middlaware_authentication,getUsuario);
+router.get("/listarusuarios",getUsuario);
 router.post("/cadastrarusuario",addUsuario)
 router.delete("/deletarusuario",deleteUsuario)
 router.put("/atualizarusuario",updateUsuario)
