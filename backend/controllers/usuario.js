@@ -35,7 +35,6 @@ const updateUsuario=(req,res)=>{
     const { nome, email, senha, telefone,idusuario } = req.body;
     const values = [nome, email, senha, telefone,idusuario];
     db.query(alterando, values , (err,data) => {
-        console.log("Entrou")
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Ocorreu um erro ao para conectar no banco' });
@@ -118,5 +117,5 @@ const buscandousuario=(req,res)=>{
             return res.status(404).json({ message: "Não foi encontrado nenhum usuáro com esse nome"})
         }
     })
-}
+} 
 module.exports= {getUsuario,addUsuario,updateUsuario,deleteUsuario,logandoUsuario,verificandoCadastro,buscandousuario}
