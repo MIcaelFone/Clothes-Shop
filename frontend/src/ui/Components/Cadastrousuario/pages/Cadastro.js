@@ -11,7 +11,7 @@ function Cadastro() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [confirmaSenha, setConfirmaSenha] = useState("");
-    const [number, setNumber] = useState("");
+    const [telefone, setTelefone] = useState("");
 
     const [erronome, seterronome] = useState("");
     const [erroemail, seterroemail] = useState("");
@@ -73,13 +73,13 @@ function Cadastro() {
         return true;
     };
 
-    const Isnumbervalido = (number) => {  
+    const Isnumbervalido = (telefone) => {  
         const telefonePattern = new RegExp("^\\(?\\d{2}\\)?\\s?\\d{4,5}\\-?\\d{4}$");
-        if (!telefonePattern.test(number) && number !== "") {
+        if (!telefonePattern.test(telefone) && telefone !== "") {
             seterrotelefone(intl.formatMessage({ id: "errors_invalidPhoneNumber", defaultMessage: "Telefone inválido" }));
             return false;
         }
-        if (number === "" || number === null) { 
+        if (telefone === "" || telefone === null) { 
             toast.error(intl.formatMessage({ id: "errors_emptyPhoneNumber", defaultMessage: "Telefone não pode ficar vazio" }));
             return false;
         }
@@ -114,23 +114,23 @@ function Cadastro() {
 
     const Handletelefone = (event) => {
         const value = event.target.value;
-        setNumber(value);
+        setTelefone(value);
         Isnumbervalido(value);
     };
 
     const CadastraUsuario = async (event) => {
         event.preventDefault(); // Evita o comportamento padrão de envio de formulário
-        if (IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isconfirmsenha(senha, confirmaSenha) && Isnumbervalido(number)) {
+        if (IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isconfirmsenha(senha, confirmaSenha) && Isnumbervalido(telefone)) {
             try {
                 var iscadastroValid = false;
-                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email, number }).then((resposta) => {
+                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email, telefone }).then((resposta) => {
                     if (resposta.status === 204) {
                         iscadastroValid = true;
                         return;
                     }
                 });
                 if (iscadastroValid) {
-                    await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, number }).then((resposta) => {
+                    await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, telefone }).then((resposta) => {
                         if (resposta.status === 201) {
                             toast.success(intl.formatMessage({ id: "messages_registrationSuccess", defaultMessage: "Cadastro realizado com sucesso" }));
                             usenavigate("/Login");
@@ -214,7 +214,7 @@ function Cadastro() {
                         </label>
                         <input
                             type="text"
-                            value={number}
+                            value={telefone}
                             placeholder="(xx) xxxxx-xxxx"
                             className="form-control"
                             id="numero"

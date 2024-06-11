@@ -1,15 +1,11 @@
  const db=require('../database/db');
 
-const test = (req, res) => {
-    return res.sendStatus(200);
-}
-
 const getProduto = (_, res) => {
     const busca = "SELECT * FROM produto";
     db.query(busca, (err, data) => {
         if(err) {
             console.log(err);
-            return res.status(500).json({ error: 'An error occurred' });
+            return res.status(500).json({ error: 'Erro para conectar ao banco de dados' });
         }
         return res.status(200).json(data);
     });
@@ -24,12 +20,17 @@ const addProduto = (req, res) => {
     const insercao = "INSERT INTO produto(nome,marca,descricao,preco,imagem,moda) VALUES (?,?,?,?,?,?)";
     const values = [nome, marca, descricao, preco, imagem, moda];
      
-    db.query(insercao, values, (err) => {
+    db.query(insercao, values, (err,data) => {
         if(err) {
-            console.log(err);
-            return res.status(500).json({ error: 'An error occurred' });
+            return res.status(500).json({ error: 'Não foi possível para conectar no banco de dados' });
         }
-        return res.status(201).json({message:"Produto inserido"});
+        if(data.affectRow>0){
+            return res.status(201).json( { message:"Produto inserido com sucesso" });
+        }
+        else{
+            return res.status(404).json( {message: "Usuário não pode ser cadastrado"} )
+        }
+        
     });
 };
 const buscandoprodutoespecifico = (req, res) => {
@@ -40,8 +41,7 @@ const buscandoprodutoespecifico = (req, res) => {
     db.query(busca, value, (err, data) => {
         console.log("Entrou na query");
         if (err) {
-            console.error("Database error:", err);
-            return res.status(500).json({ message: "Não foi possível realizar a busca" });
+            return res.status(500).json({ message: "Não foi possível conectar o banco de dados" });
         }
 
         if (data.length > 0) {
@@ -83,16 +83,13 @@ const getProdutofeminino=(req,res)=>{
     const busca=" SELECT * FROM produto where moda='moda_feminina' ";
     db.query(busca,(err,data) =>{
         if (err) {
-            console.error("Erro na busca do produto feminino:", err);
-            return res.status(500).json({ error: "Erro na busca do produto feminino" });
+            return res.status(500).json({ error: "Erro para conectar no banco de dados" });
         }
-
         if (data.length > 0) {
-            res.status(200).json(data);
-            console.log("Busca realizada com sucesso");
+           return res.status(200).json(data);
         } else {
-            res.status(404).json({ message: "Produto feminino não encontrado" });
-            console.log("Busca não realizada com sucesso");
+            return res.status(404).json({ message: "Nenhum produto feminino encontrado" });
+    
         }
     })
 }
@@ -101,20 +98,19 @@ const getProdutomasculino = (req, res) => {
     const busca = "SELECT * FROM produto WHERE moda='moda_masculina'";
     db.query(busca, (err, data) => {
         if (err) {
-            console.error("Erro na busca do produto_masculino:", err);
-            return res.status(500).json({ error: "Erro na busca do produto_masculino" });
+            return res.status(500).json({ error: "Erro para se conectar no banco de dados" });
         }
 
         if (data.length > 0) {
-            res.status(200).json(data);
-            console.log("Busca realizada com sucesso");
+            return res.status(200).json(data);
+           
         } else {
-            res.status(404).json({ message: "Produto masculino não encontrado" });
-            console.log("Busca não realizada com sucesso");
+           return  res.status(404).json({ message: "Não pode encontrar produto masculino" });
+           
         }
     });
 };
 
 
-module.exports = { getProduto, addProduto, deleteProduto, updateProduto, test ,getProdutofeminino,getProdutomasculino,buscandoprodutoespecifico };
+module.exports = { getProduto, addProduto, deleteProduto, updateProduto,getProdutofeminino,getProdutomasculino,buscandoprodutoespecifico };
    

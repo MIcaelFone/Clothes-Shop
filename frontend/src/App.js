@@ -19,12 +19,6 @@ import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
-import Cart from './ui/Components/Roupa/pages/cart.js';
-import { Provider } from 'react-redux';
-import { cartReducer } from './ui/Components/Roupa/pages/ConfigCarrinho/Reducer.js';
-import { createStore } from 'redux';
-
-const store = createStore(cartReducer);
 
 function App() { 
 
@@ -53,7 +47,6 @@ function App() {
     <>
       <ToastContainer theme='colored'></ToastContainer>
       <BrowserRouter>
-        <Provider store={store}> {}
           <Header />
           <Navpages />
           <Routes>
@@ -68,13 +61,12 @@ function App() {
             <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
             <Route path='/Pagamento' element={Authentication() ? <Pagamento /> : <Navigate to="/Login" />} />
             <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
-            <Route path='/Cart' element={Authentication() ? <Cart /> : <Navigate to="/Cart" />} />
             <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
             <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
-            <Route path='/roupa/:id' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
+            <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
+          
           </Routes>
           <Footer />
-        </Provider>
       </BrowserRouter>
     </>
   );

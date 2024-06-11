@@ -3,26 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {IntlProvider} from "react-intl";
-import palavrasingles from "../src/lang/en.json"
-import palavrasportugues from "../src/lang/pt.json"
-const root = ReactDOM.createRoot(document.getElementById('root'));
-var Language
-var dicionario_palavras_traduzido
-let userLanguage  = navigator.language || 'pt-BR';
+import { IntlProvider } from "react-intl";
+import palavrasingles from "../src/lang/en.json";
+import palavrasportugues from "../src/lang/pt.json";
+import { CartProvider } from './ui/Components/Carrinhoprodutos/config/Cartprovider';
+
+// Definindo a linguagem do usuário e o dicionário de palavras traduzidas
+let userLanguage = navigator.language || 'pt-BR';
+let dicionario_palavras_traduzido;
 
 if (userLanguage === "pt-BR") {
-  Language = "pt-BR";
   dicionario_palavras_traduzido = palavrasportugues;
 } else {
-  Language = "en-US";
+  userLanguage = "en-US";
   dicionario_palavras_traduzido = palavrasingles;
 }
 
-root.render( 
-  <IntlProvider locale={userLanguage} messages={dicionario_palavras_traduzido}>
-   <App />
-  </IntlProvider>
+// Obtendo o root e renderizando a aplicação
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+  <CartProvider>
+    <IntlProvider locale={userLanguage} messages={dicionario_palavras_traduzido}>
+        <App />
+    </IntlProvider>
+  </CartProvider>
 );
 
 reportWebVitals();

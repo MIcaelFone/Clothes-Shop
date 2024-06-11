@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import axios from "axios";
 import '../styles/Login.component.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const navigate = useNavigate();
     const intl = useIntl();
 
     const ProceedLogin = async (e) => {
@@ -23,7 +22,9 @@ const Login = () => {
                 console.log("Token" + token);
                 localStorage.setItem("token", token);
                 toast.success(intl.formatMessage({ id: 'login_message_success' }));
-                window.location.href = "Home";
+                setTimeout(()=>{
+                    window.location.href = "Home";
+                },4000)
             } else {
                 toast.error(intl.formatMessage({ id: 'login_message_invalid' }));
             }

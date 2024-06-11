@@ -50,8 +50,9 @@
     "login_input": "enter your password",
     "login_buttom": "Log In",
     "login_not_registered": "Not registered?",
-    "profile_alterar_informacao": "Update Information",
-    "profile_savechanges": "Save Changes",
+    "profile_alterar_informacao": "User",
+    "profile_savechanges": "Update profile",
+    "profile_delete": "Delete",
     "CadastroProduto_title": "Product Registration",
     "CadastroProduto_nomeLabel": "Product Name",
     "CadastroProduto_nomePlaceholder": "Product Name",
@@ -99,5 +100,14 @@
     "produtosmasculino_title": "Men`s clothes",
     "about_produto":"About product",
     "money":"$",
-    "messagem_cadastro_produto":"Product registered succeed"
+    "messagem_cadastro_produto":"Product registered succeed",
+    "adicao_produto":"added to cart",
+    "removendo_produto":"removed from cart!",
+    "fecharmodal":"Close",
+    "cart":"Cart",
+    "Carrinhovazio":"Your cart is empty",
+    "limparcarrinho":"Clear cart",
+    "Confirmar_pedido":"Confirm order",
+    "greeting_hi":"Hi"
+
 }
