@@ -1,20 +1,47 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Modal CSS */
 .cart-modal {
     position: fixed;
-    top: 60px; /* Ajuste este valor conforme necessário */
-    right: 20px; /* Ajuste este valor conforme necessário */
-    z-index: 1050; /* Para garantir que o modal fique sobre outros elementos */
-    width: 300px; /* Ajuste conforme necessário */
-    background-color: white;
+    top: 60px;
+    right: 20px;
+    z-index: 1050;
+    width: 300px;
+    max-width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 20px;
-    display: none; /* Escondido por padrão */
-  }
-  
-  .cart-modal.show {
-    display: block; /* Mostra quando a classe "show" é adicionada */
-  }
-  
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 80px);
+}
+
+.cart-modal.show {
+    display: flex;
+}
+
+/* Overlay CSS */
+.overlay-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1049;
+    display: none;
+}
+
+.overlay-modal.show {
+    display: block;
+}
+
+/* Navigation CSS */
 .navbar {
     background-color: #555b61;
 }
@@ -27,7 +54,6 @@
 .Searchbar .form-control {
     color: black !important;
 }
-
 
 .ms-auto {
     gap: 36px;
@@ -47,6 +73,7 @@ button.navbar-toggler {
     background-color: #fff !important;
 }
 
+/* Responsividade */
 @media (max-width: 991px) {
     .navigation {
         flex-direction: column;
@@ -55,7 +82,7 @@ button.navbar-toggler {
 
     .search-form {
         width: 80%;
-        margin: 0 auto; 
+        margin: 0 auto;
         margin-bottom: 1rem;
     }
 
@@ -71,5 +98,40 @@ button.navbar-toggler {
     .nav-menu .nav-link {
         width: 100%;
     }
-}
 
+    /* Ajustes de tamanhos de texto e botão */
+    .Brand, .list_item {
+        font-size: 0.8rem; /* Ajuste o tamanho conforme necessário */
+    }
+
+    .botao_cadastro {
+        font-size: 0.8rem; /* Ajuste o tamanho conforme necessário */
+        padding: 0.5rem 1rem; /* Ajuste o padding conforme necessário */
+    }
+
+    button.navbar-toggler, .navbar-toggler-icon {
+        font-size: 1rem; /* Ajuste o tamanho conforme necessário */
+    }
+
+    /* Ajustes do Modal */
+    .cart-modal {
+        top: 50px;
+        right: 10px;
+        left: 10px;
+        max-width: calc(100% - 20px);
+        font-size: 0.9rem; /* Ajuste o tamanho do texto do modal conforme necessário */
+    }
+
+    .cart-modal .modal-title {
+        font-size: 1.2rem; /* Ajuste o tamanho do título do modal conforme necessário */
+    }
+
+    .cart-modal .modal-body {
+        font-size: 0.9rem; /* Ajuste o tamanho do corpo do modal conforme necessário */
+    }
+
+    .cart-modal .modal-footer button {
+        font-size: 0.8rem; /* Ajuste o tamanho dos botões do modal conforme necessário */
+        padding: 0.5rem 1rem; /* Ajuste o padding dos botões conforme necessário */
+    }
+}
