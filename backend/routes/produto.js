@@ -1,4 +1,4 @@
-const {addProduto, deleteProduto, updateProduto, getProduto,getProdutofeminino,getProdutomasculino, buscandoprodutoespecifico} = require('../controllers/produto');
+const {addProduto, deleteProduto, updateProduto, getProduto,getProdutofeminino,getProdutomasculino, buscandoprodutoespecifico, getAllProdutos} = require('../controllers/produto');
 const express = require('express');
 const router = express.Router();
 
@@ -9,5 +9,5 @@ router.delete('/deletandoproduto/:id',  deleteProduto);
 router.post('/cadastrarproduto', addProduto);
 router.put('/atualizandoproduto/:id', updateProduto);
 router.post('/buscandoprodutoespecifico',buscandoprodutoespecifico);
-
+router.get('/pegandoTodosProdutos', getAllProdutos)
 module.exports = router;
