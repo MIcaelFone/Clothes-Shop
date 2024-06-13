@@ -111,6 +111,23 @@ const getProdutomasculino = (req, res) => {
     });
 };
 
+const getAllProdutos = (req, res) => {
+    const busca = "SELECT * FROM produto";
+    db.query(busca, (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: "Erro para se conectar no banco de dados" });
+        }
 
-module.exports = { getProduto, addProduto, deleteProduto, updateProduto,getProdutofeminino,getProdutomasculino,buscandoprodutoespecifico };
+        if (data.length > 0) {
+            return res.status(200).json(data);
+           
+        } else {
+           return  res.status(404).json({ message: "Não pode encontrar produto masculino" });
+           
+        }
+    });
+};
+
+
+module.exports = { getProduto, addProduto, deleteProduto, updateProduto,getProdutofeminino,getProdutomasculino,buscandoprodutoespecifico, getAllProdutos };
    
