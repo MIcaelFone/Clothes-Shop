@@ -18,10 +18,6 @@ function NavLink() {
             {
               path: '/ProdutoChartPage',
               name: <FormattedMessage id='home_grafico'></FormattedMessage>
-            },
-            {
-              path: '/cadastroproduto',
-              name: "bota roupa ai"
             }
                       
     ]
