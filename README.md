@@ -29,6 +29,16 @@ Após se cadastrar, você será levado para a tela "Home" onde poderá escolher 
 
 ![Tela Home](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a341627b-bb55-4efb-a888-99c09ef21314)
 
+Clicando no "Olá" você irá poder ver o seu perfil e adicionar o seu cartão
+
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5c2f4799-0d61-40b4-8c0b-5196fa75ffc6)
+
+Ao clicar para adicinar o cartão, você será direcionado para está pagina, clique no botão e irá aparecer um modal para preencher suas informações
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/6c884449-a63f-4a56-b68e-711724d979b0)
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/bf5bab69-7737-4e7b-9ad4-d338cbdbfa5b)
+
+Clique em adicionar e depois feche apertando no "X" no canto superior direito da tela.
+
 Selecionando um dos gêneros, você irá para a página do produto onde verá todas as roupas disponíveis para aquele gênero.
 
 ![Página de produtos](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a6200765-7c60-4235-a5f1-2ddcd8157a4d)
