@@ -79,17 +79,24 @@ function CardProductFeminino() {
                     <Card className="card-product" key={produto.idproduto}>
                         <Card.Body className="card-body">
                             <Card.Title className="card-title">{truncateText(produto.nome, 20)}</Card.Title>
-                            <Card.Text className="card-text">
-                                <h3 style={{ fontSize: '1.3rem' }}> <FormattedMessage id='money'></FormattedMessage> {produto.preco}</h3>
-                            </Card.Text>
+                            <div className="card-text">
+                                <h3 style={{ fontSize: '1.3rem' }}> 
+                                    <FormattedMessage id='money'></FormattedMessage> {produto.preco}
+                                </h3>
+                            </div>
                             <div className="button-container">
-                                <Button className="button button-primary" onClick={() => {detailproduct(produto.nome);}}>
+                                <Button className="button button-primary" onClick={() => { detailproduct(produto.nome); }}>
                                     <FormattedMessage id='about_produto'></FormattedMessage>
                                 </Button>
                                 {
                                     cartItems.find(item => item.idproduto === produto.idproduto) ? (
                                         <div className="quantity-container">
-                                            <button className="button button-secondary">
+                                            <button
+                                                className="button button-secondary"
+                                                onClick={() => {
+                                                    addToCart(produto);
+                                                }}
+                                            >
                                                 +
                                             </button>
                                             <p className='quantity-text'>
@@ -113,9 +120,10 @@ function CardProductFeminino() {
                                         <FaShoppingCart 
                                             size={35} 
                                             style={{ marginLeft: '10px', color: 'black', cursor: 'pointer' }} 
-                                            onClick={() => {
-                                                addToCart(produto)
-                                                notifyAddedToCart(produto)}} 
+                                            onClick={() => { 
+                                                addToCart(produto);
+                                                notifyAddedToCart(produto);
+                                            }} 
                                         />
                                     )
                                 }

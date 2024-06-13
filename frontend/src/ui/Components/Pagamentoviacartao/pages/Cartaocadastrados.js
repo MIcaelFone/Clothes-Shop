@@ -51,10 +51,12 @@ function Cartaocadastrado() {
 
     return (
         <div className="container-fluid">
-            <div className="d-flex justify-content-between align-items-center">
-                <center><h1 className="text-center text-5xl font-weight-bold mb-4" style={{marginLeft:"35rem"}}>
+            <div className="d-flex justify-content-center align-items-center">
+                <center><h1 className="text-center text-5xl font-weight-bold mb-4">
                     <FormattedMessage id="cartaotitle"></FormattedMessage>
                 </h1></center>
+            </div>
+            <div className="d-flex justify-content-center align-items-center mb-4">
                 <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}><FormattedMessage id="adiciona_cartao"></FormattedMessage></button>
             </div>
             {showModal && <Modal onClose={() => setShowModal(false)} />}
@@ -73,8 +75,8 @@ function Cartaocadastrado() {
                     </div>
                 ))
             ) : (
-                <div style={{marginTop:"4rem", marginRight:"1rem"}}>
-                    <center><h2>Nenhum cartão cadastado</h2></center>
+                <div className="no-cards" id="NoCards">
+                    <center><h2><FormattedMessage id="noCardsMessage" defaultMessage="No cards registered" /></h2></center>
                 </div>
             )}
         </div>

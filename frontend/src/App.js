@@ -20,6 +20,7 @@ import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
 import Edita_cartao from "./ui/Components/Pagamentoviacartao/pages/editacartao.js"
+import ProdutoChartPage from './ui/Components/grafico/ProdutoChartPage.js';
 
 function App() { 
 
@@ -66,6 +67,7 @@ function App() {
             <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
             <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
             <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao/>: <Navigate to="/Login" />}></Route>
+            <Route path='/ProdutoChartPage' element={Authentication() ? <ProdutoChartPage/>: <Navigate to="/Login" />}></Route>
           </Routes>
           <Footer />
       </BrowserRouter>
