@@ -29,6 +29,7 @@ import Gerenciamentoprodutosedit from "../src/ui/Components/Editproduto/pages/ed
 import Gerenciamentousuarios from "../src/ui/Components/gerenciamentousuario/pages/gerenciamentousuario.js";
 import Perfiladmin from "../src/ui/Components/PerfilAdmin/pages/Perfiladmin.js";
 import ProdutoChartPage from "./ui/Components/grafico/ProdutoChartPage.js";
+import  Cartaousuario from "./ui/Components/Cartaodousuario/pages/Cartaocadastrados.js"
 
 function App() {
   // Função Authentication deve ser declarada antes de ser usada
@@ -92,7 +93,6 @@ function App() {
           <Route path="/Info_pagamento" element={ClientRoute({ element: <InfoPagamento /> })} />
           <Route path="/prazos_envios" element={ClientRoute({ element: <PrazosEnvios /> })} />
           <Route path="/como_comprar" element={ClientRoute({ element: <ComoComprar /> })} />
-          <Route path="/cadastrocartao" element={ClientRoute({ element: <Telapagamento /> })} />
           <Route path="/ProductPage" element={ClientRoute({ element: <ProductPage /> })} />
           <Route path="/moda_feminina" element={ClientRoute({ element: <Moda_feminina /> })} />
           <Route path="/moda_masculina" element={ClientRoute({ element: <Moda_masculina /> })} />
@@ -101,7 +101,7 @@ function App() {
           <Route path="/pagamento" element={ClientRoute({ element: <Telapagamento /> })} />
           <Route path="/minhascompras" element={ClientRoute({ element: <Minhascompras /> })} />
           <Route path="/minhascompras/:id" element={ClientRoute({ element: <Minhascomprasprodutos /> })} />
-
+          <Route path="/cadastrocartao" element={ClientRoute({ element: <Cartaousuario /> })} />
           {/* Admin Routes */}
           <Route path="/cadastroadmin" element={<Cadastroadmin />} />
           <Route path="/loginadmin" element={<Loginadmin />} />
