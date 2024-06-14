@@ -14,7 +14,11 @@ function NavLink() {
             {
                 path: '/moda_feminina',
                 name: <FormattedMessage id='home_moda_Feminina'></FormattedMessage>
-            }, 
+            },
+            {
+              path: '/ProdutoChartPage',
+              name: <FormattedMessage id='home_grafico'></FormattedMessage>
+            }
                       
     ]
     return(

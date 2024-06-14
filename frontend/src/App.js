@@ -23,6 +23,8 @@ import Edita_cartao from "./ui/Components/Cartaodousuario/pages/editacartao.js"
 import Telapagamento from "./ui/Components/Compra/pages/tela_pagamento.js"
 import Minhascompras from "../src/ui/Components/Minhascompras/pages/paginadascompras.js"
 import Minhascomprasprodutos from "../src/ui/Components/Minhascompras/pages/produtoscomprados.js"
+import Edita_cartao from "./ui/Components/Pagamentoviacartao/pages/editacartao.js"
+import ProdutoChartPage from './ui/Components/grafico/ProdutoChartPage.js';
 
 function App() { 
 

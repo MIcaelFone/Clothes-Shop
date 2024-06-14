@@ -1,71 +1,56 @@
-# Getting Started with Create React App
+# Clothes-Shop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto da faculdade feito para a matéria de Experiência Criativa, que tem como objetivo criar um site de loja de roupas.
 
-## Available Scripts
+As principais tecnologias utilizadas para a criação desse projeto foram:
+React JS, Node.js, SQL, Trello.
 
-In the project directory, you can run:
+Antes de iniciar o projeto, configure o arquivo "db.js" na pasta "database". Ele deve conter o nome do HOST, USER, SENHA e o NOME DO SCHEMA (DATABASE) idênticos aos do seu servidor, para poder acessá-lo.
 
-### `npm start`
+![Configuração do banco de dados](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a3ed66c9-a911-4a09-8430-4fa0d5def546)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Após isso, entre nas pastas do projeto até chegar na pasta "server" e digite "nodemon server.js" para poder conectar o SQL com o backend.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Iniciando o servidor](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/7c580d2e-0a24-4d93-afa4-92285a36aab3)
 
-### `npm test`
+Depois, inicie o frontend. Entre na pasta "frontend" e escreva "npm start", que irá abrir a aplicação no seu navegador.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Iniciando o frontend](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/e814268a-18dc-4cb9-be70-1e6f64b551c7)
 
-### `npm run build`
+Após carregar a aplicação no navegador, esta será a primeira tela a aparecer:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Tela inicial](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Caso não tenha criado uma conta ainda, clique no link "Não registrado?" que irá para a tela de cadastro.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Tela de cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/55a7e224-e026-4066-9949-20f2215bcbef)
 
-### `npm run eject`
+Após se cadastrar, você será levado para a tela "Home" onde poderá escolher o gênero das roupas que deseja e as melhores marcas.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Tela Home](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a341627b-bb55-4efb-a888-99c09ef21314)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Clicando no "Olá" você irá poder ver o seu perfil e adicionar o seu cartão
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5c2f4799-0d61-40b4-8c0b-5196fa75ffc6)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Ao clicar para adicinar o cartão, você será direcionado para está pagina, clique no botão e irá aparecer um modal para preencher suas informações
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/6c884449-a63f-4a56-b68e-711724d979b0)
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/bf5bab69-7737-4e7b-9ad4-d338cbdbfa5b)
 
-## Learn More
+Clique em adicionar e depois feche apertando no "X" no canto superior direito da tela.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Selecionando um dos gêneros, você irá para a página do produto onde verá todas as roupas disponíveis para aquele gênero.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Página de produtos](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a6200765-7c60-4235-a5f1-2ddcd8157a4d)
 
-### Code Splitting
+Clicando no produto, você verá as informações detalhadas dele e poderá adicioná-lo ao carrinho.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Detalhes do produto](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/aa67cd46-773b-41d5-927f-40889ed41ab9)
 
-### Analyzing the Bundle Size
+No carrinho, você poderá incluir mais unidades do mesmo item, finalizar a compra ou esvaziá-lo caso tenha muitos itens.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
 
-### Making a Progressive Web App
+Trabalho feito por: Micael Daniel Pardim Fone, Thiago Rosa Luz
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# Clothes-Shop" 
+# Clothes-Shop
