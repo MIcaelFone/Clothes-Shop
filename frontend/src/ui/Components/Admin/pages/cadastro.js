@@ -229,7 +229,7 @@ function Cadastro() {
                     </div>
                     <div className="d-flex flex-column align-items-center mt-4">
                         <p className="text-right">
-                            <Link to="/Login" className="ms-2">
+                            <Link to="/Loginadmin" className="ms-2">
                                 <FormattedMessage id="alreadyHaveAccount" defaultMessage="Já possui conta?" />
                             </Link>
                         </p>

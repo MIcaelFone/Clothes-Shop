@@ -31,7 +31,6 @@ function Minhascompras() {
           }
         }
       } catch (error) {
-        toast.error("Erro ao buscar compras.");
         console.log(error);
       }
     };
