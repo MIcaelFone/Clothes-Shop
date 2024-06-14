@@ -51,6 +51,10 @@ const Header = () => {
             name: intl.formatMessage({ id: "header.addCard", defaultMessage: "Add Card" })
         },
         {
+            path: '/minhascompras',
+            name: "Minhas compras"
+        },
+        {
             onClick: logout,
             name: intl.formatMessage({ id: "header.logout", defaultMessage: "Logout" })
         }
