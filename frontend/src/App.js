@@ -14,12 +14,15 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from '../src/ui/Components/Home/pages/home.js';
 import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js';
 import { ToastContainer, toast } from 'react-toastify';
-import Pagamento from './ui/Components/Pagamentoviacartao/pages/Cartaocadastrados.js';
+import Pagamento from './ui/Components/Cartaodousuario/pages/Cartaocadastrados.js';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
-import Edita_cartao from "./ui/Components/Pagamentoviacartao/pages/editacartao.js"
+import Edita_cartao from "./ui/Components/Cartaodousuario/pages/editacartao.js"
+import Telapagamento from "./ui/Components/Compra/pages/tela_pagamento.js"
+import Minhascompras from "../src/ui/Components/Minhascompras/pages/paginadascompras.js"
+import Minhascomprasprodutos from "../src/ui/Components/Minhascompras/pages/produtoscomprados.js"
 
 function App() { 
 
@@ -66,6 +69,9 @@ function App() {
             <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
             <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
             <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao/>: <Navigate to="/Login" />}></Route>
+            <Route path='/pagamento' element={Authentication() ? <Telapagamento/>: <Navigate to="/Login" />}></Route>
+            <Route path='/minhascompras' element={Authentication() ? <Minhascompras/>: <Navigate to="/Login" />}></Route>
+            <Route path="/minhascompras/:id"  element={Authentication() ? <Minhascomprasprodutos/>: <Navigate to="/Login" />}></Route>
           </Routes>
           <Footer />
       </BrowserRouter>
