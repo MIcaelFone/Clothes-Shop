@@ -197,5 +197,7 @@
     "form.erro_vazio": "Este campo não pode ficar vazio.",
     "form.erro_pais": "Este campo deve conter apenas letras.",
     "form.erro_cep": "Formato de CEP inválido.",
-    "home_grafico": "Grafico de Produtos"
+    "home_grafico": "Grafico de Produtos",
+    "produtos_comprados_title": "Produtos comprados",
+    "nenhum_produto_encontrado": "Nenhum produto encontrado."
 }
