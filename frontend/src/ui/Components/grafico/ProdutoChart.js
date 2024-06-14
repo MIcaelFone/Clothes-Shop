@@ -14,7 +14,7 @@ const ProdutoChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/produto/pegandoTodosProdutos');
+                const response = await axios.get('http://localhost:8080/produto/cadastroprodutolistar');
                 const produtos = response.data;
 
                 const labels = produtos.map(produto => produto.nome);

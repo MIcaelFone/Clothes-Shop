@@ -2,36 +2,38 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../styles/Login.component.css';
 
-const Login = () => {
+const Loginadmin = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const intl = useIntl();
+    const navigate = useNavigate();
 
-
+    useEffect(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        localStorage.setItem("IsAdmin",true);
+    }, []);
     const ProceedLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/usuario/Login", { email, senha });
-
+            const response = await axios.post("http://localhost:8080/admin/login", { email, senha });
             if (response.status === 200) {
-                const { token } = response.data;
-                console.log(token);
+                const { token} = response.data;
+                 
                 localStorage.setItem("token", token);
-                localStorage.setItem("IsAdmin", false);
+                localStorage.setItem("IsAdmin",true);
                 toast.success(intl.formatMessage({ id: 'login_message_success' }));
-                setTimeout(()=>{
-                    window.location.href = "Home";
-                },3000)
+                window.location.href = "gerenciamentoprodutos";
+               
             } else {
                 toast.error(intl.formatMessage({ id: 'login_message_invalid' }));
             }
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
             toast.error(intl.formatMessage({ id: 'login_message_error' }));
         }
@@ -41,7 +43,7 @@ const Login = () => {
         <div className='Login template d-flex justify-content-center align-items-center vh-100 bg-white'>
             <div className='form_container p-5 rounded bg-white'>
                 <form onSubmit={ProceedLogin}>
-                    <h3 className='text-center'><FormattedMessage id="login_title" /></h3>
+                    <h3 className='text-center'>Login Administrador</h3>
                     <div className='mb-2'>
                         <label htmlFor='email'><FormattedMessage id="login_Email" /></label>
                         <input type='email' placeholder='exemplo@gmail.com' value={email} className='form-control' id="email" onChange={(e) => setEmail(e.target.value)}></input>
@@ -55,7 +57,7 @@ const Login = () => {
                     </div>
                     <div className="d-flex flex-column align-items-center mt-4">
                         <p className="text-right">
-                            <Link to="/Cadastro" className="ms-2"><FormattedMessage id="login_not_registered" /></Link>
+                            <Link to="/cadastroadmin" className="ms-2"><FormattedMessage id="login_not_registered" /></Link>
                         </p>
                     </div>
                 </form>
@@ -64,4 +66,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Loginadmin;

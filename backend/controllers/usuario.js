@@ -4,8 +4,14 @@ const jwt = require("jsonwebtoken");
 const getUsuario=(req,res)=>{
     const busca="SELECT * FROM usuario";
     db.query(busca,(err,data) =>{
-         if (err) throw res.status(500).json(data);
-         res.status(200).json(data);
+         if (err) return res.status(500).json({ message:"Erro para conectar no banco de dados" });
+         else if (data.length>0){
+            return res.status(200).json({message:"Dados de usuários recebidos com sucesso" ,data});
+         }
+         else{
+            return res.status(404).json({message:"Nao possui encontrar os usuários"})
+         }
+         
     }) 
 }
 

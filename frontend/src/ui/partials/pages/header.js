@@ -8,12 +8,13 @@ import { FaShoppingCart } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import { jwtDecode } from "jwt-decode";
-import { CartContext } from '../../Components/Carrinhoprodutos/config/Cartprovider'
-import Cart  from '../../Components/Carrinhoprodutos/component/Page/Cart'
+import {jwtDecode} from "jwt-decode";
+import { CartContext } from '../../Components/Carrinhoprodutos/config/Cartprovider';
+import Cart from '../../Components/Carrinhoprodutos/component/Page/Cart';
 import axios from "axios";
 import { useIntl, FormattedMessage } from "react-intl";
-
+import 'react-toastify/dist/ReactToastify.css';
+import '../styles/Header.component.css';
 
 const Header = () => {
     const [idusuario, setID] = useState("");
@@ -28,8 +29,13 @@ const Header = () => {
     };
 
     const auth = () => {
-        var token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
         return token !== null;
+    };
+
+    const isAdmin = () => {
+        const admin = localStorage.getItem("IsAdmin");
+        return admin === "true";
     };
 
     const logout = () => {
@@ -37,11 +43,17 @@ const Header = () => {
         if (token !== null) {
             localStorage.removeItem('token');
             toast.success("Sessão encerrada");
-            window.location.href = "/Login";
+            setTimeout(() => {
+                const redirectUrl = isAdmin() ? "/loginadmin" : "/Login";
+                navigate(redirectUrl);
+                window.location.reload();
+                // Faz um refresh da página após 4 segundos
+              }, 3000);
+           
         }
     };
 
-    const headerAutenticado = [
+    const headerAutenticadocliente = [
         {
             path: '/Perfil',
             name: intl.formatMessage({ id: "header.profile", defaultMessage: "Profile" })
@@ -60,7 +72,18 @@ const Header = () => {
         }
     ];
 
-    const headerNaoAutenticado = [
+    const headerAutenticadoadmin = [
+        {
+            path: '/perfiladmin',
+            name: intl.formatMessage({ id: "header.profile", defaultMessage: "Profile" })
+        },
+        {
+            onClick: logout,
+            name: intl.formatMessage({ id: "header.logout", defaultMessage: "Logout" })
+        }
+    ];
+
+    const headerNaoAutenticadoadmin = [
         {
             path: '/Cadastro',
             name: intl.formatMessage({ id: "header.register", defaultMessage: "Register" })
@@ -68,14 +91,14 @@ const Header = () => {
     ];
 
     useEffect(() => {
-        try {
-            const token = localStorage.getItem("token");
-            if (token) {
+        const token = localStorage.getItem("token");
+        if (token) {
+            try {
                 const decodedToken = jwtDecode(token);
                 setID(decodedToken.idusuario);
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     }, []);
 
@@ -87,7 +110,7 @@ const Header = () => {
                     const nome = response.data.data[0].nome;
                     const firstName = nome.split(" ")[0];
                     setNome(firstName);
-                    localStorage.setItem('nome', nome);
+                    localStorage.setItem('nome', firstName);
                 }
             } catch (error) {
                 console.error(error);
@@ -118,7 +141,7 @@ const Header = () => {
                         {auth() ? (
                             <Nav className="nav-menu ms-auto" style={{ marginRight: "2.5rem" }}>
                                 <NavDropdown title={`${intl.formatMessage({ id: "header.greeting", defaultMessage: "Hello" })} ${nome}`} id="basic-nav-dropdown" className="list_item">
-                                    {headerAutenticado.map((item, index) => (
+                                    {(isAdmin() ? headerAutenticadoadmin : headerAutenticadocliente).map((item, index) => (
                                         <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
                                             {item.name}
                                         </NavDropdown.Item>
@@ -127,8 +150,8 @@ const Header = () => {
                             </Nav>
                         ) : (
                             <Nav className="nav-menu ms-auto">
-                                <NavDropdown title={intl.formatMessage({ id: "header.login", defaultMessage: "Login" })} id="basic-nav-dropdown" className="list_item" style={{ marginRight: "2.5rem" }}>
-                                    {headerNaoAutenticado.map((item, index) => (
+                                <NavDropdown title={intl.formatMessage({ id: "header.login", defaultMessage: "Login" })} id="basic-nav-dropdown" className="list_item" style={{ marginRight: "9rem" }}>
+                                    {headerNaoAutenticadoadmin.map((item, index) => (
                                         <NavDropdown.Item key={index} href={item.path}>
                                             {item.name}
                                         </NavDropdown.Item>
@@ -136,14 +159,16 @@ const Header = () => {
                                 </NavDropdown>
                             </Nav>
                         )}
-                        <FaShoppingCart
-                            size={26}
-                            className="icon list_item"
-                            style={{ cursor: "pointer" }}
-                            onClick={toggle}
-                        >
-                            Cart ({cartItems.length})
-                        </FaShoppingCart>
+                        {!isAdmin() && (
+                            <FaShoppingCart
+                                size={26}
+                                className="icon list_item"
+                                style={{ cursor: "pointer" }}
+                                onClick={toggle}
+                            >
+                                Cart ({cartItems.length})
+                            </FaShoppingCart>
+                        )}
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
