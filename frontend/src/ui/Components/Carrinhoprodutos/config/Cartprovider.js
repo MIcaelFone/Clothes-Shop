@@ -1,39 +1,35 @@
-import PropTypes from 'prop-types'
-import { createContext, useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react';
 
-export const CartContext = createContext()
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+  const [cartItems, setCartItems] = useState(
+    localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+  );
+  
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.idproduto === item.idproduto);
+    const existingItem = cartItems.find((cartItem) => cartItem.nome === item.nome);
 
-    if (isItemInCart) {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.idproduto === item.idproduto
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
+    if (existingItem) {
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.nome === item.nome ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
       );
+      setCartItems(updatedCartItems);
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
   };
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.idproduto === item.idproduto);
+    const existingItem = cartItems.find((cartItem) => cartItem.nome === item.nome);
 
-    if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.idproduto !== item.idproduto));
+    if (existingItem.quantity === 1) {
+      setCartItems(cartItems.filter((cartItem) => cartItem.nome !== item.nome));
     } else {
-      setCartItems(
-        cartItems.map((cartItem) =>
-          cartItem.idproduto === item.idproduto
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
+      const updatedCartItems = cartItems.map((cartItem) =>
+        cartItem.nome === item.nome ? { ...cartItem, quantity: cartItem.quantity - 1 } : cartItem
       );
+      setCartItems(updatedCartItems);
     }
   };
 
@@ -42,48 +38,25 @@ export const CartProvider = ({ children }) => {
   };
 
   const getCartTotal = () => {
-    var total=cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
-    localStorage.setItem("total",total)
-    return total
+    return cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
   };
-
-  useEffect(() => {
-    const data = localStorage.getItem('cartItems');
-    if (data) {
-      setCartItems(JSON.parse(data));
-    }
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  useEffect(()=>{
-    var compra=localStorage.getItem("realizouPagamento")
-    var valorPago =localStorage.getItem("total")
-    if (compra==="true"){
-      clearCart()
-      localStorage.removeItem("realizouPagamento")
-      if(valorPago){
-        localStorage.removeItem("total")
-      }
+  useEffect(() => {
+    const realizouPagamento = localStorage.getItem('realizouPagamento');
+    if (realizouPagamento === 'true') {
+      clearCart();
+      localStorage.removeItem('realizouPagamento');
+      localStorage.removeItem('total');
     }
-  },[])
+  }, []);
+
   return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        clearCart,
-        getCartTotal,
-      }}
-    >
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, getCartTotal }}>
       {children}
     </CartContext.Provider>
   );
-};
-
-CartProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 };

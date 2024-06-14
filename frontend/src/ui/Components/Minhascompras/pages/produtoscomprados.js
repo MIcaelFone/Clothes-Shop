@@ -3,7 +3,8 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Card from 'react-bootstrap/Card';
-import '../styles/produtoscomprados.css';  // Import the CSS file
+import { FormattedMessage } from 'react-intl'; // Import FormattedMessage
+import '../styles/produtoscomprados.css';  // Importe o arquivo CSS
 
 function ProdutosComprados() {
   const [numerocompra, setNumerocompra] = useState('');
@@ -37,22 +38,26 @@ function ProdutosComprados() {
     <>
       <ToastContainer />
       <div className="produtos-comprados-container">
-        <h1 className="produtos-comprados-header">Produtos comprados</h1>
+        <h1 className="produtos-comprados-header">
+          <FormattedMessage id="produtos_comprados_title" />
+        </h1>
         {produtos.length > 0 ? (
           produtos.map((produto) => (
             <Card key={produto.idproduto} className="produto-card">
               <Card.Body>
-                <Card.Title className="produto-card-title">Produto</Card.Title>
+                <Card.Title className="produto-card-title">
+                  <FormattedMessage id="produto" defaultMessage="Produto" />
+                </Card.Title>
                 <Card.Text className="produto-card-text">
-                  <p>Nome: {produto.nome}</p>
-                  <p>Marca: {produto.marca}</p>
-                  <p>Quantidade: {produto.quantidade}</p>
+                  <p><FormattedMessage id="nome" defaultMessage="Nome" />: {produto.nome}</p>
+                  <p><FormattedMessage id="marca" defaultMessage="Marca" />: {produto.marca}</p>
+                  <p><FormattedMessage id="quantidade" defaultMessage="Quantidade" />: {produto.quantidade}</p>
                 </Card.Text>
               </Card.Body>
             </Card>
           ))
         ) : (
-          <p>Nenhum produto encontrado.</p>
+          <p><FormattedMessage id="nenhum_produto_encontrado" /></p>
         )}
       </div>
     </>
