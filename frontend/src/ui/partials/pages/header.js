@@ -46,6 +46,10 @@ const Header = () => {
             name: "Adicionar Cartão"
         },
         {
+            path: '/minhascompras',
+            name: "Minhas compras"
+        },
+        {
             onClick:logout,
             name: "Logout"
         }
