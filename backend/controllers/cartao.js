@@ -5,7 +5,6 @@ const cadastrandocartao=(req,res)=>{
      const {nome,numerocartao,expiry,cvc,idusuario}=req.body
      const values=[nome,numerocartao,expiry,cvc,idusuario]
      db.query(insercao,values,(err,data)=>{
-       console.log("Entrou")
        if(err){
             return res.status(500).json( { message:"Não foi possível conectar no Banco de dados" } )
        }
@@ -82,6 +81,5 @@ const deleteCartao=(req,res)=>{
          return res.status(404).json({ message:"Dados não foram encontrados para remover" })
       }
    })
-}
+} 
 module.exports={cadastrandocartao,buscarCartaousuario,buscarcartaonumeroCartao,atualizaCartao,deleteCartao}
- 

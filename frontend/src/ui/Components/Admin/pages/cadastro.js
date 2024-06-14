@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/cadastro.css';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -21,6 +21,12 @@ function Cadastro() {
 
     const usenavigate = useNavigate();
     const intl = useIntl();
+    
+    useEffect(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("nome");
+        localStorage.setItem("IsAdmin",true);
+    }, []);
 
     const IsValidonome = (nome) => {
         const pattern = /^[A-Za-z\s]+$/;
@@ -122,22 +128,15 @@ function Cadastro() {
         event.preventDefault(); // Evita o comportamento padrão de envio de formulário
         if (IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isconfirmsenha(senha, confirmaSenha) && Isnumbervalido(telefone)) {
             try {
-                var iscadastroValid = false;
-                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email, telefone }).then((resposta) => {
-                    if (resposta.status === 204) {
-                        iscadastroValid = true;
-                        return;
-                    }
-                });
-                if (iscadastroValid) {
-                    await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, telefone }).then((resposta) => {
+                    await axios.post("http://localhost:8080/admin/cadastraradmin", { nome, email, senha, telefone }).then((resposta) => {
                         if (resposta.status === 201) {
                             toast.success(intl.formatMessage({ id: "messages_registrationSuccess", defaultMessage: "Cadastro realizado com sucesso" }));
-                            usenavigate("/Login");
+                            usenavigate("/loginadmin");
+                            localStorage.setItem("IsAdmin",true);
                             return;
                         }
                     });
-                } 
+                
             } catch (error) {
                 console.error(error);
                 toast.error(intl.formatMessage({ id: "messages_existingRegistration", defaultMessage: "Cadastro já existente" }));
@@ -152,7 +151,7 @@ function Cadastro() {
             <div className="form_container p-5 rounded bg-white">
                 <form onSubmit={CadastraUsuario}>
                     <h3 className="text-center">
-                        <FormattedMessage id="formLabels_registration" defaultMessage="Cadastro" />
+                       Cadastro Administrador
                     </h3>
                     <div className="mt-4">
                         <label htmlFor="text">

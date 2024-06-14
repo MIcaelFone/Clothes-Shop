@@ -87,15 +87,12 @@ function TelaCadastroProduto() {
             await axios.post("http://localhost:8080/produto/cadastrarproduto", { nome, marca, descricao, preco, imagem, moda })
                 .then((response) => {
                     console.log(response.data);
-                    if(response.status===200){
+                    if(response.status===201){
                         <FormattedMessage id='messagem_cadastro_produto'></FormattedMessage>
                         toast.success("Produto cadastrado com sucesso")
-                        if(moda==="moda_masculina"){
-                            window.location.href = "moda_masculina";
-                        }
-                        else if(moda==="moda_feminina"){
-                            window.location.href = "moda_feminina";
-                        }
+                        setTimeout(() => {
+                            window.location.href="/gerenciamentoprodutos"
+                        }, 3500);
                     }
                    
                 });

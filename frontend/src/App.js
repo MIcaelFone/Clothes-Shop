@@ -1,6 +1,6 @@
-import React from 'react';
-import { jwtDecode } from 'jwt-decode';
-import { BrowserRouter, Routes,Route,Navigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import {jwtDecode} from 'jwt-decode';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Cadastro from '../src/ui/Components/Cadastrousuario/pages/Cadastro.js';
 import Login from './ui/Components/Login/pages/Login.js';
 import Header from '../src/ui/partials/pages/header.js';
@@ -16,68 +16,106 @@ import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js
 import { ToastContainer, toast } from 'react-toastify';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
-import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
-import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
-import Edita_cartao from "../src/ui/Components/Pagamentoviacartao/pages/editacartao.js"
-import Telapagamento from "../src/ui/Components/Compra/pages/tela_pagamento.js"
-import Minhascompras from "../src/ui/Components/Minhascompras/pages/paginadascompras.js"
-import Minhascomprasprodutos from "../src/ui/Components/Minhascompras/pages/produtoscomprados.js"
+import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js";
+import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js";
+import Edita_cartao from "../src/ui/Components/Pagamentoviacartao/pages/editacartao.js";
+import Telapagamento from "../src/ui/Components/Compra/pages/tela_pagamento.js";
+import Minhascompras from "../src/ui/Components/Minhascompras/pages/paginadascompras.js";
+import Minhascomprasprodutos from "../src/ui/Components/Minhascompras/pages/produtoscomprados.js";
+import Cadastroadmin from "../src/ui/Components/Admin/pages/cadastro.js";
+import Loginadmin from "../src/ui/Components/LoginAdmin/pages/Login.js";
+import Gerenciamentoprodutos from "../src/ui/Components/gerenciamentoroupas/pages/paginagerenciamento.js";
+import Gerenciamentoprodutosedit from "../src/ui/Components/Editproduto/pages/editproduct.js";
+import Gerenciamentousuarios from "../src/ui/Components/gerenciamentousuario/pages/gerenciamentousuario.js";
+import Perfiladmin from "../src/ui/Components/PerfilAdmin/pages/Perfiladmin.js";
+import ProdutoChartPage from "./ui/Components/grafico/ProdutoChartPage.js";
 
-function App() { 
-
+function App() {
+  // Função Authentication deve ser declarada antes de ser usada
   const Authentication = () => {
-    
-    var token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    if (token === null) return false;
 
-    if(token===null) return false;
-    if (token !==null){
-      try {
-        const { exp } = jwtDecode(token);
-        if (exp * 1000 < Date.now()) {
-          toast.error("Sessão inspirada")
-          localStorage.removeItem("token")
-          window.location.href="Login"  
-          return false;
+    try {
+      const { exp } = jwtDecode(token);
+      if (exp * 1000 < Date.now()) {
+        toast.error("Sessão expirada");
+        localStorage.removeItem("token");
+        if (IsAdmin()) {
+          window.location.href = "/loginadmin";
+        } else {
+          window.location.href = "/Login";
         }
-        return true;
-      } catch (error) {
         return false;
       }
-    };
-  }
- 
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const IsAdmin = () => {
+    const isAdmin = localStorage.getItem("IsAdmin");
+    return isAdmin === "true";
+  };
+
+  // Estado de autenticação e useEffect para atualização dinâmica
+  const [isLogged, setIsLogged] = useState(Authentication());
+
+  useEffect(() => {
+    // Atualiza o estado de autenticação sempre que necessário
+    setIsLogged(Authentication());
+  }, []);
+
+  const AdminRoute = ({ element }) => {
+    return isLogged && IsAdmin() ? element : <Navigate to="/loginadmin" />;
+  };
+
+  const ClientRoute = ({ element }) => {
+    return isLogged && !IsAdmin() ? element : <Navigate to="/Login" />;
+  };
+
   return (
     <>
-      <ToastContainer theme='colored'></ToastContainer>
+      <ToastContainer theme="colored" />
       <BrowserRouter>
-          <Header />
-          <Navpages />
-          <Routes>
-            <Route path='/' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
-            <Route path='/Login' element={<Login />} />
-            <Route path='/Home' element={Authentication() ? <Home /> : <Navigate to="/Login" />} />
-            <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />} />
-            <Route path='/Cadastro' element={<Cadastro />} ></Route>
-            <Route path='/Info_pagamento' element={Authentication() ? <InfoPagamento /> : <Navigate to="/Login" />} />
-            <Route path='/prazos_envios' element={Authentication() ? <PrazosEnvios /> : <Navigate to="/Login" />} />
-            <Route path='/como_comprar' element={Authentication() ? <ComoComprar /> : <Navigate to="/Login" />} />
-            <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
-            <Route path='/cadastrocartao' element={Authentication() ? <Telapagamento /> : <Navigate to="/Login" />} />
-            <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
-            <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
-            <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
-            <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
-            <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao/>: <Navigate to="/Login" />}></Route>
-            <Route path='/pagamento' element={Authentication() ? <Telapagamento/>: <Navigate to="/Login" />}></Route>
-            <Route path='/minhascompras' element={Authentication() ? <Minhascompras/>: <Navigate to="/Login" />}></Route>
-            <Route path="/minhascompras/:id"  element={Authentication() ? <Minhascomprasprodutos/>: <Navigate to="/Login" />}></Route>
-            
-          </Routes>
-          <Footer />
+        {isLogged && <Header />}
+        {isLogged && <Navpages />}
+       
+        <Routes>
+          {/* Client Routes */}
+          <Route path="/" element={ClientRoute({ element: <Home /> })} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Home" element={ClientRoute({ element: <Home /> })} />
+          <Route path="/Perfil" element={ClientRoute({ element: <Perfil /> })} />
+          <Route path="/Cadastro" element={<Cadastro />} />
+          <Route path="/Info_pagamento" element={ClientRoute({ element: <InfoPagamento /> })} />
+          <Route path="/prazos_envios" element={ClientRoute({ element: <PrazosEnvios /> })} />
+          <Route path="/como_comprar" element={ClientRoute({ element: <ComoComprar /> })} />
+          <Route path="/cadastrocartao" element={ClientRoute({ element: <Telapagamento /> })} />
+          <Route path="/ProductPage" element={ClientRoute({ element: <ProductPage /> })} />
+          <Route path="/moda_feminina" element={ClientRoute({ element: <Moda_feminina /> })} />
+          <Route path="/moda_masculina" element={ClientRoute({ element: <Moda_masculina /> })} />
+          <Route path="/roupa/:nome" element={ClientRoute({ element: <ProductPage /> })} />
+          <Route path="/cartao/:numero" element={ClientRoute({ element: <Edita_cartao /> })} />
+          <Route path="/pagamento" element={ClientRoute({ element: <Telapagamento /> })} />
+          <Route path="/minhascompras" element={ClientRoute({ element: <Minhascompras /> })} />
+          <Route path="/minhascompras/:id" element={ClientRoute({ element: <Minhascomprasprodutos /> })} />
+
+          {/* Admin Routes */}
+          <Route path="/cadastroadmin" element={<Cadastroadmin />} />
+          <Route path="/loginadmin" element={<Loginadmin />} />
+          <Route path="/perfiladmin" element={AdminRoute({ element: <Perfiladmin /> })} />
+          <Route path="/cadastroproduto" element={AdminRoute({ element: <Cadastroproduto /> })} />
+          <Route path="/gerenciamentoprodutos" element={AdminRoute({ element: <Gerenciamentoprodutos /> })} />
+          <Route path="/gerenciamentoprodutos/:nomeproduto" element={AdminRoute({ element: <Gerenciamentoprodutosedit /> })} />
+          <Route path="/gerenciamentousuarios" element={AdminRoute({ element: <Gerenciamentousuarios /> })} />
+          <Route path="/produto-chart" element={AdminRoute({ element: <ProdutoChartPage /> })} /> 
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
 }
 
 export default App;
-

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/cadastro.css';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -21,7 +21,11 @@ function Cadastro() {
 
     const usenavigate = useNavigate();
     const intl = useIntl();
-
+    useEffect(() => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("nome");
+        localStorage.setItem("IsAdmin",false);
+    }, []); 
     const IsValidonome = (nome) => {
         const pattern = /^[A-Za-z\s]+$/;
         if (nome !== "" && !pattern.test(nome)) {
@@ -134,6 +138,7 @@ function Cadastro() {
                         if (resposta.status === 201) {
                             toast.success(intl.formatMessage({ id: "messages_registrationSuccess", defaultMessage: "Cadastro realizado com sucesso" }));
                             usenavigate("/Login");
+                            localStorage.setItem("IsAdmin",false);
                             return;
                         }
                     });

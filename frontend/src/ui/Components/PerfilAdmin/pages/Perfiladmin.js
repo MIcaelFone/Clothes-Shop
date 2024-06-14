@@ -7,22 +7,22 @@ import { jwtDecode } from "jwt-decode";
 import Button from 'react-bootstrap/Button';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function Perfil() {
+function PerfilAdmin() {
     const intl = useIntl();
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [usuario, setUsuario] = useState({ nome: '', email: '', senha: '', telefone: '' });
-    const [idusuario, setId] = useState('');
+    const [admin, setAdmin] = useState('');
+    const [idadmin, setId] = useState('');
 
-    const atualizarusuario = async () => {
+    const atualizaradmin = async () => {
         try {
-            const resposta_atualizando = await axios.put("http://localhost:8080/usuario/atualizarusuario", { nome, email, senha, telefone, idusuario });
+            const resposta_atualizando = await axios.put("http://localhost:8080/admin/atualizaradmin", { nome, email, senha, telefone, idadmin });
             if (resposta_atualizando.status === 200) {
                 toast.success("Usuário atualizado com sucesso!");
                 setTimeout(() => {
-                    window.location.href = "/Home";
+                    window.location.href = "gereciamentousuarios";
                 }, 3100);
             }
         } catch (error) {
@@ -30,16 +30,16 @@ function Perfil() {
         }
     };
 
-    const deletarusuario = async () => {
+    const deletaradmin = async () => {
         try {
-            const resposta_delete = await axios.delete("http://localhost:8080/usuario/deletarusuario", { data: { idusuario } });
+            const resposta_delete = await axios.delete("http://localhost:8080/admin/deletaradmin", { data: { idadmin } });
             if (resposta_delete.status === 200) {
                 toast.success("Usuário removido com sucesso!");
                 setTimeout(() => {
                     localStorage.removeItem("token");
                     localStorage.removeItem("nome");
-                    window.location.href = "/Login";
-                }, 3100);
+                    window.location.href = "/login";
+                }, 3500);
             }
         } catch (error) {
             toast.error("Erro para remover usuário!");
@@ -51,8 +51,9 @@ function Perfil() {
             const token = localStorage.getItem("token");
             if (token) {
                 const decodedToken = jwtDecode(token);
-                const { idusuario } = decodedToken;
-                setId(idusuario);
+                const { idadmin } = decodedToken;
+                console.log("ID", idadmin);
+                setId(idadmin);
             }
         } catch (error) {
             console.log(error);
@@ -60,27 +61,32 @@ function Perfil() {
     }, []);
 
     useEffect(() => {
-        setNome(usuario.nome || '');
-        setSenha(usuario.senha || '');
-        setTelefone(usuario.telefone || '');
-        setEmail(usuario.email || '');
-    }, [usuario]);
+        setNome(admin.nome);
+        setSenha(admin.senha );
+        setTelefone(admin.telefone );
+        setEmail(admin.email);
+    }, [idadmin]);
 
     useEffect(() => {
-        const Buscandonome = async () => {
+        const buscandoadmin = async () => {
             try {
-                if (idusuario) {
-                    const response = await axios.post("http://localhost:8080/usuario/buscandousuario", { idusuario });
+                if (idadmin) {
+                    const response = await axios.post("http://localhost:8080/admin/buscandoadmin", { idadmin:idadmin });
+                    console.log("Resposta",response);
                     if (response.status === 200) {
-                        setUsuario(response.data.data[0] || { nome: '', email: '', senha: '', telefone: '' });
+                        console.log("Dados",response.data.data[0]);
+                        setNome(response.data.data[0].nome);
+                        setEmail(response.data.data[0].email);
+                        setSenha(response.data.data[0].senha);
+                        setTelefone(response.data.data[0].telefone);
                     }
                 }
             } catch (error) {
                 console.error(error);
             }
         };
-        Buscandonome();
-    }, [idusuario]);
+        buscandoadmin();
+    }, [idadmin]);
 
     return (
         <>
@@ -137,8 +143,8 @@ function Perfil() {
                             />
                         </div>
                         <div className='d-flex mt-3' style={{ gap: "1rem" }}>
-                            <Button variant="primary" onClick={atualizarusuario}> <FormattedMessage id="profile_savechanges" /></Button>
-                            <Button variant="danger" onClick={deletarusuario}><FormattedMessage id="profile_delete" /></Button>
+                            <Button variant="primary" onClick={atualizaradmin}> <FormattedMessage id="profile_savechanges" /></Button>
+                            <Button variant="danger" onClick={deletaradmin}><FormattedMessage id="profile_delete" /></Button>
                         </div>
                         <br />
                     </form>
@@ -148,4 +154,4 @@ function Perfil() {
     );
 }
 
-export default Perfil;
+export default PerfilAdmin;
