@@ -188,6 +188,8 @@
     "form.erro_vazio": "This field cannot be empty.",
     "form.erro_pais": "This field must contain only letters.",
     "form.erro_cep": "Invalid postal code format.",
-    "home_grafico": "Graphical Home"
+    "home_grafico": "Graphical Home",
+    "produtos_comprados_title": "Purchased Products",
+    "nenhum_produto_encontrado": "No products found."
 
 }
