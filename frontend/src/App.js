@@ -14,26 +14,30 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from '../src/ui/Components/Home/pages/home.js';
 import Cadastroproduto from '../src/ui/Components/Roupa/pages/cadastroproduto.js';
 import { ToastContainer, toast } from 'react-toastify';
-import Pagamento from './ui/Components/Pagamentoviacartao/pages/Pagamento.js';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js"
 import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js"
+import Cartaocadastrado from './ui/Components/Pagamentoviacartao/pages/Cartaocadastrados.js';
+import Edita_cartao from './ui/Components/Cartaodousuario/pages/editacartao.js';  // Added import
+import Telapagamento from './ui/Components/Compra/pages/tela_pagamento.js'; // Added import
+import PaginaCompras from './ui/Components/Minhascompras/pages/paginadascompras.js'; // Added import
+import Minhascompras from './ui/Components/Minhascompras/pages/produtoscomprados.js'; // Added import
+import ProdutoChartPage from './ui/Components/grafico/ProdutoChartPage.js'; // Adicionar importação
 
 function App() { 
 
   const Authentication = () => {
-    
-    var token = localStorage.getItem("token")
+    var token = localStorage.getItem("token");
+    if(token === null) return false;
 
-    if(token===null) return false;
-    if (token !==null){
+    if(token !== null) {
       try {
         const { exp } = jwtDecode(token);
-        if (exp * 1000 < Date.now()) {
-          toast.error("Sessão inspirada")
-          localStorage.removeItem("token")
-          window.location.href="Login"  
+        if(exp * 1000 < Date.now()) {
+          toast.error("Sessão expirada");
+          localStorage.removeItem("token");
+          window.location.href = "/Login";  
           return false;
         }
         return true;
@@ -45,36 +49,35 @@ function App() {
  
   return (
     <>
-      <ToastContainer theme='colored'></ToastContainer>
+      <ToastContainer theme='colored' />
       <BrowserRouter>
-          <Header />
-          <Navpages />
-          <Routes>
-            <Route path='/' element={Authentication()? <Home/> : <Navigate to="/Login"/>}></Route>
-            <Route path='/Login' element={<Login />} />
-            <Route path='/Home' element={Authentication() ? <Home /> : <Navigate to="/Login" />} />
-            <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />} />
-            <Route path='/Cadastro' element={<Cadastro />} ></Route>
-            <Route path='/Info_pagamento' element={Authentication() ? <InfoPagamento /> : <Navigate to="/Login" />} />
-            <Route path='/prazos_envios' element={Authentication() ? <PrazosEnvios /> : <Navigate to="/Login" />} />
-            <Route path='/como_comprar' element={Authentication() ? <ComoComprar /> : <Navigate to="/Login" />} />
-            <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
-            <Route path='/cadastrocartao' element={Authentication() ? <Pagamento /> : <Navigate to="/Login" />} />
-            <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
-            <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina/>: <Navigate to="/Login" />}></Route>
-            <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina/>: <Navigate to="/Login" />}></Route>
-            <Route path='/roupa/:nome' element={Authentication() ? <ProductPage/>: <Navigate to="/Login" />}></Route>
-            <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao/>: <Navigate to="/Login" />}></Route>
-            <Route path='/pagamento' element={Authentication() ? <Telapagamento/>: <Navigate to="/Login" />}></Route>
-            <Route path='/minhascompras' element={Authentication() ? <Minhascompras/>: <Navigate to="/Login" />}></Route>
-            <Route path="/minhascompras/:id"  element={Authentication() ? <Minhascomprasprodutos/>: <Navigate to="/Login" />}></Route>
-            
-          </Routes>
-          <Footer />
+        <Header />
+        <Navpages />
+        <Routes>
+          <Route path='/' element={Authentication() ? <Home/> : <Navigate to="/Login"/>} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/Home' element={Authentication() ? <Home /> : <Navigate to="/Login" />} />
+          <Route path='/Perfil' element={Authentication() ? <Perfil /> : <Navigate to="/Login" />} />
+          <Route path='/Cadastro' element={<Cadastro />} />
+          <Route path='/Info_pagamento' element={Authentication() ? <InfoPagamento /> : <Navigate to="/Login" />} />
+          <Route path='/prazos_envios' element={Authentication() ? <PrazosEnvios /> : <Navigate to="/Login" />} />
+          <Route path='/como_comprar' element={Authentication() ? <ComoComprar /> : <Navigate to="/Login" />} />
+          <Route path='/cadastroproduto' element={Authentication() ? <Cadastroproduto /> : <Navigate to="/Login" />} />
+          <Route path='/cadastrocartao' element={Authentication() ? <Cartaocadastrado /> : <Navigate to="/Login" />} />
+          <Route path='/ProductPage' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
+          <Route path='/moda_feminina' element={Authentication() ? <Moda_feminina /> : <Navigate to="/Login" />} />
+          <Route path='/moda_masculina' element={Authentication() ? <Moda_masculina /> : <Navigate to="/Login" />} />
+          <Route path='/roupa/:nome' element={Authentication() ? <ProductPage /> : <Navigate to="/Login" />} />
+          <Route path='/cartao/:numero' element={Authentication() ? <Edita_cartao /> : <Navigate to="/Login" />} />
+          <Route path='/pagamento' element={Authentication() ? <Telapagamento /> : <Navigate to="/Login" />} />
+          <Route path='/minhascompras' element={Authentication() ? <PaginaCompras /> : <Navigate to="/Login" />} />
+          <Route path="/minhascompras/:id" element={Authentication() ? <Minhascompras /> : <Navigate to="/Login" />} />
+          <Route path="/produto-chart" element={Authentication() ? <ProdutoChartPage /> : <Navigate to="/Login" />} /> {/* Adicionar rota do gráfico */}
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
 }
 
 export default App;
-

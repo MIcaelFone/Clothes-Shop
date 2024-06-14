@@ -42,7 +42,7 @@ const ProdutoChart = () => {
 
     return (
         <div>
-            <h2 id="produtoPreco">Preços dos Produtos</h2>
+            <h2>{intl.formatMessage({ id: 'chart.labels.prices' })}</h2>
             {chartData.labels ? <Bar data={chartData} /> : <p>Carregando...</p>}
         </div>
     );
