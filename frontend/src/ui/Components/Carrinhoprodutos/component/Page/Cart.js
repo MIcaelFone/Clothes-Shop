@@ -5,7 +5,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../Styles/Cart.css'; // Importa o arquivo CSS que você criou
 import { FormattedMessage } from 'react-intl';
-
 export default function Cart({ showModal, toggle }) {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
 
@@ -23,7 +22,9 @@ export default function Cart({ showModal, toggle }) {
         color: '#fff'
       }
     });
-
+  const confirmpayment=()=>{
+    window.location.href="/pagamento"
+  }
   const notifyCartCleared = () =>
     toast.error(`Cart cleared!`, {
       position: 'top-center',
@@ -100,7 +101,7 @@ export default function Cart({ showModal, toggle }) {
           {cartItems.length > 0 && (
             <div className="total-section">
               <h1 className="total-title">Total: <FormattedMessage id='money'></FormattedMessage>{getCartTotal()}</h1>
-              <button className="cart-payment" onClick={() => { clearCart(); notifyCartCleared(); }}>
+              <button className="cart-payment" onClick={() => { confirmpayment() }}>
                 <FormattedMessage id="Confirmar_pedido"></FormattedMessage>
               </button>
               <button className="clear-btn" onClick={() => { clearCart(); notifyCartCleared(); }}>
