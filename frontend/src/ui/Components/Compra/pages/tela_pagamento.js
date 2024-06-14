@@ -8,9 +8,11 @@ import '../styles/telapagamento.css';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { toast } from 'react-toastify';
+import { useIntl } from 'react-intl'; // Import useIntl for internationalization
 
 function FormExample() {
-  // Estados relacionados ao formulário
+  const intl = useIntl(); // Initialize the hook for accessing messages
+
   const [validated, setValidated] = useState(false);
   const [produtos, setProdutos] = useState([]);
   const [total, setTotal] = useState("");
@@ -20,8 +22,8 @@ function FormExample() {
   const [pais, setPais] = useState("");
   const [cep, setCep] = useState("");
   const [userid, setUserId] = useState("");
-  const [idcartao,setIdcartao]=useState(null);
-  // Estados e funções de validação para cada campo
+  const [idcartao, setIdcartao] = useState(null);
+
   const [erroCidade, setErroCidade] = useState("");
   const [erroEstado, setErroEstado] = useState("");
   const [erroEndereco, setErroEndereco] = useState("");
@@ -33,11 +35,9 @@ function FormExample() {
   const [isvalidoPais, setisvalidPais] = useState(false);
   const [isvalidoCEP, setisvalidCep] = useState(false);
 
-  // Estados relacionados aos cartões
   const [cartao, setCartao] = useState([]);
   const [selectedCartao, setSelectedCartao] = useState(null);
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -48,12 +48,10 @@ function FormExample() {
     enviaCompra();
   };
 
-  // Redirecionar para a página de cadastro de cartão
   const cadastrarcartao = () => {
     window.location.href = "/cadastrocartao";
   };
 
-  // Obter o ID do usuário do token
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -67,15 +65,14 @@ function FormExample() {
     }
   }, []);
 
-  // Funções de validação genéricas
   const isValidTexto = (texto, setErro) => {
     const pattern = /^[A-Za-z\s]+$/;
     if (texto !== "" && !pattern.test(texto)) {
-      setErro("Este campo deve conter apenas letras.");
+      setErro(intl.formatMessage({ id: 'form.erro_pais' }));
       return false;
     }
     if (texto === "") {
-      setErro("Este campo não pode ficar vazio.");
+      setErro(intl.formatMessage({ id: 'form.erro_vazio' }));
       return false;
     }
     setErro("");
@@ -85,11 +82,11 @@ function FormExample() {
   const isValidEnderenco = (texto, setErro) => {
     const pattern = /^[A-Za-z0-9\s.,]+$/;
     if (texto !== "" && !pattern.test(texto)) {
-      setErro("Este campo deve conter apenas letras e números.");
+      setErro(intl.formatMessage({ id: 'form.erro_endereco' }));
       return false;
     }
     if (texto === "") {
-      setErro("Este campo não pode ficar vazio.");
+      setErro(intl.formatMessage({ id: 'form.erro_vazio' }));
       return false;
     }
     setErro("");
@@ -100,11 +97,11 @@ function FormExample() {
   const isValidCep = (cep, setErro) => {
     const patternCep = /^\d{5}-?\d{3}$/;
     if (cep === "") {
-      setErro("CEP não pode ficar vazio.");
+      setErro(intl.formatMessage({ id: 'form.erro_vazio' }));
       return false;
     }
     if (!patternCep.test(cep)) {
-      setErro("Formato de CEP inválido.");
+      setErro(intl.formatMessage({ id: 'form.erro_cep' }));
       return false;
     }
     setErro("");
@@ -127,7 +124,7 @@ function FormExample() {
       if (response.status === 200) {
         const maxIdCompra = response.data.data;
         const adicionarItens = produtos.map((produto) => 
-          axios.post("http://localhost:8080/pedido/adicionaritem", { idcompra: maxIdCompra, idproduto: produto.idproduto,quantidade:produto.quantity })
+          axios.post("http://localhost:8080/pedido/adicionaritem", { idcompra: maxIdCompra, idproduto: produto.idproduto, quantidade: produto.quantity })
         );
         const resultados = await Promise.all(adicionarItens);
         const todosSucesso = resultados.every(result => result.status === 201);
@@ -135,21 +132,19 @@ function FormExample() {
           toast.success("Pedido cadastrado com sucesso.");
           localStorage.removeItem("cartItems");
           localStorage.removeItem("total");
-          setTimeout(() => {window.location.href = "/home";}, 3500);
+          setTimeout(() => { window.location.href = "/home"; }, 3500);
         }
       }
+    } catch (error) {
+      toast.error("Deu erro");
     }
-       catch (error) {
-        toast.error("Deu erro");
-      }
   };
+
   const enviaCompra = () => {
     if (selectedCartao || cartao.length === 0) {
       const isvalido = isvalidoCEP && isvalidoCidade && isvalidoEstado && isvalidoEndereco && isvalidoPais;
-      console.log(isvalido)
-      if (isvalido===true) {
-           cadastrarpedido()
-         
+      if (isvalido === true) {
+        cadastrarpedido();
       } else {
         toast.error("Por favor, preencha todos os campos corretamente.");
       }
@@ -158,12 +153,11 @@ function FormExample() {
     }
   };
 
-  // Obter os cartões do usuário
   const obtendocartao = async () => {
     try {
       const response = await axios.post("http://localhost:8080/cartao/buscarcartao", { idusuario: userid });
       if (response.status === 200) {
-        const responseData = response.data.data; // Certifique-se de que é um array
+        const responseData = response.data.data;
         setCartao(responseData);
       }
     } catch (error) {
@@ -177,7 +171,6 @@ function FormExample() {
     }
   }, [userid]);
 
-  // Handlers de mudança para os campos do formulário
   const handleCidadeChange = (event) => {
     const value = event.target.value;
     setCidade(value);
@@ -214,12 +207,10 @@ function FormExample() {
     isValidCep(value, setErroCep);
   };
 
-  // Efeitos para carregar produtos e total
   useEffect(() => {
     const items = localStorage.getItem("cartItems");
     if (items) {
       setProdutos(JSON.parse(items));
-  
     }
   }, []);
 
@@ -235,10 +226,10 @@ function FormExample() {
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="checkout-mb-3">
           <Form.Group as={Col} md="6" controlId="validationCustom03">
-            <Form.Label>Endereço</Form.Label>
+            <Form.Label>{intl.formatMessage({ id: 'form.endereco' })}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Endereço"
+              placeholder={intl.formatMessage({ id: 'form.endereco' })}
               value={endereco}
               onChange={handleEnderecoChange}
               required
@@ -248,10 +239,10 @@ function FormExample() {
             <Form.Control.Feedback type="invalid">{erroEndereco}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="3" controlId="validationCustom04">
-            <Form.Label>País</Form.Label>
+            <Form.Label>{intl.formatMessage({ id: 'form.pais' })}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="País"
+              placeholder={intl.formatMessage({ id: 'form.pais' })}
               value={pais}
               onChange={handlePaisChange}
               required
@@ -261,10 +252,10 @@ function FormExample() {
             <Form.Control.Feedback type="invalid">{erroPais}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="3" controlId="validationCustom05">
-            <Form.Label>CEP</Form.Label>
+            <Form.Label>{intl.formatMessage({ id: 'form.cep' })}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="CEP"
+              placeholder={intl.formatMessage({ id: 'form.cep' })}
               value={cep}
               onChange={handleCepChange}
               required
@@ -276,10 +267,10 @@ function FormExample() {
         </Row>
         <Row className="checkout-mb-3">
           <Form.Group as={Col} md="6" controlId="validationCustom03">
-            <Form.Label>Cidade</Form.Label>
+            <Form.Label>{intl.formatMessage({ id: 'form.cidade' })}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Cidade"
+              placeholder={intl.formatMessage({ id: 'form.cidade' })}
               value={cidade}
               onChange={handleCidadeChange}
               required
@@ -289,10 +280,10 @@ function FormExample() {
             <Form.Control.Feedback type="invalid">{erroCidade}</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="3" controlId="validationCustom04">
-            <Form.Label>Estado</Form.Label>
+            <Form.Label>{intl.formatMessage({ id: 'form.estado' })}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Estado"
+              placeholder={intl.formatMessage({ id: 'form.estado' })}
               value={estado}
               onChange={handleEstadoChange}
               required
@@ -302,12 +293,12 @@ function FormExample() {
             <Form.Control.Feedback type="invalid">{erroEstado}</Form.Control.Feedback>
           </Form.Group>
         </Row>
-        <Button type="button" onClick={enviaCompra} className="checkout-button">Finalizar compra</Button>
+        <Button type="button" onClick={enviaCompra} className="checkout-button">{intl.formatMessage({ id: 'form.finalizar_compra' })}</Button>
       </Form>
 
-      <div className="checkout-total-price">Total: R$ {total}</div>
+      <div className="checkout-total-price">{intl.formatMessage({ id: 'form.total' })}: R$ {total}</div>
       <br></br>
-      <center><h1>Cartão</h1></center>
+      <center><h1>{intl.formatMessage({ id: 'form.cartao' })}</h1></center>
       {cartao.length > 0 ? (
         cartao.map((cart, index) => (
           <Card style={{ width: '18rem' }} key={index}>
@@ -322,28 +313,26 @@ function FormExample() {
                 name="cartao"
                 key={cart.idcartao}
               />
-              
-              <Card.Text> Número cartão: {cart.numerocartao}</Card.Text>
-              <Card.Text> Expiry data: {cart.expiry}</Card.Text>
-              <Card.Text> CVC: {cart.cvc}</Card.Text>
+              <Card.Text>{intl.formatMessage({ id: 'form.numero_cartao' })}: {cart.numerocartao}</Card.Text>
+              <Card.Text>{intl.formatMessage({ id: 'form.expiry_data' })}: {cart.expiry}</Card.Text>
+              <Card.Text>{intl.formatMessage({ id: 'form.cvc' })}: {cart.cvc}</Card.Text>
             </Card.Body>
           </Card>
         ))
-        ) : (
-          <div className="checkout-form-container">
-            <Button type="button" onClick={cadastrarcartao} className="checkout-button">Cadastrar cartão</Button>
-          </div>
-        )}
-       {}
-      <center><h2>Produtos selecionado</h2></center>
+      ) : (
+        <div className="checkout-form-container">
+          <Button type="button" onClick={cadastrarcartao} className="checkout-button">{intl.formatMessage({ id: 'form.cadastrar_cartao' })}</Button>
+        </div>
+      )}
+      <center><h2>{intl.formatMessage({ id: 'form.produtos_selecionados' })}</h2></center>
       <div className="checkout-product-list">
         {produtos.map((item) => (
           <Card key={item.idproduto} className="checkout-card">
             <Card.Body className="checkout-card-body">
               <Card.Title className="checkout-card-title">{item.nome}</Card.Title>
-              <Card.Text className="checkout-card-text">Quantidade:{item.quantity}</Card.Text>
+              <Card.Text className="checkout-card-text">{intl.formatMessage({ id: 'form.quantidade' })}: {item.quantity}</Card.Text>
               <Card.Text className="checkout-card-text">
-                Preço: R$ {item.preco}
+                {intl.formatMessage({ id: 'form.preco' })}: R$ {item.preco}
               </Card.Text>
             </Card.Body>
           </Card>
