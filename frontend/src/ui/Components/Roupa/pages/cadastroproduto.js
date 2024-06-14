@@ -12,7 +12,6 @@ function TelaCadastroProduto() {
     const [nome, setNome] = useState('');
     const [descricao, setDescricao] = useState('');
     const [marca, setMarca] = useState('');
-    const [imagem, setImagem] = useState('');
     const [preco, setPreco] = useState('');
     const [moda, setModa] = useState('moda_masculina');
     const isNomeValid = (nome) => {
@@ -76,15 +75,12 @@ function TelaCadastroProduto() {
         isprecoValid(value);
     };
 
-    const handleImages = (event) => {
-        const files = Array.from(event.target.files);
-        setImagem(files);
-    };
+    
 
     const Cadastroproduto = async (event) => {
         event.preventDefault()
         try {
-            await axios.post("http://localhost:8080/produto/cadastrarproduto", { nome, marca, descricao, preco, imagem, moda })
+            await axios.post("http://localhost:8080/produto/cadastrarproduto", { nome, marca, descricao, preco, moda })
                 .then((response) => {
                     console.log(response.data);
                     if(response.status===201){
@@ -146,10 +142,7 @@ function TelaCadastroProduto() {
                                 <option value={"moda_masculina"}><FormattedMessage id="CadastroProduto_modaMasculina" /></option>
                                 <option value={"moda_feminina"}><FormattedMessage id="CadastroProduto_modaFeminina" /></option>
                             </Form.Select>
-                            <Form.Group controlId="formFileMultiple" className="mb-2">
-                                <Form.Label><FormattedMessage id="CadastroProduto_imagemLabel" /></Form.Label>
-                                <Form.Control type="file" multiple onChange={handleImages} required />
-                            </Form.Group>
+            
                             <Form.Group className="mb-2" controlId="exampleForm.ControlTextarea1">
                                 <Form.Label><FormattedMessage id="CadastroProduto_descricaoLabel" /></Form.Label>
                                 <Form.Control
