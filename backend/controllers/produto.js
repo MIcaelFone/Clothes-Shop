@@ -11,13 +11,13 @@ const getProduto = (_, res) => {
 };
 
 const addProduto = (req, res) => {
-    const { nome, marca, descricao, preco, imagem, moda } = req.body;
+    const { nome, marca, descricao, preco, moda } = req.body;
 
-    if (!nome || !marca || !descricao || !preco || !imagem) {
+    if (!nome || !marca || !descricao || !preco) {
         return res.status(400).json("Todos os campos são necessários");
     }
-    const insercao = "INSERT INTO produto(nome,marca,descricao,preco,imagem,moda) VALUES (?,?,?,?,?,?)";
-    const values = [nome, marca, descricao, preco, imagem, moda];
+    const insercao = "INSERT INTO produto(nome,marca,descricao,preco,moda) VALUES (?,?,?,?,?)";
+    const values = [nome, marca, descricao, preco, moda];
      
     db.query(insercao, values, (err,data) => {
         if(err) {
