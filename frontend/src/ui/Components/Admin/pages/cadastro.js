@@ -151,7 +151,7 @@ function Cadastro() {
             <div className="form_container p-5 rounded bg-white">
                 <form onSubmit={CadastraUsuario}>
                     <h3 className="text-center">
-                       Cadastro Administrador
+                       <FormattedMessage id="cadastro_admin"></FormattedMessage>
                     </h3>
                     <div className="mt-4">
                         <label htmlFor="text">

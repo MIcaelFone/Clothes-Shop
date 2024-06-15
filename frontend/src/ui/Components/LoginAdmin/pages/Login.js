@@ -43,7 +43,7 @@ const Loginadmin = () => {
         <div className='Login template d-flex justify-content-center align-items-center vh-100 bg-white'>
             <div className='form_container p-5 rounded bg-white'>
                 <form onSubmit={ProceedLogin}>
-                    <h3 className='text-center'>Login Administrador</h3>
+                    <h3 className='text-center'><FormattedMessage id="login_adm"></FormattedMessage></h3>
                     <div className='mb-2'>
                         <label htmlFor='email'><FormattedMessage id="login_Email" /></label>
                         <input type='email' placeholder='exemplo@gmail.com' value={email} className='form-control' id="email" onChange={(e) => setEmail(e.target.value)}></input>

@@ -31,18 +31,19 @@ function Cartaocadastrado() {
             if (response.status === 200) {
                 const responseData = response.data;
                 if (responseData.message === 'Cartão encontrado com sucesso' && Array.isArray(responseData.data)) {
-                  const cardDataArray = responseData.data;
-                  setCartao(cardDataArray)
+                    const cardDataArray = responseData.data;
+                    setCartao(cardDataArray)
+                }
             }
-        }  
         } catch (error) {
             console.log(error);
         }
     };
+
     const editarcartao = (cartao) => {
         window.location.href = `/cartao/${cartao}`;
     }
-    
+
     useEffect(() => {
         if (iduser) {
             buscandocartao();
@@ -52,12 +53,16 @@ function Cartaocadastrado() {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center align-items-center">
-                <center><h1 className="text-center text-5xl font-weight-bold mb-4">
-                    <FormattedMessage id="cartaotitle"></FormattedMessage>
-                </h1></center>
+                <center>
+                    <h1 className="text-center text-5xl font-weight-bold mb-4">
+                        <FormattedMessage id="cartaotitle" />
+                    </h1>
+                </center>
             </div>
             <div className="d-flex justify-content-center align-items-center mb-4">
-                <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}><FormattedMessage id="adiciona_cartao"></FormattedMessage></button>
+                <button className="btn btn-primary btn-lg responsive-btn" onClick={() => setShowModal(true)}>
+                    <FormattedMessage id="adiciona_cartao" />
+                </button>
             </div>
             {showModal && <Modal onClose={() => setShowModal(false)} />}
             {cartao && cartao.length > 0 ? (
@@ -65,18 +70,24 @@ function Cartaocadastrado() {
                     <div className="cart-item" key={index}>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
-                                <Card.Title> <FormattedMessage id="responsavel_cartao"></FormattedMessage>: {item.nome}</Card.Title>
+                                <Card.Title>
+                                    <FormattedMessage id="responsavel_cartao" />: {item.nome}
+                                </Card.Title>
                                 <Card.Text>
-                                    <FormattedMessage id="number"></FormattedMessage> {item.numerocartao}
+                                    <FormattedMessage id="number" /> {item.numerocartao}
                                 </Card.Text>
-                                <Button variant="primary" onClick={()=>editarcartao(item.numerocartao)}><FormattedMessage id="edit" ></FormattedMessage></Button>
+                                <Button variant="primary" onClick={() => editarcartao(item.numerocartao)}>
+                                    <FormattedMessage id="edit" />
+                                </Button>
                             </Card.Body>
-                        </Card> 
+                        </Card>
                     </div>
                 ))
             ) : (
                 <div className="no-cards" id="NoCards">
-                    <center><h2><FormattedMessage id="noCardsMessage" defaultMessage="No cards registered" /></h2></center>
+                    <center>
+                        <h2><FormattedMessage id="noCardsMessage" defaultMessage="No cards registered" /></h2>
+                    </center>
                 </div>
             )}
         </div>

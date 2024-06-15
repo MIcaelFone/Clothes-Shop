@@ -190,6 +190,26 @@
     "form.erro_cep": "Invalid postal code format.",
     "home_grafico": "Graphical Home",
     "produtos_comprados_title": "Purchased Products",
-    "nenhum_produto_encontrado": "No products found."
-
+    "nenhum_produto_encontrado": "No products found.",
+    "login_adm": "Admin Login",
+    "cadastro_admin":"Admin Registration",
+    "nome": "Name",
+    "marca": "Brand",
+    "preco": "Price",
+    "moda": "Fashion",
+    "editar": "Edit",
+    "nenhum_produto": "No products registered",
+    "produtos_carregados": "Products loaded successfully",
+    "erro_carregar_produtos": "Error loading products",
+    "gerenciamento_produtos": "Product Management",
+    "cadastro_produtos": "Product Registration",
+    "gerenciamento_usuarios": "User Management",
+    "nome": "Name",
+    "email": "Email",
+    "telefone": "Phone",
+    "deletar": "Delete",
+    "usuario_removido_sucesso": "User removed successfully!",
+    "erro_remover_usuario": "Error removing user!",
+    "nenhum_usuario_cadastrado": "No users registered"
+    
 }
