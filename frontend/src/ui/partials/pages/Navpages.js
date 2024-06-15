@@ -11,34 +11,34 @@ function NavLink() {
   const Header_Info = [
     {
       path: '/Home',
-      name: "Home"
+      name: <FormattedMessage id='home' defaultMessage='Home' />
     },
     {
       path: '/moda_masculina',
-      name: <FormattedMessage id='home_moda_Masculina' />
+      name: <FormattedMessage id='home_moda_Masculina' defaultMessage="Men's Fashion" />
     },
     {
       path: '/moda_feminina',
-      name: <FormattedMessage id='home_moda_Feminina' />
+      name: <FormattedMessage id='home_moda_Feminina' defaultMessage="Women's Fashion" />
     },
   ];
 
   const Header_Info_admin = [
     {
       path: '/gerenciamentoprodutos',
-      name: 'Gerenciamento produtos'
+      name: <FormattedMessage id='gerenciamento_produtos' defaultMessage='Product Management' />
     },
     {
       path: '/cadastroproduto',
-      name: 'Cadastro produtos'
+      name: <FormattedMessage id='cadastro_produtos' defaultMessage='Product Registration' />
     },
     {
       path: '/gerenciamentousuarios',
-      name: "Gerenciamento de usuarios"
+      name: <FormattedMessage id='gerenciamento_usuarios' defaultMessage='User Management' />
     },
     {
       path: '/produto-chart',
-      name: <FormattedMessage id='home_grafico' />
+      name: <FormattedMessage id='home_grafico' defaultMessage='Chart' />
     }
   ];
 
@@ -58,4 +58,3 @@ function NavLink() {
 }
 
 export default NavLink;
-

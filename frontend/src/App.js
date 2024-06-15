@@ -17,7 +17,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ProductPage from './ui/Components/Roupa/pages/ProductPage.js';
 import Navpages from './ui/partials/pages/Navpages.js';
 import Moda_masculina from "../src/ui/Components/Tela_produtos/pages/tela_produto_masculino.js";
-import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_cadastro_feminino.js";
+import Moda_feminina from "../src/ui/Components/Tela_produtos/pages/tela_produto_feminino.js";
 import Edita_cartao from "../src/ui/Components/Pagamentoviacartao/pages/editacartao.js";
 import Telapagamento from "../src/ui/Components/Compra/pages/tela_pagamento.js";
 import Minhascompras from "../src/ui/Components/Minhascompras/pages/paginadascompras.js";

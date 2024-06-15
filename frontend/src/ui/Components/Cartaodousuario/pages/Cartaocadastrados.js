@@ -33,12 +33,13 @@ function Cartaocadastrado() {
                 if (responseData.message === 'Cartão encontrado com sucesso' && Array.isArray(responseData.data)) {
                   const cardDataArray = responseData.data;
                   setCartao(cardDataArray)
-            }
-        }  
+                }
+            }  
         } catch (error) {
             console.log(error);
         }
     };
+
     const editarcartao = (cartao) => {
         window.location.href = `/cartao/${cartao}`;
     }
@@ -52,10 +53,12 @@ function Cartaocadastrado() {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-between align-items-center">
-                <center><h1 className="text-center text-5xl font-weight-bold mb-4" style={{marginLeft:"35rem"}}>
-                    <FormattedMessage id="cartaotitle"></FormattedMessage>
-                </h1></center>
-                <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}><FormattedMessage id="adiciona_cartao"></FormattedMessage></button>
+                <h1 className="text-center text-5xl font-weight-bold mb-4" style={{marginLeft:"35rem"}}>
+                    <FormattedMessage id="cartaotitle" defaultMessage="Cartões Cadastrados" />
+                </h1>
+                <button className="btn btn-primary btn-lg" onClick={() => setShowModal(true)}>
+                    <FormattedMessage id="adiciona_cartao" defaultMessage="Adicionar Cartão" />
+                </button>
             </div>
             {showModal && <Modal onClose={() => setShowModal(false)} />}
             {cartao && cartao.length > 0 ? (
@@ -63,18 +66,24 @@ function Cartaocadastrado() {
                     <div className="cart-item" key={index}>
                         <Card style={{ width: '18rem' }}>
                             <Card.Body>
-                                <Card.Title> <FormattedMessage id="responsavel_cartao"></FormattedMessage>: {item.nome}</Card.Title>
+                                <Card.Title> 
+                                    <FormattedMessage id="responsavel_cartao" defaultMessage="Responsável pelo Cartão" />: {item.nome}
+                                </Card.Title>
                                 <Card.Text>
-                                    <FormattedMessage id="number"></FormattedMessage> {item.numerocartao}
+                                    <FormattedMessage id="number" defaultMessage="Número" /> {item.numerocartao}
                                 </Card.Text>
-                                <Button variant="primary" onClick={()=>editarcartao(item.numerocartao)}><FormattedMessage id="edit" ></FormattedMessage></Button>
+                                <Button variant="primary" onClick={() => editarcartao(item.numerocartao)}>
+                                    <FormattedMessage id="edit" defaultMessage="Editar" />
+                                </Button>
                             </Card.Body>
                         </Card> 
                     </div>
                 ))
             ) : (
-                <div style={{marginTop:"4rem", marginRight:"1rem"}}>
-                    <center><h2>Nenhum cartão cadastado</h2></center>
+                <div className="no-cards">
+                    <center><h2>
+                        <FormattedMessage id="noCardsMessage" defaultMessage="Nenhum cartão cadastrado" />
+                    </h2></center>
                 </div>
             )}
         </div>

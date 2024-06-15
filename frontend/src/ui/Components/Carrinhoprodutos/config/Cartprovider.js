@@ -38,7 +38,9 @@ export const CartProvider = ({ children }) => {
   };
 
   const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
+    var valor_total=cartItems.reduce((total, item) => total + item.preco * item.quantity, 0);
+    localStorage.setItem('total', valor_total);
+    return valor_total;
   };
 
   useEffect(() => {
