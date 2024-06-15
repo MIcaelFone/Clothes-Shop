@@ -42,8 +42,8 @@ function Cartaocadastrado() {
 
     const editarcartao = (cartao) => {
         window.location.href = `/cartao/${cartao}`;
-    }
-    
+    };
+
     useEffect(() => {
         if (iduser) {
             buscandocartao();
@@ -76,7 +76,7 @@ function Cartaocadastrado() {
                                     <FormattedMessage id="edit" defaultMessage="Editar" />
                                 </Button>
                             </Card.Body>
-                        </Card> 
+                        </Card>
                     </div>
                 ))
             ) : (

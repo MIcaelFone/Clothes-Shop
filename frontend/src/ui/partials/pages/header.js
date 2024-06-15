@@ -126,20 +126,8 @@ const Header = () => {
                     <Navbar.Brand href="/home" className="Brand">Clothes Shop</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
-                        <Form className="d-flex mx-auto search-form Searchbar">
-                            <Form.Control
-                                type="search"
-                                placeholder={intl.formatMessage({ id: "header.searchPlaceholder", defaultMessage: "Search" })}
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <Button variant="outline-success">
-                                <FormattedMessage id="header.searchButton" defaultMessage="Search" />
-                            </Button>
-                        </Form>
-
                         {auth() ? (
-                            <Nav className="nav-menu ms-auto" style={{ marginRight: "2.5rem" }}>
+                            <Nav className="nav-menu ms-auto" style={{ marginRight: "4.0rem" }}>
                                 <NavDropdown title={`${intl.formatMessage({ id: "header.greeting", defaultMessage: "Hello" })} ${nome}`} id="basic-nav-dropdown" className="list_item">
                                     {(isAdmin() ? headerAutenticadoadmin : headerAutenticadocliente).map((item, index) => (
                                         <NavDropdown.Item key={index} href={item.path} onClick={item.onClick}>
