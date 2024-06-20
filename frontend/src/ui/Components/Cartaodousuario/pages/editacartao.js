@@ -43,7 +43,7 @@ function Editacartao(){
         try {
            const deleta= await axios.delete("http://localhost:8080/cartao/deletacartao",{ data: { numerocartao:Numbercard }})
            if(deleta.status===200){
-                toast.success("Produto deletado com sucesso")
+                toast.success("Cartão deletado com sucesso")
                 setTimeout(()=>{
                    window.location.href="/cadastrocartao"
                 },4000)

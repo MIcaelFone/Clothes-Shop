@@ -18,12 +18,10 @@ function GerenciamentoRoupa() {
     useEffect(() => {
         axios.get('http://localhost:8080/produto/cadastroprodutolistar')
             .then(response => {
-                setRoupas(response.data);
-                toast.success(intl.formatMessage({ id: 'produtos_carregados', defaultMessage: 'Products loaded successfully' }));
+                setRoupas(response.data);    
             })
             .catch(error => {
                 console.log(error);
-                toast.error(intl.formatMessage({ id: 'erro_carregar_produtos', defaultMessage: 'Error loading products' }));
             });
     }, [intl]);
 

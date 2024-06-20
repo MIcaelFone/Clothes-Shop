@@ -225,6 +225,11 @@
     "responsavel_cartao": "Responsável pelo Cartão",
     "number": "Número",
     "edit": "Editar",
-    "noCardsMessage": "Nenhum cartão cadastrado"
+    "noCardsMessage": "Nenhum cartão cadastrado",
+    "header.myPurchases": "Minhas compras",
+    "adicionsr_cartao": "Adicionar Cartão",
+    "Edita_roupa": "Editar Roupa",
+    "Edita_roupa_sucesso": "Roupa editada com sucesso",
+    "Atualiza_roupa": "Atualizar Roupa"
 
 }

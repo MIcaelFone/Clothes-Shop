@@ -1,95 +1,81 @@
 /* Estilos globais */
 
-/* Container principal */
-.text-5xl {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px; /* Adiciona espaço inferior */
-}
-
-/* Botão "Adicionar cartão" */
-.add-cartao-btn {
-  background-color: #007bff; /* Cor de fundo */
-  border-color: #007bff; /* Cor da borda */
-  color: #fff; /* Cor do texto */
-  padding: 0.75rem 1.5rem; /* Espaçamento interno */
-  font-size: 1.25rem; /* Tamanho da fonte */
-  font-weight: bold; /* Peso da fonte */
-  border-radius: 0.5rem; /* Bordas arredondadas */
-  transition: background-color 0.3s ease, border-color 0.3s ease; /* Transições suaves */
-}
-
-.add-cartao-btn:hover {
-  background-color: #0056b3; /* Cor de fundo ao passar o mouse */
-  border-color: #004085; /* Cor da borda ao passar o mouse */
-}
-
-.add-cartao-btn:focus {
-  outline: none; /* Remove o contorno padrão */
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Sombra ao focar */
-}
-
-.add-cartao-btn:active {
-  background-color: #004085; /* Cor de fundo ao clicar */
-  border-color: #002752; /* Cor da borda ao clicar */
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Cartões */
-.cart-item {
-  margin: 1rem;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.card {
-  margin: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: #666;
-}
-
-.card-body {
-  padding: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .cart-item {
-      width: 100%;
+  
+  /* Container principal */
+ 
+  
+  .text-5xl {
+    font-size: 2.5rem;
+    color: #333;
   }
-
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Cartões */
+  .cart-item {
+    margin: 1rem;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
   .card {
+    margin: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .cart-item {
+      width: 100%;
+    }
+  
+    .card {
       width: 100%;
       margin: 1rem 0;
+    }
   }
-}
+  
