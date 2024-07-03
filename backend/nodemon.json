@@ -3,6 +3,6 @@
         "node_modules",
         "package.json",
         "package-lock.json"
-    ],
-    "delay": 1000
+    ]
+    
 }
