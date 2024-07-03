@@ -1,6 +1,3 @@
-
-const db = require("../database/db");
-
 const addPedido = (req, res) => {
     const insercao = "INSERT INTO compra (enderenco, idusuario, cidade, CEP, estado, pais,idcartao,valortotal) VALUES (?, ?, ?, ?, ?, ?,?,?);";
     const { enderenco, idusuario, cidade, CEP, estado, pais,idcartao,valortotal } = req.body;

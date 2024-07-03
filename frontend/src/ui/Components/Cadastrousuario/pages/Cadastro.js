@@ -125,24 +125,15 @@ function Cadastro() {
     const CadastraUsuario = async (event) => {
         event.preventDefault(); // Evita o comportamento padrão de envio de formulário
         if (IsValidonome(nome) && IsValidoemail(email) && IsValidosenha(senha) && Isconfirmsenha(senha, confirmaSenha) && Isnumbervalido(telefone)) {
-            try {
-                var iscadastroValid = false;
-                await axios.post("http://localhost:8080/usuario/verficandoCadastro", { nome, email, telefone }).then((resposta) => {
-                    if (resposta.status === 204) {
-                        iscadastroValid = true;
+            try {    
+                await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, telefone }).then((resposta) => {
+                    if (resposta.status === 201) {
+                        toast.success(intl.formatMessage({ id: "messages_registrationSuccess", defaultMessage: "Cadastro realizado com sucesso" }));
+                        usenavigate("/Login");
+                        localStorage.setItem("IsAdmin",false);
                         return;
                     }
-                });
-                if (iscadastroValid) {
-                    await axios.post("http://localhost:8080/usuario/cadastrarusuario", { nome, email, senha, telefone }).then((resposta) => {
-                        if (resposta.status === 201) {
-                            toast.success(intl.formatMessage({ id: "messages_registrationSuccess", defaultMessage: "Cadastro realizado com sucesso" }));
-                            usenavigate("/Login");
-                            localStorage.setItem("IsAdmin",false);
-                            return;
-                        }
-                    });
-                } 
+                }); 
             } catch (error) {
                 console.error(error);
                 toast.error(intl.formatMessage({ id: "messages_existingRegistration", defaultMessage: "Cadastro já existente" }));
