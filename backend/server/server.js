@@ -6,7 +6,7 @@ const adminRoutes = require("../routes/AdministradorRoutes");
 const express = require("express");
 const bodyParser = require('body-parser'); 
 const cors = require('cors');
-const dbSync = require("../Database/dbSync"); 
+const dbSync = require("../Database/databaseSyncronizando"); 
 const app = express();
 
 // Middleware
