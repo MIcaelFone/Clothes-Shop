@@ -89,7 +89,6 @@ const retornarProdutos = async (req, res) => {
         ,as:'produto'}]
       }],
       order:[['idcompra','ASC']]})
-    console.log(busca)
     if(busca.length>0){
       return res.status(200).json({ message: "Pedido encontrado com sucesso", data: busca });
     }
