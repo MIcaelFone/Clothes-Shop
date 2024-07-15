@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const db = require('../Database/database');
-
+const Usuario = require('./usuarioModel');
 const Cartao = db.define("Cartao", {
     idcartao: {
         type: DataTypes.INTEGER,
@@ -28,7 +28,7 @@ const Cartao = db.define("Cartao", {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'Usuario',
+            model: Usuario,
             key: 'idusuario'
         }
     }
