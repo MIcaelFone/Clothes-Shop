@@ -1,4 +1,4 @@
-const Cartao = require("../models/CartaoModel");
+const Cartao = require("../models/cartaoModel");
 const cadastrarCartao= async(req,res)=>{
    const { nome,numero,expiry,cvc,idusuario }=req.body
    console.log(req.body)
