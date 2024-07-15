@@ -1,5 +1,4 @@
-
-const database = require('../Database/database.js');
+const database = require('../Database/database.js'); 
 const { DataTypes} = require('sequelize');
 const Produto=database.define("Produto",{
     idproduto:{
@@ -13,21 +12,24 @@ const Produto=database.define("Produto",{
       allowNull:false,
       unique:true,
     },
+    marca:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
     descricao:{
         type:DataTypes.STRING,
-        allowNull:true,
+        allowNull:false,
     },
     preco:{
         type:DataTypes.FLOAT(10,2),
-        allowNull:true,
+        allowNull:false,
     },
     moda:{
         type:DataTypes.STRING,
-        allowNull:true,
+        allowNull:false,
     }
 },{
     tableName: 'produto',
     timestamps: false
 });
-
 module.exports = Produto;
