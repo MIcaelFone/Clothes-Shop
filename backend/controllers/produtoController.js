@@ -16,11 +16,11 @@ const cadastrarProduto = async(req,res) => {
     const { nome, marca, descricao, preco, moda } = req.body;
     try {
         const cadastrarProduto= await Produto.create({nome,marca,descricao,preco,moda}); 
-        if(cadastrarProduto){
+        if(cadastrarProduto.dataValues){
             return res.status(201).json({ message: "Produto inserido com sucesso" });
         }
         else{
-            return res.status(400).json({ message: "Não foi possível inserir o produto" });
+            return res.status(404).json({ message: "Não foi possível inserir o produto" });
         }        
     } catch (error) {
         return res.status(500).json({ error: 'Não foi possível para conectar no banco de dados' })

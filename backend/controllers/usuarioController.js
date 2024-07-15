@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Usuario = require("../models/usuarioModel");
+
 const buscarUsuarios= async(req,res)=>{
     try {
         const data = await Usuario.findAll();
