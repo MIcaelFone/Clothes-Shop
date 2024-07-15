@@ -5,10 +5,17 @@ import Button from 'react-bootstrap/Button';
 import { useIntl, FormattedMessage } from 'react-intl'; // Certifique-se de importar useIntl e FormattedMessage
 import { toast } from 'react-toastify'; // Certifique-se de importar toast
 import 'react-toastify/dist/ReactToastify.css'; // Importar o CSS do Toastify   
+import { useIntl, FormattedMessage } from 'react-intl'; // Certifique-se de importar useIntl e FormattedMessage
+import { toast } from 'react-toastify'; // Certifique-se de importar toast
+import 'react-toastify/dist/ReactToastify.css'; // Importar o CSS do Toastify   
 import '../styles/gerenciamentoroupas.css'; // Importando o CSS
 
 function GerenciamentoRoupa() {
     const [roupas, setRoupas] = useState([]);
+    const intl = useIntl();
+
+    const editproduto = (nome) => {
+        window.location.href = `/gerenciamentoprodutos/${nome}`;
     const intl = useIntl();
 
     const editproduto = (nome) => {
@@ -22,7 +29,9 @@ function GerenciamentoRoupa() {
             })
             .catch(error => {
                 console.log(error);
+                toast.error(intl.formatMessage({ id: 'erro_carregar_produtos', defaultMessage: 'Error loading products' }));
             });
+    }, [intl]);
     }, [intl]);
 
     return (
@@ -47,11 +56,29 @@ function GerenciamentoRoupa() {
                                 <Button variant="primary" onClick={() => editproduto(roupa.nome)}>
                                     <FormattedMessage id="editar" defaultMessage="Editar" />
                                 </Button>
+                                <Card.Text>
+                                    <FormattedMessage id="nome" defaultMessage="Nome" />: {roupa.nome}
+                                </Card.Text>
+                                <Card.Text>
+                                    <FormattedMessage id="marca" defaultMessage="Marca" />: {roupa.marca}
+                                </Card.Text>
+                                <Card.Text>
+                                    <FormattedMessage id="preco" defaultMessage="Preço" />: {roupa.preco}
+                                </Card.Text>
+                                <Card.Text>
+                                    <FormattedMessage id="moda" defaultMessage="Moda" />: {roupa.moda}
+                                </Card.Text>
+                                <Button variant="primary" onClick={() => editproduto(roupa.nome)}>
+                                    <FormattedMessage id="editar" defaultMessage="Editar" />
+                                </Button>
                             </Card.Body>
                         </Card>
                     </div>
                 ))
             ) : (
+                <h1>
+                    <FormattedMessage id="nenhum_produto" defaultMessage="Não possui nenhum produto cadastrado" />
+                </h1>
                 <h1>
                     <FormattedMessage id="nenhum_produto" defaultMessage="Não possui nenhum produto cadastrado" />
                 </h1>
