@@ -65,7 +65,7 @@ function Editacartao() {
                 idproduto: id
             });
             if (atualizacao.status === 200) {
-                toast.success("Atualização do produto bem sucedida");
+                toast.success(intl.formatMessage({ id: "Edita_roupa_sucesso"}));
             }
         } catch (error) {
             toast.error("Erro para atualizar");
@@ -77,7 +77,7 @@ function Editacartao() {
             <div className='Perfil template d-flex justify-content-center vh-97 bg-white' style={{ marginTop: "3rem" }}>
                 <div className='form_container p-50 rounded bg-white'>    
                     <form>
-                        <h1 className='text-center'><FormattedMessage id="edit_card" /></h1>
+                        <h1 className='text-center'><FormattedMessage id="Edita_roupa" /></h1>
                         <div className='mb-2'>
                             <label htmlFor='nome'><FormattedMessage id="formLabels_name" /></label>
                             <input
@@ -127,7 +127,7 @@ function Editacartao() {
                             />
                         </div>
                         <div className='d-flex mt-3' style={{ gap: "1rem" }}>
-                            <Button variant="primary" onClick={atualizaproduto}>Atualiza produto</Button>
+                            <Button variant="primary" onClick={atualizaproduto}> <FormattedMessage id="Atualiza_roupa" /></Button>
                             <Button variant="danger" onClick={deletaproduto}><FormattedMessage id="profile_delete" /></Button>
                         </div>
                         <br />

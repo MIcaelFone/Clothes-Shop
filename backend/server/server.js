@@ -1,21 +1,33 @@
+const produtoRoutes = require("../routes/produtoRoutes");
+const usuarioRoutes = require("../routes/usuarioRoutes");
+const cartaoRoutes = require("../routes/cartaoRoutes");
+const pedidoRoutes = require("../routes/pedidoCompraRoutes");
+const adminRoutes = require("../routes/AdministradorRoutes");
 const express = require("express");
 const bodyParser = require('body-parser'); 
 const cors = require('cors');
-const produtoRoutes =require("../routes/produto")
-const usuarioRoutes =require("../routes/usuario")
-const cartaoRoutes =require("../routes/cartao");
-const pedidoRoutes =require("../routes/compra");
-const AdminRoutes =require("../routes/admin");
-const app =express();
+const dbSync = require("../Database/databaseSyncronizando"); 
+const app = express();
+const path = require('path');
+
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
-app.use(express.json())
-app.use('/produto',produtoRoutes)
-app.use('/usuario',usuarioRoutes)
-app.use('/cartao',cartaoRoutes)
-app.use('/pedido',pedidoRoutes)
-app.use('/admin',AdminRoutes)
-app.listen(8080,()=>{
-    console.log("Servidor está logado na porta 8080")
-})
+app.use(cors());
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+});
+
+app.use('/produto', produtoRoutes);
+app.use('/usuario', usuarioRoutes);
+app.use('/cartao', cartaoRoutes);
+app.use('/pedido', pedidoRoutes);
+app.use('/admin', adminRoutes);
+
+dbSync();
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Servidor está rodando na porta ${PORT}`);
+});

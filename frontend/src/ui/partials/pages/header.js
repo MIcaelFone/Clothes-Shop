@@ -47,7 +47,6 @@ const Header = () => {
                 const redirectUrl = isAdmin() ? "/loginadmin" : "/Login";
                 navigate(redirectUrl);
                 window.location.reload();
-                // Faz um refresh da página após 4 segundos
               }, 3000);
            
         }
@@ -64,7 +63,7 @@ const Header = () => {
         },
         {
             path: '/minhascompras',
-            name: "Minhas compras"
+            name: intl.formatMessage({ id: "header.myPurchases", defaultMessage: "Minhas compras" })
         },
         {
             onClick: logout,
