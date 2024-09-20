@@ -15,25 +15,29 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 1. **Cadastro e Login:** 
    - Usuários podem se registrar e fazer login utilizando autenticação JWT.
    - Validação de credenciais e gerenciamento de sessão.
-     ![Tela cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)
+   - ***TELA LOGIN:***
+     ![Tela login](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)
+   - ***TELA CADASTRO:***   
      ![Tela de cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/55a7e224-e026-4066-9949-20f2215bcbef)
-2. **Navegação de Produtos:**
+2. **Landing page:**
    - Exibição de categorias de roupas (por gênero).
    - Exibição de marcas disponíveis.
-
+    - ***TELA HOME:***   
+![Tela Home](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a341627b-bb55-4efb-a888-99c09ef21314)
 3. **Carrinho de Compras:**
    - Adicionar produtos ao carrinho.
    - Aumentar ou diminuir a quantidade de itens no carrinho.
    - Finalizar compras ou esvaziar o carrinho.
-
+![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5c2f4799-0d61-40b4-8c0b-5196fa75ffc6) 
 4. **Gerenciamento de Pagamentos:**
    - Possibilidade de adicionar informações de cartão de crédito.
    - Exibição de um modal para preenchimento de dados.
 
 5. **Tela de Produtos:**
    - Detalhamento de produtos com opção para adicionar ao carrinho.
-   
-6. **Responsividade:**
+   ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
+
+6. **Gerenciamento:(Fase melhorias)**
    - Design responsivo para diferentes tamanhos de tela, utilizando Bootstrap.
 
 ## Pré-requisitos
