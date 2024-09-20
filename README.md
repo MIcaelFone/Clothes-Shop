@@ -1,7 +1,7 @@
 # Clothes-Shop
 
 Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Experiência Criativa na faculdade. O objetivo é criar uma plataforma online para a venda de roupas, onde os usuários podem se cadastrar, navegar por produtos de diferentes gêneros, adicionar itens ao carrinho e efetuar compras.
-
+Aviso: O projeto ainda está em fase de melhorias e estruturação, o que significa que novas funcionalidades estão sendo adicionadas e a arquitetura do código está sendo aprimorada.
 ## Tecnologias Utilizadas
 
 - **Frontend:** React.js, Bootstrap
@@ -31,7 +31,6 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
    ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
 4. **Cadastrar Cartão:**
    - Possibilidade de adicionar informações de cartão de crédito.
-   - Realizar pagamento.
    ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/6c884449-a63f-4a56-b68e-711724d979b0)
    ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/bf5bab69-7737-4e7b-9ad4-d338cbdbfa5b)
 5. **Tela de Produtos:**
