@@ -15,7 +15,8 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 1. **Cadastro e Login:** 
    - Usuários podem se registrar e fazer login utilizando autenticação JWT.
    - Validação de credenciais e gerenciamento de sessão.
-   - ![Tela cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)    
+     ![Tela cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)
+     ![Tela de cadastro](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/55a7e224-e026-4066-9949-20f2215bcbef)
 2. **Navegação de Produtos:**
    - Exibição de categorias de roupas (por gênero).
    - Exibição de marcas disponíveis.
