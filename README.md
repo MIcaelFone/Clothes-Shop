@@ -29,7 +29,7 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
    - Aumentar ou diminuir a quantidade de itens no carrinho.
    - Finalizar compras ou esvaziar o carrinho.
    ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
-4. **Adicionar Cartão:**
+4. **Cadastrar Cartão:**
    - Possibilidade de adicionar informações de cartão de crédito.
    - Realizar pagamento.
    ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/6c884449-a63f-4a56-b68e-711724d979b0)
