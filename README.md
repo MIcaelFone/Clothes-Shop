@@ -8,7 +8,7 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 - **Backend:** Node.js, Sequelize (ORM)
 - **Banco de Dados:** MySQL
 - **Ferramentas de Organização:** Trello
-- **Outros:** Nodemon (para desenvolvimento), JWT (autenticação), Tailwind CSS (design)
+- **Outros:** Nodemon (para desenvolvimento), JWT (autenticação), Boostrap CSS (design), Webpack(empacotamento de pacotes)
 
 ## Funcionalidades
 
@@ -39,8 +39,34 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 
 - **Node.js**
 - **MySQL**
-- **Nodemon** (para desenvolvimento)
+  
+## Estrutura do projeto
+```bash
+Clothes-Shop/
+├──frontend/
+│   ├── build/                    # Diretório gerado automaticamente após o build para produção.
+│   ├── node_modules/             # Diretório com os pacotes e dependências instaladas via npm.  
+│   ├── public/                   # Arquivos estáticos e públicos acessíveis diretamente pelo navegador.
+│   ├── index.html                # Ponto de entrada do app React, onde o código JS é injetado.   
+│   ├── src/                      # Código-fonte principal do projeto React.
+│   ├── assets/                   # Arquivos de mídia, como imagens, ícones, fontes, etc. 
+│   ├── lang/                     # Arquivos de tradução,serve para criar a internacionalização.
+│   ├── Styles/                   # Arquivos de estilização (CSS, SCSS, etc.) do projeto.
+│   └── ui/                       # Diretório com os componentes de UI (interface de usuário).
+│       └── Components/           # Onde ficam os componentes React reutilizáveis.
 
+
+├── backend/               # Contém o código do backend
+│   ├── database/         # Configurações do banco de dados
+│   ├── models/           # Modelos Sequelize
+│   ├── routes/           # Rotas da API
+│   ├── controllers/      # Lógica de negócios
+│   ├── server.js         # Arquivo principal para rodar o servidor
+│   └── package.json
+│
+├── README.md
+└── ...
+```
 ## Configuração do Projeto
 
 ### Clonando o Repositório
@@ -60,6 +86,7 @@ nodemon start server.js
 ### 2. Inicializando a aplicação
 ```bash
 cd frontend/src
+npm install
 npm start
 ```
 
