@@ -23,20 +23,20 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
    - Exibição de categorias de roupas (por gênero).
    - Exibição de marcas disponíveis.
     - ***TELA HOME:***   
-![Tela Home](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a341627b-bb55-4efb-a888-99c09ef21314)
+   ![Tela Home](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a341627b-bb55-4efb-a888-99c09ef21314)
 3. **Carrinho de Compras:**
    - Adicionar produtos ao carrinho.
    - Aumentar ou diminuir a quantidade de itens no carrinho.
    - Finalizar compras ou esvaziar o carrinho.
-![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5c2f4799-0d61-40b4-8c0b-5196fa75ffc6) 
-4. **Gerenciamento de Pagamentos:**
+   ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
+4. ** Pagamentos:**
    - Possibilidade de adicionar informações de cartão de crédito.
-   - Exibição de um modal para preenchimento de dados.
-
+   - Realizar pagamento.
+   ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/6c884449-a63f-4a56-b68e-711724d979b0)
+   ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/bf5bab69-7737-4e7b-9ad4-d338cbdbfa5b)
 5. **Tela de Produtos:**
    - Detalhamento de produtos com opção para adicionar ao carrinho.
-   ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
-
+ ![Página de produtos](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a6200765-7c60-4235-a5f1-2ddcd8157a4d)
 6. **Gerenciamento:(Fase melhorias)**
    - Design responsivo para diferentes tamanhos de tela, utilizando Bootstrap.
 
