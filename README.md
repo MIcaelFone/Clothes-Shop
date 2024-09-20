@@ -15,7 +15,8 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 1. **Cadastro e Login:** 
    - Usuários podem se registrar e fazer login utilizando autenticação JWT.
    - Validação de credenciais e gerenciamento de sessão.
-
+   ![Tela inicial](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/0d48133c-e50a-4ff6-a9c5-33a9688b568e)  
+  
 2. **Navegação de Produtos:**
    - Exibição de categorias de roupas (por gênero).
    - Exibição de marcas disponíveis.
@@ -55,7 +56,6 @@ Clothes-Shop/
 │   └── ui/                       # Diretório com os componentes de UI (interface de usuário).
 │       └── Components/           # Onde ficam os componentes React reutilizáveis.
 
-
 ├── backend/               # Contém o código do backend
 │   ├── database/         # Configurações do banco de dados
 │   ├── models/           # Modelos Sequelize
@@ -83,7 +83,7 @@ cd server
 npm install
 nodemon start server.js
 ```
-### 2. Inicializando a aplicação
+### 2. Inicializando o frontend
 ```bash
 cd frontend/src
 npm install
