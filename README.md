@@ -1,7 +1,7 @@
 # Clothes-Shop
 
 Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Experiência Criativa na faculdade. O objetivo é criar uma plataforma online para a venda de roupas, onde os usuários podem se cadastrar, navegar por produtos de diferentes gêneros, adicionar itens ao carrinho e efetuar compras.
-Aviso: O projeto ainda está em fase de melhorias e estruturação, o que significa que novas funcionalidades estão sendo adicionadas e a arquitetura do código está sendo aprimorada.
+***Aviso: O projeto ainda está em fase de melhorias e estruturação, o que significa que novas funcionalidades estão sendo adicionadas e a arquitetura do código está sendo aprimorada.***
 ## Tecnologias Utilizadas
 
 - **Frontend:** React.js, Bootstrap
