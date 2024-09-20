@@ -43,11 +43,24 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
 
 ## Configuração do Projeto
 
-### 1. Clonando o Repositório
+### Clonando o Repositório
 
 ```bash
 git clone https://github.com/MIcaelFone/Clothes-Shop.git
-cd Clothes-Shop
+```
+## Inicializando o projeto
+
+### 1. Inicializando o servidor
+```bash
+cd backend
+cd server
+npm install
+nodemon start server.js
+```
+### 2. Inicializando a aplicação
+```bash
+cd frontend/src
+npm start
 ```
 
 
