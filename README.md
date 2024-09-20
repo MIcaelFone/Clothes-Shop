@@ -31,10 +31,11 @@ Este é um projeto de e-commerce de roupas desenvolvido para a disciplina de Exp
    ![Carrinho de compras](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/5a4fd6e9-b053-47fe-aea0-2c4ae5c9a938)
 4. **Cadastrar Cartão:**
    - Possibilidade de adicionar informações de cartão de crédito.
-   - ***TELA PARA ADICIONAR CARTÃO***
+   ***TELA PARA ADICIONAR CARTÃO***
    ![image](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/bf5bab69-7737-4e7b-9ad4-d338cbdbfa5b)
 5. **Tela de Produtos:**
    - Detalhamento de produtos com opção para adicionar ao carrinho.
+   - ***TELA DE ROUPAS***
  ![Página de produtos](https://github.com/MIcaelFone/Clothes-Shop/assets/104805213/a6200765-7c60-4235-a5f1-2ddcd8157a4d)
 6. **Gerenciamento:(Fase melhorias)**
    - Design responsivo para diferentes tamanhos de tela, utilizando Bootstrap.
